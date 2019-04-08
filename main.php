@@ -2,7 +2,7 @@
 <div class="row">
   <?php
 
-  switch ($_GET[p]) {
+  switch (isset($_GET['p'])) {
     case 'page_position': include('page_position.php') ;break;
     case 'page_history' : include('page_history.php') ;break;
     case 'page_report' : include('page_report.php') ;break;

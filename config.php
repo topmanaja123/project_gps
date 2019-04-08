@@ -4,7 +4,7 @@ $host = "localhost";
 //Username phpmyadmin
 $username = "root";
 //Password phpMyadmin
-$password = "123456789";
+$password = "12345678";
 $db = "green_gps";
 
 //คำสั่ง Connect ฐานข้อมูล

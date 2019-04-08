@@ -11,7 +11,6 @@
   <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
   <script src="js/leaflet-realtime.js"></script>
   <script rel="stylesheet" src="js/leaflet.rotatedMarker.js">
-
   </script>
 </head>
 <style media="screen">
@@ -36,56 +35,80 @@
   <?php
   include("config.php");
   $sql="SELECT
-      `devices`.`devi_id`,
-      `devices`.`devi_name`,
-      `devices`.`devi_imei`,
-      `positions`.`posi_id`,
-      `positions`.`devicetime`,
-      `positions`.`servertime`,
-      `positions`.`fixtime`,
-      `positions`.`lat`,
-      `positions`.`lng`,
-      `positions`.`speed`,
-      `positions`.`course`,
-      `positions`.`rf_name`,
-      `positions`.`rf_number`,
-      `devices`.`devi_model`,
-      `category`.`cate_id`,
-      `category`.`cate_name`,
-      `category`.`cate_pic`,
-      `devices`.`devi_fuel`,
-      `devices`.`devi_utc`,
-      `devices`.`connect_dlt`,
-      `devices`.`connect_post`,
-      `devices`.`connect_acc`
-  FROM
-      `category`
-      INNER JOIN `devices` ON `category`.`cate_id` = `devices`.`devi_category`
-      INNER JOIN `positions` ON `positions`.`posi_id` = `devices`.`devi_position`";
+  `devices`.`devi_name`,
+  `devices`.`devi_imei`,
+  `positions`.`posi_id`,
+  `positions`.`devicetime`,
+  `positions`.`lat`,
+  `positions`.`lng`,
+  `positions`.`speed`,
+  `positions`.`course`,
+  `positions`.`state`,
+  `positions`.`altitude`,
+  `devices`.`connect_dlt`,
+  `devices`.`connect_post`,
+  `devices`.`connect_acc`,
+  `devices`.`rfid_name`,
+  `devices`.`rfid_number`,
+  `devices`.`devi_fuel`
+FROM
+  `positions`
+  INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position`";
       $result=$conn->query($sql);
       $result1=$conn->query($sql);
   ?>
   <div class="col-sm-3">
-    <table class="table table-sm table-bordered">
-      <thead>
-        <tr>
-          <th>header</th>
-        </tr>
-      </thead>
+  <table class="table table-striped table-borderless table-responsive table-sm" border="0" style="width:100%;" >
+    <thead class="thead-dark">
+      <tr>
+        <th style="width:7%" class="text-center"> <input type="checkbox" name="" value=""> </th>
+        <th class="text-center"></i> </th>
+        <th style="width:58%" class="text-center"> <i class="fas fa-car"></i>
+           ชื่ออุปกรณ์
+        </th>
+        <th style="width:7%" class="text-center"> <i class="fas fa-gas-pump" data-toggle="tooltip" data-placement="top" title="น้ำมัน"></i>
+        </th>
+        <th style="width:7%" class="text-center  d-md" data-toggle="tooltip" data-placement="top" title="ความเร็ว"> km/h</th>
+        <th style="width:7%" class="text-center"><i class="fas fa-signal" data-toggle="tooltip" data-placement="top" title="สถานะการณ์ปัจจุบัน"></th>
+        <th style="width:7%" class="text-center"><i class="fas fa-globe " data-toggle="tooltip" data-placement="top" title="GPS State"></th>
+        <th style="width:7%" class="text-center"><i class="fas fa-route " data-toggle="tooltip" data-placement="top" title="เส้นทางการวิ่ง"  ></th>
+      </tr>
+    </thead>
+
+    <tbody>
       <?php
-      $i = 0;
-          while($rs=$result->fetch_assoc()){
-      $i++;
+       while ($rs = $result->fetch_assoc()) {
       ?>
-      <tbody>
-        <tr>
-          <td id="<?= $i ?>" style="cursor:pointer;"><?= $rs['devi_name'] ?></td>
-        </tr>
-      </tbody>
+      <tr>
+        <td scope="row"><input type="checkbox" name="" value=""></td>
+        <td class="text-center"><i class="fas fa-user fa-sm"></i></td>
+        <td class="text-center"><?= $rs['devi_name']?></td>
+        <td class="text-center">0.0</td>
+        <td class="text-center">80.0</td>
+        <td class="text-center" style="font-size: 1rem;"> <i id="acc" class="fas fa-minus-circle"></i>  </td>
+        <td class="text-center" style="font-size: 1rem;">
+          <i id="siglow" class="far fa-thermometer-empty fa-sm"></i>
+          <i id="sigmid" class="fas fa-thermometer-half"></i>
+          <i id="sighig" class="fas fa-thermometer-full"></i>
+        </td>
+        <td class="text-center"> <input type="checkbox" name="" value=""> </td>
+      </tr>
+      <tr>
+        <td scope="row">-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+        <td>-</td>
+      </tr>
       <?php
-        }
-      ?>
-    </table>
+         }
+       ?>
+    </tbody>
+
+  </table>
   </div>
   <div class="map col-sm-9">
     <div id="map" style="width : 75vw; height: 90vh;"></div>
@@ -178,7 +201,4 @@ var scale = L.control.scale().addTo(mymap);
             markerZoomAnimation: true
           });
       });
-
-
-
 </script>
