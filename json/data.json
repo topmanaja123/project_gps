@@ -1,0 +1,45 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id" : "3",
+        "Name": "Worker1",
+        "Status": "break"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          98.985900,
+          18.796039
+        ]
+      },
+      "contents": {
+        "Name": "30-3526",
+        "Servertime": "2019-03-01 12:00:00",
+        "Status": "break"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id" : "4",
+        "Name": "Worker2",
+        "Status": "work"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+        98.985071,
+        18.796039
+        ]
+      },
+      "contents": {
+        "Name": "77-3526",
+        "Servertime": "2019-03-01 15:00:00",
+        "Status": "Acident"
+      }
+    }
+  ]
+}

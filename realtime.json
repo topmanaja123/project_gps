@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+  {
+      "type": "Feature",
+      "properties": {
+
+        "Name": "Worker1",
+        "Status": "break"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.7171529,
+          33.4954179
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "Name": "Worker2",
+        "Status": "work"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+        98.983000,18.796678
+        ]
+      }
+    }
+  ]
+}
