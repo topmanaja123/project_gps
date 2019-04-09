@@ -1,10 +1,10 @@
 <?php
 //โฮส
-$host = "localhost";
+$host = "217.175.242.25";
 //Username phpmyadmin
 $username = "root";
 //Password phpMyadmin
-$password = "12345678";
+$password = "Ple01010!@#";
 $db = "green_gps";
 
 //คำสั่ง Connect ฐานข้อมูล
