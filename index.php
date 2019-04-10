@@ -15,7 +15,7 @@
   </head>
 
   <body>
-    <?php
+    <?php 
     require'css.php';
     include('nav.php');
     ?>
