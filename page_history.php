@@ -14,7 +14,6 @@
     width: 100vw;
   }
 </style>
-  <div class="col-lg-4 col-md-12 bg-green full-block">
    <style media="screen">
     .select2-container--bootstrap4 .select2-selection {
       /* background-color: #fff; */
@@ -108,14 +107,14 @@
     }
      ?>
 
-<div class="from-row">
+<div class="form-row">
+  <div class="col-3 table-responsive">
     <!-- table control -->
-    <table id="table-control" class="table table-bordered table-sm">
+    <table class="table table-bordered table-sm">
     <form action="" method="post">
-
       <tr>
         <td>
-          <div class="container">
+          <div class="container-fluid">
             <div class="form-row">
               <div class="col-3 text-right">
                 <span>อุปกรณ์</span>
@@ -168,10 +167,6 @@
 
       </form>
     </table> 
-  </div>
-
-    <hr id="hr_1">
-
   <div class="scrollbar">
     <!-- table list -->
     <table class="table table-bordered table-sm">
@@ -205,21 +200,16 @@
       ?>
       </tbody>
     </table>
-  </div><!--  -->
+  </div>
 
-   <div class="col-9">
-   <div class="" style="padding-left:0px">
-    <div id="map" style="width : 66.66vw; height: 90vh;"></div>
   </div>
   
-   </div>
-
-<hr id="hr_2">
+  <div class="col-9">
+        <div class="card-header" id="map"></div>
+  </div>
+</div>  
 </body>
 
-
-<!-- script  -->
-<?php //include('js.php') ?>
 <!-- scrip select2 -->
 <script type="text/javascript">
   $("#simple-single-select, #simple-multiple-select, #input-group-single-select, #input-group-multiple-select").select2({
