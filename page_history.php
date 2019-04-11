@@ -108,7 +108,7 @@
      ?>
 
 <div class="form-row">
-  <div class="col-3 table-responsive">
+  <div class="col-md-3 table-responsive">
     <!-- table control -->
     <table class="table table-bordered table-sm">
     <form action="" method="post">
@@ -120,15 +120,16 @@
                 <span>อุปกรณ์</span>
               </div>
               <div class="col">
-                <select class="form-control form-control-sm " id="simple-single-select" name="dev_id">
+              <select class="form-control form-control-sm " id="simple-single-select" name="dev_id">
                 <option selected>--เลือก--</option>
-                  <?php
+                <?php
                   while($rs = $result->fetch_assoc()) {
-                  ?>
+                ?>
                   <option value="<?= $rs['devi_id']; ?>"><?= $rs['devi_name']; ?></option>
-                  <?php
-                  } ?>
-                </select>
+                <?php
+                  }
+                ?>
+              </select>
               </div>
             </div>
           </div>
@@ -205,7 +206,7 @@
   </div>
   
   <div class="col-9">
-        <div class="card-header" id="map"></div>
+        <div class="card-header" id="map" style="height:100vh"></div>
   </div>
 </div>  
 </body>
