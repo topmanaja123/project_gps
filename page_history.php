@@ -1,7 +1,5 @@
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
-    <link href="vender/select2/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="vender/select2/css/select2-bootstrap4.css" type="text/css" />
+    <!-- <link href="vender/select2/css/select2.min.css" rel="stylesheet" /> -->
+    <!-- <link rel="stylesheet" href="vender/select2/css/select2-bootstrap4.css" type="text/css" /> -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
     <script rel="stylesheet" src="js/leaflet.rotatedMarker.js"></script>
@@ -9,19 +7,25 @@
   .bg-green {
     background-color: #e2e2e2;
   }
-  .select2-container--bootstrap4 .select2-selection {
+  .full-block{
+    height: 90vh;
+    width: 100vw;
+  }
+</style>
+   <style media="screen">
+    .select2-container--bootstrap4 .select2-selection {
       /* background-color: #fff; */
       /* outline: 0; */
       /* display: inline-block; */
       /* border: 1px solid #ced4da; */
       /* border-radius: .10rem; */
       /* width: 100%; */
-      height: calc(1.8rem + 2px);
+      /* height: calc(1.8rem + 2px);
       padding: .200rem .50rem;
       line-height: 1.5;
-      color: #495057;
+      color: #495057; */
     }
-    #table-control {
+    #table-control {  
       margin-top: : 10px;
     }
     #history_head {
@@ -40,8 +44,9 @@
         border-top: 1px solid #333333;
     }
     .scrollbar{  
-        height: 70% !important;
+        height: 450px !important;
         overflow: scroll;
+        
     }
     .myCSSClass {
     font-size: 20px;
@@ -58,9 +63,21 @@
   .leaflet-tooltip-bottom:before {
     border: none;
   }
+  .full-background { 
+    background: url("../img/header-image-2.jpg") 50% 0 repeat fixed; 
+    min-height: 800px; 
+    height: 800px; 
+    margin: 0 auto; 
+    width: 100%; 
+    max-width: 1920px; 
+    position: relative; 
+    -webkit-background-size: cover; 
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
+    background-size: cover; 
+  }
 
 </style>
-  <div class="col-lg-4 col-md-12 bg-green full-block">
  </head>
 <body>
   <?php
@@ -104,28 +121,27 @@
      ?>
 
 <div class="form-row">
-    <div class="col-3">
+  <div class="col-3 table-responsive">
     <!-- table control -->
-    <table id="table-control" class="table table-bordered table-sm">
-      <form action="" method="post">
-        <tr>
-          <td>
-            <div class="container">
-              <div class="form-row">
-                <div class="col-3 text-right">
-                  <span>อุปกรณ์</span>
-                </div>
-                <div class="col">
-                  <select class="form-control form-control-sm " id="simple-single-select" name="dev_id">
-                  <option selected>--เลือก--</option>
-                    <?php
-                    while($rs = $result->fetch_assoc()) {
-                    ?>
-                    <option value="<?= $rs['devi_id']; ?>"><?= $rs['devi_name']; ?></option>
-                    <?php
-                    } ?>
-                  </select>
-                </div>
+    <table class="table table-bordered table-sm">
+    <form action="" method="post">
+      <tr>
+        <td>
+          <div class="container-fluid">
+            <div class="form-row">
+              <div class="col-3 text-right">
+                <span>อุปกรณ์</span>
+              </div>
+              <div class="col">
+                <select class="form-control form-control-sm " id="simple-single-select" name="dev_id">
+                <option selected>--เลือก--</option>
+                  <?php
+                  while($rs = $result->fetch_assoc()) {
+                  ?>
+                  <option value="<?= $rs['devi_id']; ?>"><?= $rs['devi_name']; ?></option>
+                  <?php
+                  } ?>
+                </select>
               </div>
             </div>
           </td>
@@ -160,10 +176,6 @@
         </tr>
       </form>
     </table> 
-  </div>
-
-    <hr id="hr_1">
-
   <div class="scrollbar">
     <!-- table list -->
     <table class="table table-bordered table-sm">
@@ -197,22 +209,16 @@
       ?>
       </tbody>
     </table>
-  </div><!--  -->
   </div>
-  
-   <div class="col-9">
-   <div style="padding-left:0px">
-    <div id="map" style="width : 66.66vw; height: 90vh;"></div>
-  </div>
-  
-   </div>
 
-<hr id="hr_2">
+  </div>
+  
+  <div class="col-9">
+        <div class="card-header full-background" id="map" style="height:90vh"></div>
+  </div>
+</div>  
 </body>
 
-
-<!-- script  -->
-<?php //include('js.php') ?>
 <!-- scrip select2 -->
 <script type="text/javascript">
   $("#simple-single-select, #simple-multiple-select, #input-group-single-select, #input-group-multiple-select").select2({
@@ -280,7 +286,6 @@ var latlngs = [
 L.marker([18.796678, 98.981099], {icon: greenIcon}).bindPopup('Device : <?= $rs2['devi_name'];?> <br> Speed : ').addTo(mymap);
 L.marker([18.796678, 98.981099], {icon: redIcon}).addTo(mymap).bindPopup('Device : <br> Speed : ').bindTooltip("555", {permanent: true,direction: 'bottom',offset: [0, 30],interactive: true,opacity: 10,className: 'myCSSClass'}).openTooltip();
 L.polyline(latlngs, {color: 'red'}).addTo(mymap);
-
 
       mymap.on('popupopen', function(centerMarker) {
         var cM = mymap.project(centerMarker.popup._latlng);
