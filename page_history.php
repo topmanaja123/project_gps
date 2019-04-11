@@ -9,14 +9,7 @@
   .bg-green {
     background-color: #e2e2e2;
   }
-  .full-block{
-    height: 90vh;
-    width: 100vw;
-  }
-</style>
-  <div class="col-lg-4 col-md-12 bg-green full-block">
-   <style media="screen">
-    .select2-container--bootstrap4 .select2-selection {
+  .select2-container--bootstrap4 .select2-selection {
       /* background-color: #fff; */
       /* outline: 0; */
       /* display: inline-block; */
@@ -65,8 +58,10 @@
   .leaflet-tooltip-bottom:before {
     border: none;
   }
-  </style>
-</head>
+
+</style>
+  <div class="col-lg-4 col-md-12 bg-green full-block">
+ </head>
 <body>
   <?php
     require("config.php");
@@ -108,64 +103,61 @@
     }
      ?>
 
-<div class="from-row">
+<div class="form-row">
+    <div class="col-3">
     <!-- table control -->
     <table id="table-control" class="table table-bordered table-sm">
-    <form action="" method="post">
-
-      <tr>
-        <td>
-          <div class="container">
-            <div class="form-row">
-              <div class="col-3 text-right">
-                <span>อุปกรณ์</span>
-              </div>
-              <div class="col">
-                <select class="form-control form-control-sm " id="simple-single-select" name="dev_id">
-                <option selected>--เลือก--</option>
-                  <?php
-                  while($rs = $result->fetch_assoc()) {
-                  ?>
-                  <option value="<?= $rs['devi_id']; ?>"><?= $rs['devi_name']; ?></option>
-                  <?php
-                  } ?>
-                </select>
-              </div>
-            </div>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <div class="container">
-            <div class="form-row" >
-              <div class="col-3 text-right">
-                <span>เลือกวันที่ย้อนหลัง</span>
-              </div>
-              <div class="col">
-                <input type="date" name="date_start" class=" form-control form-control-sm">
+      <form action="" method="post">
+        <tr>
+          <td>
+            <div class="container">
+              <div class="form-row">
+                <div class="col-3 text-right">
+                  <span>อุปกรณ์</span>
+                </div>
+                <div class="col">
+                  <select class="form-control form-control-sm " id="simple-single-select" name="dev_id">
+                  <option selected>--เลือก--</option>
+                    <?php
+                    while($rs = $result->fetch_assoc()) {
+                    ?>
+                    <option value="<?= $rs['devi_id']; ?>"><?= $rs['devi_name']; ?></option>
+                    <?php
+                    } ?>
+                  </select>
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-
-      <tr>
-        <td>
-          <div class="container">
-            <div class="form-row">
-              <div class="col-sm-12 text-center">
-                <button class="btn btn-info btn-sm" type="submit" name="serach">
-                  <i class="fas fa-search"></i>
-                  ค้นหา
-                </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="container">
+              <div class="form-row" >
+                <div class="col-3 text-right">
+                  <span>เลือกวันที่ย้อนหลัง</span>
+                </div>
+                <div class="col">
+                  <input type="date" name="date_start" class=" form-control form-control-sm">
+                </div>
               </div>
             </div>
-          </div>
-        </td>
-      </tr>
-
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="container">
+              <div class="form-row">
+                <div class="col-sm-12 text-center">
+                  <button class="btn btn-info btn-sm" type="submit" name="serach">
+                    <i class="fas fa-search"></i>
+                    ค้นหา
+                  </button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
       </form>
     </table> 
   </div>
@@ -206,9 +198,10 @@
       </tbody>
     </table>
   </div><!--  -->
-
+  </div>
+  
    <div class="col-9">
-   <div class="" style="padding-left:0px">
+   <div style="padding-left:0px">
     <div id="map" style="width : 66.66vw; height: 90vh;"></div>
   </div>
   
