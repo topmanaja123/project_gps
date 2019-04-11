@@ -1,6 +1,6 @@
 <head>
   <?php //include('css.php') ?>
-  <meta charset="utf-8">
+  <!-- <meta charset="utf-8">
   <title>Examples</title>
   <style media="screen">
     .select2-container--bootstrap4 .select2-selection {
@@ -208,6 +208,6 @@
   $("#form-single-select, #form-multiple-select").select2({
     width: "100%",
     theme: "bootstrap4"
-  });
+  }); -->
 </script>
 <!-- /// scrip select2 -->
