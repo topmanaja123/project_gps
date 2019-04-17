@@ -286,8 +286,7 @@ var scale = L.control.scale().addTo(mymap);
       // L.marker([], {icon: greenIcon}).bindPopup('Device :  <br> Speed :  ').addTo(mymap);
       // L.marker([], { icon: redIcon}).addTo(mymap).bindPopup('Device :  <br> Speed :  ').bindTooltip("6666", {permanent: true,direction: 'bottom',offset: [0, 30],interactive: true,opacity: 10,className: 'myCSSClass'}).openTooltip();
     var polyline = L.polyline([[<?= $resultPolyline['lat']?>,<?= $resultPolyline['lng']?>]], {color: 'red'}).addTo(mymap);
-    console.log(polyline);
-
+    // console.log(polyline);
     <?php
         }
       }
