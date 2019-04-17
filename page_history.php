@@ -103,6 +103,7 @@
      `devices`
       INNER JOIN `positions` ON `devices`.`id_position` = `positions`.`posi_id`";
       $result = $conn->query($sql);
+      $result1 = $conn->query($sql);
     ?>
 
    <?php
@@ -114,9 +115,11 @@
 
     $sqlPosition = "SELECT * FROM positions WHERE posi_id BETWEEN $rs[posi_start] AND $rs[posi_end] AND device_id = $rs[device_code]";
     $resultPosition = $conn->query($sqlPosition);
-      echo $sqlDate;
-      echo '<br>';
-      echo $sqlPosition;
+    $resultPositionLine = $conn->query($sqlPosition);
+    // echo $sqlDate;
+
+    // $sqlPolyline = "SELECT * FROM positions WHERE posi_id";
+    // $resultPolyline = $conn->query($sqlPolyline);
     }
      ?>
 
@@ -243,7 +246,7 @@
   });
 </script>
  
-  <script>
+ <script>
   var popup = L.popup();
   var mymap = L.map('map').setView([18.796678, 98.981099], 18) ;
 
@@ -256,43 +259,46 @@
 //zoom add a scale at at your map.
 var scale = L.control.scale().addTo(mymap);
 
-//icon
-var LeafIcon = L.Icon.extend({
-    options: {
-      iconSize: [100, 100],
-      iconAnchor: [50, 50]
-    }
-  });
-  var LeafIcon1 = L.Icon.extend({
-    options: {
-      iconSize: [29, 29],
-      iconAnchor: [15, 15],
-      popupAnchor: [0, -7]
-    }
-  });
+// icon
+  // var LeafIcon = L.Icon.extend({
+  //   options: {
+  //     iconSize: [100, 100],
+  //     iconAnchor: [50, 50]
+  //   }
+  // });
+  // var LeafIcon1 = L.Icon.extend({
+  //   options: {
+  //     iconSize: [29, 29],
+  //     iconAnchor: [15, 15],
+  //     popupAnchor: [0, -7]
+  //   }
+  // });
+  <?php
+  if($resultPositionLine){ 
+    while($resultPolyline = $resultPositionLine->fetch_assoc()) {
+   ?>
+    //marker
+      //  var greenIcon = new LeafIcon({ iconUrl: 'images/mark_on2.png' }),
+      //      redIcon = new LeafIcon1({iconUrl: 'images/'});
+    
 
-  var greenIcon = new LeafIcon({ iconUrl: 'images/mark_on2.png' }),
-      redIcon = new LeafIcon({iconUrl: 'images/ ?>'});
+    // document.write(polyline);
+      // L.marker([], {icon: greenIcon}).bindPopup('Device :  <br> Speed :  ').addTo(mymap);
+      // L.marker([], { icon: redIcon}).addTo(mymap).bindPopup('Device :  <br> Speed :  ').bindTooltip("6666", {permanent: true,direction: 'bottom',offset: [0, 30],interactive: true,opacity: 10,className: 'myCSSClass'}).openTooltip();
+    var polyline = L.polyline([[<?= $resultPolyline['lat']?>,<?= $resultPolyline['lng']?>]], {color: 'red'}).addTo(mymap);
+    console.log(polyline);
 
-//polyline
-
-var latlngs = [
-    [[45.51, -122.68],
-     [37.77, -122.43],
-     [34.04, -118.2]],
-];
-
-//marker
-L.marker([18.796678, 98.981099], {icon: greenIcon}).bindPopup('Device : <?= $rs2['devi_name'];?> <br> Speed : ').addTo(mymap);
-L.marker([18.796678, 98.981099], {icon: redIcon}).addTo(mymap).bindPopup('Device : <br> Speed : ').bindTooltip("555", {permanent: true,direction: 'bottom',offset: [0, 30],interactive: true,opacity: 10,className: 'myCSSClass'}).openTooltip();
-L.polyline(latlngs, {color: 'red'}).addTo(mymap);
-
-      mymap.on('popupopen', function(centerMarker) {
-        var cM = mymap.project(centerMarker.popup._latlng);
+    <?php
+        }
+      }
+    ?>
+      mymap.on('popupopen', function(centerMarker){
+        var cM = mymap.project(centerMarker.popup._latlng); 
         cM.y -= centerMarker.popup._container.clientHeight /
-          mymap.setView(mymap.unproject(cM), 20, {
+          mymap.setView(mymap.unproject(cM), 20,{
             markerZoomAnimation: true
           });
       });
 </script>
+
 
