@@ -1,83 +1,38 @@
+<html>
+<head>
     <!-- <link href="vender/select2/css/select2.min.css" rel="stylesheet" /> -->
     <!-- <link rel="stylesheet" href="vender/select2/css/select2-bootstrap4.css" type="text/css" /> -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
     <script rel="stylesheet" src="js/leaflet.rotatedMarker.js"></script>
+ 
 <style media="screen">
-  .bg-green {
-    background-color: #e2e2e2;
-  }
-  .full-block{
-    height: 90vh;
-    width: 100vw;
-  }
-</style>
-   <style media="screen">
-    .select2-container--bootstrap4 .select2-selection {
-      /* background-color: #fff; */
-      /* outline: 0; */
-      /* display: inline-block; */
-      /* border: 1px solid #ced4da; */
-      /* border-radius: .10rem; */
-      /* width: 100%; */
-      /* height: calc(1.8rem + 2px);
-      padding: .200rem .50rem;
-      line-height: 1.5;
-      color: #495057; */
+    .bg-green {
+      background-color: #e2e2e2;
     }
-    #table-control {  
-      margin-top: : 10px;
+    .full-block{
+      height: 90vh;
+      width: 100vw;
     }
-    #history_head {
-      background-color: ;
-    }
-    #hr_1 {
-        margin-top: 0rem;
-        margin-bottom: 0rem;
-        border: 0;
-        border-top: 1px solid #333333;
-    }
-    #hr_2 {
-        margin-top: -1rem;
-        margin-bottom: 0rem;
-        border: 0;
-        border-top: 1px solid #333333;
-    }
-    .scrollbar{  
-        height: 450px !important;
-        overflow: scroll;
+   .scrollbar{  
+      height: 450px !important;
+      overflow: scroll;
         
     }
-    .myCSSClass {
-    font-size: 20px;
-    color: red;
-    font-weight: bold;
-    background: none;
-    /* background-color: none; */
-    border: none;
-    /* border-color: none; */
-    box-shadow: none;
-    cursor: none;
-    margin: 0;
-  }
-  .leaflet-tooltip-bottom:before {
-    border: none;
-  }
-  .full-background { 
-    background: url("../img/header-image-2.jpg") 50% 0 repeat fixed; 
-    min-height: 800px; 
-    height: 800px; 
-    margin: 0 auto; 
-    width: 100%; 
-    max-width: 1920px; 
-    position: relative; 
-    -webkit-background-size: cover; 
-    -moz-background-size: cover; 
-    -o-background-size: cover; 
-    background-size: cover; 
-  }
-
-</style>
+    .full-background { 
+      background: url("../img/header-image-2.jpg") 50% 0 repeat fixed; 
+      min-height: 800px; 
+      height: 800px; 
+      margin: 0 auto; 
+      width: 100%; 
+      max-width: 1920px; 
+      position: relative; 
+      -webkit-background-size: cover; 
+      -moz-background-size: cover; 
+      -o-background-size: cover; 
+      background-size: cover; 
+    }
+  </style>
  </head>
 <body>
   <?php
@@ -114,9 +69,10 @@
 
     $sqlPosition = "SELECT * FROM positions WHERE posi_id BETWEEN $rs[posi_start] AND $rs[posi_end] AND device_id = $rs[device_code]";
     $resultPosition = $conn->query($sqlPosition);
-      echo $sqlDate;
-      echo '<br>';
-      echo $sqlPosition;
+    $resultPositionLine = $conn->query($sqlPosition);
+    //   echo $sqlDate;
+    //   echo '<br>';
+    // echo $sqlPosition;
     }
      ?>
 
@@ -133,7 +89,7 @@
                 <span>อุปกรณ์</span>
               </div>
               <div class="col">
-                <select class="form-control form-control-sm " id="simple-single-select" name="dev_id">
+                <select class="form-control form-control-sm" name="dev_id">
                 <option selected>--เลือก--</option>
                   <?php
                   while($rs = $result->fetch_assoc()) {
@@ -151,7 +107,7 @@
             <div class="container">
               <div class="form-row" >
                 <div class="col-3 text-right">
-                  <span>เลือกวันที่ย้อนหลัง</span>
+                  <span>วันที่ย้อนหลัง</span>
                 </div>
                 <div class="col">
                   <input type="date" name="date_start" class=" form-control form-control-sm">
@@ -177,7 +133,7 @@
       </form>
     </table> 
   <div class="scrollbar">
-    <!-- table list -->
+    <!-- table show data -->
     <table class="table table-bordered table-sm">
       <thead>
         <tr id="history_head ">
@@ -218,38 +174,15 @@
   </div>
 </div>  
 </body>
+</html>
 
-<!-- scrip select2 -->
-<script type="text/javascript">
-  $("#simple-single-select, #simple-multiple-select, #input-group-single-select, #input-group-multiple-select").select2({
-    width: "100%",
-    theme: "bootstrap4",
-    placeholder: "เลือกอุปกรณ์",
-    allowClear: true
-  });
-  $("#disabled-single-select").select2({
-    width: "100%",
-    theme: "bootstrap4",
-    disabled: true
-  });
-  $("#disabled-multiple-select").select2({
-    width: "100%",
-    theme: "bootstrap4",
-    allowClear: true
-  });
-  $("#form-single-select, #form-multiple-select").select2({
-    width: "100%",
-    theme: "bootstrap4"
-  });
-</script>
- 
+   <!-- scrip map -->
   <script>
-  var popup = L.popup();
-  var mymap = L.map('map').setView([18.796678, 98.981099], 18) ;
+    var mymap = L.map('map').setView([18.635245,99.044696666667], 13);
 
-// map
+  // map
   L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-    maxZoom: 20,
+    maxZoom: 22,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
   }).addTo(mymap);
 
@@ -259,40 +192,37 @@ var scale = L.control.scale().addTo(mymap);
 //icon
 var LeafIcon = L.Icon.extend({
     options: {
-      iconSize: [100, 100],
-      iconAnchor: [50, 50]
-    }
-  });
-  var LeafIcon1 = L.Icon.extend({
-    options: {
-      iconSize: [29, 29],
-      iconAnchor: [15, 15],
-      popupAnchor: [0, -7]
+        iconSize: [20, 20],
+        iconAnchor: [10, 10]
     }
   });
 
-  var greenIcon = new LeafIcon({ iconUrl: 'images/mark_on2.png' }),
-      redIcon = new LeafIcon({iconUrl: 'images/ ?>'});
-
+  var greenIcon = new LeafIcon({ iconUrl: 'images/arrow.png' });
+  
 //polyline
+var latlng = [ ];
+var latlngStr = "";
 
-var latlngs = [
-    [[45.51, -122.68],
-     [37.77, -122.43],
-     [34.04, -118.2]],
-];
+// var show = [ ];
+  <?php
+    if($resultPositionLine){ 
+      while($resultPolyline = $resultPositionLine->fetch_assoc()) {
+  ?>
 
-//marker
-L.marker([18.796678, 98.981099], {icon: greenIcon}).bindPopup('Device : <?= $rs2['devi_name'];?> <br> Speed : ').addTo(mymap);
-L.marker([18.796678, 98.981099], {icon: redIcon}).addTo(mymap).bindPopup('Device : <br> Speed : ').bindTooltip("555", {permanent: true,direction: 'bottom',offset: [0, 30],interactive: true,opacity: 10,className: 'myCSSClass'}).openTooltip();
-L.polyline(latlngs, {color: 'red'}).addTo(mymap);
+latlngStr = [<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>];
+latlng.push(latlngStr);
 
-      mymap.on('popupopen', function(centerMarker) {
-        var cM = mymap.project(centerMarker.popup._latlng);
-        cM.y -= centerMarker.popup._container.clientHeight /
-          mymap.setView(mymap.unproject(cM), 20, {
-            markerZoomAnimation: true
-          });
-      });
+L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: greenIcon, rotationAngle: <?= $resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(mymap);
+// console.log(latlng);
+ 
+  <?php
+      }//while($resultPolyline = $resultPositionLine->fetch_assoc()) {
+    }//if($resultPositionLine){ 
+  ?>  
+
+  var showLine = [latlng]; 
+  var polyline = L.polyline(showLine, {color: 'red'}).addTo(mymap); //show polyline
+ 
 </script>
+
 
