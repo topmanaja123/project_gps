@@ -58,6 +58,7 @@
      `devices`
       INNER JOIN `positions` ON `devices`.`id_position` = `positions`.`posi_id`";
       $result = $conn->query($sql);
+     
     ?>
 
    <?php
@@ -77,7 +78,7 @@
      ?>
 
 <div class="form-row">
-  <div class="col-3 table-responsive">
+  <div class="col-md-3 table-responsive">
     <!-- table control -->
     <table class="table table-bordered table-sm">
     <form action="" method="post">
@@ -91,13 +92,14 @@
               <div class="col">
                 <select class="form-control form-control-sm" name="dev_id">
                 <option selected>--เลือก--</option>
-                  <?php
+                <?php
                   while($rs = $result->fetch_assoc()) {
-                  ?>
+                ?>
                   <option value="<?= $rs['devi_id']; ?>"><?= $rs['devi_name']; ?></option>
-                  <?php
-                  } ?>
-                </select>
+                <?php
+                  }
+                ?>
+              </select>
               </div>
             </div>
           </td>
@@ -132,6 +134,9 @@
         </tr>
       </form>
     </table> 
+    <div class="container">
+       555555
+    </div>
   <div class="scrollbar">
     <!-- table show data -->
     <table class="table table-bordered table-sm">
@@ -166,12 +171,12 @@
       </tbody>
     </table>
   </div>
-
-  </div>
+</div>
   
   <div class="col-9">
-        <div class="card-header full-background" id="map" style="height:90vh"></div>
+        <div class="card-header" id="map" style="height:88.88vh"></div>
   </div>
+
 </div>  
 </body>
 </html>

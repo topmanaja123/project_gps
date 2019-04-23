@@ -46,7 +46,7 @@ setInterval(getDataFromDb, 5000);   // 1000 = 1 second
 </script>
 <body>
 <div class="form-row">
-<div class="table-responsive col-3">
+<div class="table-responsive col-md-3 col-sm-6">
 			<table class="table  table-bordered table-striped table-hover table-sm" id="myTable">
 				<thead>
 					<tr>

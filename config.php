@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 //โฮส
 $host = "217.175.242.25";
 //Username phpmyadmin
@@ -16,3 +16,4 @@ if (mysqli_connect_errno()) {
     exit();
 }
  ?>
+
