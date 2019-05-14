@@ -1,5 +1,5 @@
 <?php
-	require'config.php';
+	require 'config.php';
 	$strSQL = "SELECT
     `devices`.`devi_id`,
     `devices`.`devi_name`,
