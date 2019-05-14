@@ -66,7 +66,6 @@
     WHERE device_code = '$_POST[dev_id]' AND posit_mark_date BETWEEN '$_POST[date_start]' AND '$_POST[date_start]'";
     $resultDate = $conn->query($sqlDate);
     $rs = $resultDate->fetch_assoc();
-
     $sqlPosition = "SELECT * FROM positions WHERE posi_id BETWEEN $rs[posi_start] AND $rs[posi_end] AND device_id = $rs[device_code]";
     $resultPosition = $conn->query($sqlPosition);
     $resultPositionLine = $conn->query($sqlPosition);
@@ -179,16 +178,13 @@
    <!-- scrip map -->
   <script>
     var mymap = L.map('map').setView([18.635245,99.044696666667], 13);
-
   // map
   L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
     maxZoom: 22,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
   }).addTo(mymap);
-
 //zoom add a scale at at your map.
 var scale = L.control.scale().addTo(mymap);
-
 //icon
 var LeafIcon = L.Icon.extend({
     options: {
@@ -196,22 +192,18 @@ var LeafIcon = L.Icon.extend({
         iconAnchor: [10, 10]
     }
   });
-
   var greenIcon = new LeafIcon({ iconUrl: 'images/arrow.png' });
   
 //polyline
 var latlng = [ ];
 var latlngStr = "";
-
 // var show = [ ];
   <?php
     if($resultPositionLine){ 
       while($resultPolyline = $resultPositionLine->fetch_assoc()) {
   ?>
-
 latlngStr = [<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>];
 latlng.push(latlngStr);
-
 L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: greenIcon, rotationAngle: <?= $resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(mymap);
 // console.log(latlng);
  
@@ -219,10 +211,7 @@ L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: green
       }//while($resultPolyline = $resultPositionLine->fetch_assoc()) {
     }//if($resultPositionLine){ 
   ?>  
-
   var showLine = [latlng]; 
   var polyline = L.polyline(showLine, {color: 'red'}).addTo(mymap); //show polyline
  
 </script>
-
-
