@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0 shrink-to-fit=no">
@@ -178,7 +179,6 @@
 			animate: true
 		}
 	}).addTo(map);
-
 	//Detail Marker
 	realtime.on('update', function(e) {
 		popupContent = function(fId) {

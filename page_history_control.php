@@ -67,7 +67,7 @@
      INNER JOIN `positions` ON `devices`.`id_position` = `positions`.`posi_id`";
    $result = $conn->query($sql);
    $result1 = $conn->query($sql);
-   echo $sql;
+  //  echo $sql;
    ?>
 
    <?php
