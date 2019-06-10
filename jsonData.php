@@ -1,31 +1,38 @@
 <?php
-// $i = 0;
-//   while ($i < $jsonArr){
-//     $i++;
-       $jsonArr=array('type' => "FeatureCollection", 'features' => array());
-                $propertiesArr= array(
-                  'id' => $_POST['devi_id']
-                );
+$data = $_POST['data'];   
+$jsonArr=array('type' => "FeatureCollection", 'features' => array());
 
-                $geometryArr= array(
-                  'type' => "Point",
-                  'coordinates' => array((float)"$_POST[lng]", (float)"$_POST[lat]")
-                );
-                
-                $contentArr=array(
-                  'devi_name' => $_POST['devi_name'],
-                  'servertime'=> $_POST['servertime']
-                );
-                
-                array_push($jsonArr['features'],
-                [
+            foreach ($data as $value) {
+              
+                   $propertiesArr= array(
                   'type' => "Feature",
-                  'properties' => $propertiesArr,
-                  'geometry' => $geometryArr,
-                  'content' => $contentArr,
-                ]);
-  // }
-     echo $json = json_encode($jsonArr);
+                  'properties' => array(
+                    'id' => $value[devi_id]
+                  ),
+                  'geometry' => array(
+                    'type' => "Point",
+                    'coordinates' => array((float)"$value[lng]", (float)"$value[lat]")
+                  ),
+                  'content' => array(
+                    'devi_name' => $value['devi_name'],
+                    'devi_imei'=> $value['devi_imei'],
+                    'id_position'=> $value['id_position'],
+                    'rfid_name'=> $value['rfid_name'],
+                    'rfid_number'=> $value['rfid_number'],
+                    'devicetime'=> $value['devicetime'],
+                    'servertime'=> $value['servertime'],
+                    'altitude'=> $value['altitude'],
+                    'lat'=> $value['lat'],
+                    'lng'=> $value['lng'],
+                    'speed'=> $value['speed'],
+                    'course'=> $value['course'],
+                    'valid'=> $value['valid'],
+							      'state'=> $value['state']
+                  )
+                );
+            array_push($jsonArr['features'],$propertiesArr);
+          }
+     echo $json = json_encode($jsonArr,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
      $file = fopen("json/data.json","w");
      fwrite($file,$json);
      fclose($file);

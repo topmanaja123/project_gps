@@ -24,15 +24,35 @@
 		.table {
 			font-size: 14px;
 		}
+
+		.myCSSClass {
+			font-size: 20px;
+			color: red;
+			font-weight: bold;
+			background: none;
+			/* background-color: none; */
+			border: none;
+			/* border-color: none; */
+			box-shadow: none;
+			cursor: none;
+			margin: 0;
+		}
+
+		.leaflet-tooltip-bottom:before {
+			border: none;
+		}
 	</style>
 </head>
 <script>
+	//รับค่าจาก getPositions.php
 	function getDataFromDb() {
 		$.ajax({
 			url: "getPositions.php",
 			type: "POST",
 			data: "result",
 			success: function(result) {
+
+				var data2 = '';
 				var obj = jQuery.parseJSON(result);
 				if (obj != '') {
 					//$("#myTable tbody tr:not(:first-child)").remove();
@@ -56,7 +76,7 @@
 						var state = val['state'];
 
 						var tr = "<tr>";
-						tr = tr + "<td id='"+val["devi_id"]+"' onclick='myFunction("+val["devi_id"]+","+val["lat"]+","+val["lng"]+")'>" + val["devi_name"] + "</td>";
+						tr = tr + "<td id='" + val["devi_id"] + "' onclick='myPanto(" + val["devi_id"] + "," + val["lat"] + "," + val["lng"] + ")'>" + val["devi_name"] + "</td>";
 						tr = tr + "<td>" + val["speed"] + "</td>";
 						tr = tr + "<td>" + val["course"] + "</td>";
 						tr = tr + "<td>" + val["servertime"] + "</td>";
@@ -81,28 +101,32 @@
 							'valid': valid,
 							'state': state
 						};
-						send();
+						arrayData.push(data2);
 					});
+					send();
 				}
 			}
 		});
 	}
 	setInterval(getDataFromDb, 1000); // 1000 = 1 second
 
-	var data2 = '';
-
 	//ส่งข้อมูลไปหา jsonData.php
+	var arrayData = [];
+
 	function send() {
-		var json = data2;
+		var json = arrayData;
 		$.ajax({
 			url: "jsonData.php",
-			type: "POST", 
-			data: json,
+			type: "POST",
+			data: {
+				data: json
+			},
 			success: function(data) {
 				console.log(json);
 				// alert(data);
 			}
 		});
+		arrayData = [];
 	};
 </script>
 
@@ -126,13 +150,13 @@
 						</td>
 					</tr>
 				</thead>
-		
+
 				<!-- body dynamic rows -->
 				<tbody id='myBody' style="cursor:pointer;">
-			
-				</tbody>	
-			
- 			</table>
+
+				</tbody>
+
+			</table>
 		</div>
 
 		<div class="col-9">
@@ -170,24 +194,42 @@
 			return L.marker(latlng, {
 				'icon': L.icon({
 					iconUrl: 'images/truck.png',
-					iconSize: [50, 50],
-					iconAnchor: [25, 25],
+					iconSize: [35, 35],
+					iconAnchor: [17, 17],
 					popupAnchor: [0, -20],
 					autoPan: false
-				})
-			});
+				}),
+				riseOnHover:true
+
+			}).bindTooltip("6666", {
+				permanent: true,
+				direction: 'bottom',
+				offset: [0, 15],
+				interactive: false,
+				opacity: 10,
+				className: 'myCSSClass'
+			}).openTooltip();
 			animate: true
 		}
 	}).addTo(map);
+
+	
 	//Detail Marker
 	realtime.on('update', function(e) {
 		popupContent = function(fId) {
 				var feature = e.features[fId];
 				var c_name = feature.properties.id;
 				var content = feature.content.devi_name;
-				var c_servertime = feature.content.servertime;
+				var servertime = feature.content.servertime;
+				var speed = feature.content.speed;
+				var lat = feature.content.lat;
+				var lng = feature.content.lng;
 
-				return 'Detail <br>' + 'Name = ' + content + '<br> Time = ' + c_servertime;
+				return 'รายละเอียด <br>' + 'ทะเบียน : ' + content 
+				+ '<br> เวลา : ' + servertime
+				+ '<br> ความเร็ว : ' + speed
+				+ '<br> ตำแหน่ง : ' + lat + ',' + lng 
+				+ '<br> ';
 			},
 			bindFeaturePopup = function(fId) {
 				realtime.getLayer(fId).bindPopup(popupContent(fId));
@@ -203,18 +245,39 @@
 	});
 
 	//click Marker Zoom
-		map.on('popupopen', function(centerMarker){
-			var cM = map.project(centerMarker.popup._latlng);
-				cM.y -= centerMarker.popup._container.clientHeight /
-					map.setView(map.unproject(cM), 20, {
-						markerZoomAnimation: true
-       		 });
+	
+
+	map.on('popupopen', function(centerMarker) {
+		var cM = map.project(centerMarker.popup._latlng);
+		cM.y -= centerMarker.popup._container.clientHeight /
+			map.setView(map.unproject(cM), 20, {
+				markerZoomAnimation: true,
+				animate: true
+			});
+	});
+
+	//click panto to marker
+	function myPanto(id, lat, lng) {
+		map.panTo([lat, lng], {
+			animate: true,
+			noMoveStart: true
 		});
+	}
 
-	//click to marker
-		function myFunction(id,lat,lng) {
-			map.panTo([lat, lng]);
-				
-		}
+	// map.selectedMarker = null;
+	// map.watch('selectedMarker', function(newVal, oldVal){
+	// 	if (oldVal !== null){
+	// 		map.markers[oldVal].zIndexOffset = 0;
+	// 	}
+	// 	if (newVal !== null){
+	// 		map.markers[newVal].zIndexOffset = 100;
+	// 	}
+	// });
 
+	// map.on('leafletDirectiveMarker.click', function(event, args){
+	// 	map.selectedMarker = args.modelName;
+	// })
+	// map.on('leafletDirectiveLabel.click', function(event, args) {
+	// 	map.selectedMarker = args.leafletObject;
+	// })
 </script>

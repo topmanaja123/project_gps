@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
     <script rel="stylesheet" src="js/leaflet.rotatedMarker.js"></script>
- 
+
 <style media="screen">
     .bg-green {
       background-color: #e2e2e2;
@@ -14,30 +14,30 @@
       height: 90vh;
       width: 100vw;
     }
-   .scrollbar{  
+   .scrollbar{
       height: 450px !important;
       overflow: scroll;
-        
+
     }
-    .full-background { 
-      background: url("../img/header-image-2.jpg") 50% 0 repeat fixed; 
-      min-height: 800px; 
-      height: 800px; 
-      margin: 0 auto; 
-      width: 100%; 
-      max-width: 1920px; 
-      position: relative; 
-      -webkit-background-size: cover; 
-      -moz-background-size: cover; 
-      -o-background-size: cover; 
-      background-size: cover; 
+    .full-background {
+      background: url("../img/header-image-2.jpg") 50% 0 repeat fixed;
+      min-height: 800px;
+      height: 800px;
+      margin: 0 auto;
+      width: 100%;
+      max-width: 1920px;
+      position: relative;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
     }
   </style>
  </head>
 <body>
   <?php
-    require("config.php");
-    $sql = "SELECT
+require "config.php";
+$sql = "SELECT
      `devices`.`devi_id`,
      `devices`.`devi_name`,
      `devices`.`devi_imei`,
@@ -57,23 +57,23 @@
    FROM
      `devices`
       INNER JOIN `positions` ON `devices`.`id_position` = `positions`.`posi_id`";
-      $result = $conn->query($sql);
-    ?>
+$result = $conn->query($sql);
+?>
 
    <?php
-    if(isset($_POST['serach'])) {
-    $sqlDate = "SELECT MIN(posit_mark_start) AS posi_start, MAX(posit_mark_end) AS posi_end ,device_code FROM positions_mark 
+if (isset($_POST['serach'])) {
+    $sqlDate = "SELECT MIN(posit_mark_start) AS posi_start, MAX(posit_mark_end) AS posi_end ,device_code FROM positions_mark
     WHERE device_code = '$_POST[dev_id]' AND posit_mark_date BETWEEN '$_POST[date_start]' AND '$_POST[date_start]'";
     $resultDate = $conn->query($sqlDate);
     $rs = $resultDate->fetch_assoc();
     $sqlPosition = "SELECT * FROM positions WHERE posi_id BETWEEN $rs[posi_start] AND $rs[posi_end] AND device_id = $rs[device_code]";
     $resultPosition = $conn->query($sqlPosition);
     $resultPositionLine = $conn->query($sqlPosition);
-    //   echo $sqlDate;
+      echo $sqlDate;
     //   echo '<br>';
-    // echo $sqlPosition;
-    }
-     ?>
+    echo $sqlPosition;
+}
+?>
 
 <div class="form-row">
   <div class="col-3 table-responsive">
@@ -91,11 +91,12 @@
                 <select class="form-control form-control-sm" name="dev_id">
                 <option selected>--เลือก--</option>
                   <?php
-                  while($rs = $result->fetch_assoc()) {
+                    while ($rs = $result->fetch_assoc()) {
                   ?>
-                  <option value="<?= $rs['devi_id']; ?>"><?= $rs['devi_name']; ?></option>
+                  <option value="<?=$rs['devi_id'];?>"><?=$rs['devi_name'];?></option>
                   <?php
-                  } ?>
+                    }
+                  ?>
                 </select>
               </div>
             </div>
@@ -124,16 +125,20 @@
                     <i class="fas fa-search"></i>
                     ค้นหา
                   </button>
+                  <button class="btn btn-info btn-sm" type="submit" name="print" disabled>
+                  <i class="fas fa-print"></i>
+                    ออกรายงาน
+                  </button>
                 </div>
               </div>
             </div>
           </td>
         </tr>
       </form>
-    </table> 
+    </table>
   <div class="scrollbar">
     <!-- table show data -->
-    <table class="table table-bordered table-sm">
+    <table class="table table-bordered table-sm" x:str BORDER="1">
       <thead>
         <tr id="history_head ">
           <td class="text-center"><i class="fas fa-check-circle"></i> </td>
@@ -146,32 +151,31 @@
       </thead>
       <tbody>
       <?php
-      if ($resultPosition){ 
-        while($rs1=$resultPosition->fetch_assoc()) 
-        {
+        if ($resultPosition) {
+            while ($rs1 = $resultPosition->fetch_assoc()) {
         ?>
       <tr>
           <td class="text-center" width="5%"><input type="checkbox" name="checkboxList" ></td>
-          <td class="text-center" width="30%"><?= $rs1['devicetime'];?></td>
-          <td class="text-center" width="10%"><?= $rs1['speed'];?></td>
-          <td class="text-center" width="10%"><?= $rs1['course'];?></td>
+          <td class="text-center" width="30%"><?=$rs1['devicetime'];?></td>
+          <td class="text-center" width="10%"><?=$rs1['speed'];?></td>
+          <td class="text-center" width="10%"><?=$rs1['course'];?></td>
           <td></td>
           <td></td>
       </tr>
       <?php
-        } //while($rs1=$result1->fetch_assoc()) 
-      } //if ($result1) { 
+          } //while($rs1=$result1->fetch_assoc())
+        } //if ($result1) {
       ?>
       </tbody>
     </table>
   </div>
 
   </div>
-  
+
   <div class="col-9">
         <div class="card-header full-background" id="map" style="height:90vh"></div>
   </div>
-</div>  
+</div>
 </body>
 </html>
 
@@ -193,25 +197,24 @@ var LeafIcon = L.Icon.extend({
     }
   });
   var greenIcon = new LeafIcon({ iconUrl: 'images/arrow.png' });
-  
+
 //polyline
 var latlng = [ ];
 var latlngStr = "";
 // var show = [ ];
   <?php
-    if($resultPositionLine){ 
-      while($resultPolyline = $resultPositionLine->fetch_assoc()) {
+  if ($resultPositionLine) {
+      while ($resultPolyline = $resultPositionLine->fetch_assoc()) {
   ?>
-latlngStr = [<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>];
-latlng.push(latlngStr);
-L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: greenIcon, rotationAngle: <?= $resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(mymap);
-// console.log(latlng);
- 
+  latlngStr = [<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>];
+  latlng.push(latlngStr);
+  // L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: greenIcon, rotationAngle: <?=$resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(mymap);
+  // console.log(latlng);
+
   <?php
-      }//while($resultPolyline = $resultPositionLine->fetch_assoc()) {
-    }//if($resultPositionLine){ 
-  ?>  
-  var showLine = [latlng]; 
+      } //while($resultPolyline = $resultPositionLine->fetch_assoc()) {
+    } //if($resultPositionLine){
+  ?>
+  var showLine = [latlng];
   var polyline = L.polyline(showLine, {color: 'red'}).addTo(mymap); //show polyline
- 
 </script>
