@@ -9,13 +9,34 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
+<<<<<<< HEAD
                     99.044631666667001,
                     18.634955000000001
+=======
+                    99.044631666667,
+                    18.634955
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
                 ]
             },
             "content": {
                 "devi_name": "VT900 FWเก่า",
+<<<<<<< HEAD
                 "servertime": "2019-05-24 15:14:39"
+=======
+                "devi_imei": "142181051839",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-05-24 15:14:38",
+                "servertime": "2019-05-24 15:14:39",
+                "altitude": "279",
+                "lat": "18.634955",
+                "lng": "99.044631666667",
+                "speed": "0",
+                "course": "8",
+                "valid": "1",
+                "state": "0000"
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
             }
         },
         {
@@ -26,13 +47,33 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
+<<<<<<< HEAD
                     99.044681666667003,
+=======
+                    99.044681666667,
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
                     18.63531
                 ]
             },
             "content": {
                 "devi_name": "VT900 FWใหม่",
+<<<<<<< HEAD
                 "servertime": "2019-03-19 11:23:26"
+=======
+                "devi_imei": "142181256120",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-03-18 14:16:43",
+                "servertime": "2019-03-19 11:23:26",
+                "altitude": "296",
+                "lat": "18.63531",
+                "lng": "99.044681666667",
+                "speed": "0",
+                "course": "153",
+                "valid": "0",
+                "state": "0000"
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
             }
         },
         {
@@ -43,13 +84,33 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
+<<<<<<< HEAD
                     99.044645000000003,
+=======
+                    99.044645,
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
                     18.635276666667
                 ]
             },
             "content": {
                 "devi_name": "VT900 FWใหม่ เครื่องธรรมดา",
+<<<<<<< HEAD
                 "servertime": "2019-04-12 16:07:48"
+=======
+                "devi_imei": "142180950586",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-04-12 16:07:45",
+                "servertime": "2019-04-12 16:07:48",
+                "altitude": "277",
+                "lat": "18.635276666667",
+                "lng": "99.044645",
+                "speed": "0.2405",
+                "course": "281",
+                "valid": "1",
+                "state": "0000"
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
             }
         },
         {
@@ -60,13 +121,34 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
+<<<<<<< HEAD
                     99.044685000000001,
                     18.635249999999999
+=======
+                    99.044685,
+                    18.63525
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
                 ]
             },
             "content": {
                 "devi_name": "VT900 ช่างตรี",
+<<<<<<< HEAD
                 "servertime": "2019-04-28 10:36:57"
+=======
+                "devi_imei": "142181256185",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-04-21 21:54:54",
+                "servertime": "2019-04-28 10:36:57",
+                "altitude": "294",
+                "lat": "18.63525",
+                "lng": "99.044685",
+                "speed": "0",
+                "course": "64",
+                "valid": "0",
+                "state": "0000"
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
             }
         },
         {
@@ -77,13 +159,34 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
+<<<<<<< HEAD
                     99.044730000000001,
                     18.63532
+=======
+                    99.044795,
+                    18.635231666667
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
                 ]
             },
             "content": {
                 "devi_name": "VT900 FW V1.73 ",
+<<<<<<< HEAD
                 "servertime": "2019-05-23 09:12:21"
+=======
+                "devi_imei": "142190361739",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-06-02 10:39:52",
+                "servertime": "2019-06-04 11:16:56",
+                "altitude": "0",
+                "lat": "18.635231666667",
+                "lng": "99.044795",
+                "speed": "0",
+                "course": "0",
+                "valid": "0",
+                "state": "2000"
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
             }
         },
         {
@@ -95,12 +198,32 @@
                 "type": "Point",
                 "coordinates": [
                     100.08015,
+<<<<<<< HEAD
                     16.803985000000001
+=======
+                    16.803985
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
                 ]
             },
             "content": {
                 "devi_name": "VT900 TEST berm",
+<<<<<<< HEAD
                 "servertime": "2019-05-19 14:50:15"
+=======
+                "devi_imei": "142171200004",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-05-20 03:53:21",
+                "servertime": "2019-05-19 14:50:15",
+                "altitude": "27",
+                "lat": "16.803985",
+                "lng": "100.08015",
+                "speed": "0",
+                "course": "248",
+                "valid": "1",
+                "state": "0000"
+>>>>>>> 756e3bf9ee60350fd7a3dff0e855211b62fc15ce
             }
         }
     ]
