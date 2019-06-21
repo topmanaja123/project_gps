@@ -19,13 +19,13 @@
                 "id_position": null,
                 "rfid_name": "",
                 "rfid_number": "",
-                "devicetime": "2019-06-20 17:21:43",
-                "servertime": "2019-06-20 17:21:44",
+                "devicetime": "2019-06-20 17:25:05",
+                "servertime": "2019-06-20 17:25:06",
                 "altitude": "297",
                 "lat": "18.63517",
                 "lng": "99.044725",
-                "speed": "0.037",
-                "course": "308",
+                "speed": "0",
+                "course": "107",
                 "valid": "1",
                 "state": "0400"
             }
