@@ -1,6 +1,6 @@
 <?php
 	require'config.php';
-	$strSQL = "SELECT
+	$strSQL = "SELECT 
     `devices`.`devi_id`,
     `devices`.`devi_name`,
     `devices`.`devi_imei`,
@@ -23,7 +23,7 @@
     `positions`.`servertime`
   FROM
     `positions`
-    INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` LIMIT 100";
+    INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` LIMIT 1000";
 	$objQuery = $conn->query($strSQL) or die (mysql_error());
 	$intNumField = mysqli_num_fields($objQuery);
 	$resultArray = array();

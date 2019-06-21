@@ -108,7 +108,7 @@
 			}
 		});
 	}
-	setInterval(getDataFromDb, 1000); // 1000 = 1 second
+	setInterval(getDataFromDb, 5000); // 1000 = 1 second
 
 	//ส่งข้อมูลไปหา jsonData.php
 	var arrayData = [];
@@ -136,16 +136,16 @@
 			<table class="table  table-bordered table-striped table-hover table-sm" id="myTable">
 				<thead>
 					<tr>
-						<td width="130">
+						<td width="40%">
 							<div align="center">ทะเบียนรถ</div>
 						</td>
-						<td width="85">
+						<td width="10%">
 							<div align="center">ความเร็ว</div>
 						</td>
-						<td width="97">
+						<td width="10%">
 							<div align="center">ทิศทาง</div>
 						</td>
-						<td width="97">
+						<td width="35%">
 							<div align="center">เชื่อมต่อล่าสุด</div>
 						</td>
 					</tr>
