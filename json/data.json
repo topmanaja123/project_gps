@@ -9,25 +9,25 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    99.044716666667,
-                    18.63518
+                    99.04468,
+                    18.63517
                 ]
             },
             "content": {
-                "devi_name": "VT900 FWเก่า",
+                "devi_name": "VT900 FWเก่า2",
                 "devi_imei": "142181051839",
                 "id_position": null,
                 "rfid_name": "",
                 "rfid_number": "",
-                "devicetime": "2019-06-21 11:55:16",
-                "servertime": "2019-06-21 11:55:17",
-                "altitude": "284",
-                "lat": "18.63518",
-                "lng": "99.044716666667",
-                "speed": "0.0555",
-                "course": "211",
+                "devicetime": "2019-06-21 15:07:20",
+                "servertime": "2019-06-21 15:07:21",
+                "altitude": "302",
+                "lat": "18.63517",
+                "lng": "99.04468",
+                "speed": "0.037",
+                "course": "341",
                 "valid": "1",
-                "state": "0400"
+                "state": "0000"
             }
         },
         {
@@ -164,7 +164,7 @@
                 "id_position": null,
                 "rfid_name": "",
                 "rfid_number": "",
-                "devicetime": "2019-05-20 ",
+                "devicetime": "2019-05-20 14:53:21",
                 "servertime": "2019-05-19 14:50:15",
                 "altitude": "27",
                 "lat": "16.803985",
@@ -173,6 +173,1920 @@
                 "course": "248",
                 "valid": "1",
                 "state": "0000"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "27"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.045721666667,
+                    18.63617
+                ]
+            },
+            "content": {
+                "devi_name": "55555555555",
+                "devi_imei": "142171200005",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-06-21 13:32:05",
+                "servertime": "2019-06-21 10:18:23",
+                "altitude": "200",
+                "lat": "18.63617",
+                "lng": "99.045721666667",
+                "speed": "0",
+                "course": "10",
+                "valid": "0",
+                "state": "0400"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "28"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.046721666667,
+                    18.63717
+                ]
+            },
+            "content": {
+                "devi_name": "T1",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.63717",
+                "lng": "99.046721666667",
+                "speed": "",
+                "course": "20",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "29"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.047721666667,
+                    18.63817
+                ]
+            },
+            "content": {
+                "devi_name": "T2",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.63817",
+                "lng": "99.047721666667",
+                "speed": "",
+                "course": "30",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "30"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.048721666667,
+                    18.63917
+                ]
+            },
+            "content": {
+                "devi_name": "T3",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.63917",
+                "lng": "99.048721666667",
+                "speed": "",
+                "course": "40",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "31"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.049721666667,
+                    18.64017
+                ]
+            },
+            "content": {
+                "devi_name": "T4",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64017",
+                "lng": "99.049721666667",
+                "speed": "",
+                "course": "50",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "32"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.050721666667,
+                    18.64117
+                ]
+            },
+            "content": {
+                "devi_name": "T5",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64117",
+                "lng": "99.050721666667",
+                "speed": "",
+                "course": "60",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "33"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.051721666667,
+                    18.64217
+                ]
+            },
+            "content": {
+                "devi_name": "T6",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64217",
+                "lng": "99.051721666667",
+                "speed": "",
+                "course": "70",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "34"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.052721666667,
+                    18.64317
+                ]
+            },
+            "content": {
+                "devi_name": "T7",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64317",
+                "lng": "99.052721666667",
+                "speed": "",
+                "course": "80",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "35"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.053721666667,
+                    18.64417
+                ]
+            },
+            "content": {
+                "devi_name": "T8",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64417",
+                "lng": "99.053721666667",
+                "speed": "",
+                "course": "90",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "36"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.054721666667,
+                    18.64517
+                ]
+            },
+            "content": {
+                "devi_name": "T9",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64517",
+                "lng": "99.054721666667",
+                "speed": "",
+                "course": "100",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "37"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.055721666667,
+                    18.64617
+                ]
+            },
+            "content": {
+                "devi_name": "T10",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64617",
+                "lng": "99.055721666667",
+                "speed": "",
+                "course": "110",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "38"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.056721666667,
+                    18.64717
+                ]
+            },
+            "content": {
+                "devi_name": "T11",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64717",
+                "lng": "99.056721666667",
+                "speed": "",
+                "course": "120",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "39"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.057721666667,
+                    18.64817
+                ]
+            },
+            "content": {
+                "devi_name": "T12",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64817",
+                "lng": "99.057721666667",
+                "speed": "",
+                "course": "130",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "40"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.058721666667,
+                    18.64917
+                ]
+            },
+            "content": {
+                "devi_name": "T13",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.64917",
+                "lng": "99.058721666667",
+                "speed": "",
+                "course": "140",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "41"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.059721666667,
+                    18.65017
+                ]
+            },
+            "content": {
+                "devi_name": "T14",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65017",
+                "lng": "99.059721666667",
+                "speed": "",
+                "course": "150",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "42"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.060721666667,
+                    18.65117
+                ]
+            },
+            "content": {
+                "devi_name": "T15",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65117",
+                "lng": "99.060721666667",
+                "speed": "",
+                "course": "160",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "43"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.061721666667,
+                    18.65217
+                ]
+            },
+            "content": {
+                "devi_name": "T16",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65217",
+                "lng": "99.061721666667",
+                "speed": "",
+                "course": "170",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "44"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.062721666667,
+                    18.65317
+                ]
+            },
+            "content": {
+                "devi_name": "T17",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65317",
+                "lng": "99.062721666667",
+                "speed": "",
+                "course": "180",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "45"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.063721666667,
+                    18.65417
+                ]
+            },
+            "content": {
+                "devi_name": "T18",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65417",
+                "lng": "99.063721666667",
+                "speed": "",
+                "course": "190",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "46"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.064721666667,
+                    18.65517
+                ]
+            },
+            "content": {
+                "devi_name": "T19",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65517",
+                "lng": "99.064721666667",
+                "speed": "",
+                "course": "200",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "47"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.065721666667,
+                    18.65617
+                ]
+            },
+            "content": {
+                "devi_name": "T20",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65617",
+                "lng": "99.065721666667",
+                "speed": "",
+                "course": "210",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "48"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.066721666667,
+                    18.65717
+                ]
+            },
+            "content": {
+                "devi_name": "T21",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65717",
+                "lng": "99.066721666667",
+                "speed": "",
+                "course": "220",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "49"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.067721666667,
+                    18.65817
+                ]
+            },
+            "content": {
+                "devi_name": "T22",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65817",
+                "lng": "99.067721666667",
+                "speed": "",
+                "course": "230",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "50"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.068721666667,
+                    18.65917
+                ]
+            },
+            "content": {
+                "devi_name": "T23",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.65917",
+                "lng": "99.068721666667",
+                "speed": "",
+                "course": "240",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "51"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.069721666667,
+                    18.66017
+                ]
+            },
+            "content": {
+                "devi_name": "T24",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66017",
+                "lng": "99.069721666667",
+                "speed": "",
+                "course": "250",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "52"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.070721666667,
+                    18.66117
+                ]
+            },
+            "content": {
+                "devi_name": "T25",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66117",
+                "lng": "99.070721666667",
+                "speed": "",
+                "course": "260",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "53"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.071721666667,
+                    18.66217
+                ]
+            },
+            "content": {
+                "devi_name": "T26",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66217",
+                "lng": "99.071721666667",
+                "speed": "",
+                "course": "270",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "54"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.072721666667,
+                    18.66317
+                ]
+            },
+            "content": {
+                "devi_name": "T27",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66317",
+                "lng": "99.072721666667",
+                "speed": "",
+                "course": "280",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "55"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.073721666667,
+                    18.66417
+                ]
+            },
+            "content": {
+                "devi_name": "T28",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66417",
+                "lng": "99.073721666667",
+                "speed": "",
+                "course": "290",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "56"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.074721666667,
+                    18.66517
+                ]
+            },
+            "content": {
+                "devi_name": "T29",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66517",
+                "lng": "99.074721666667",
+                "speed": "",
+                "course": "300",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "57"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.075721666667,
+                    18.66617
+                ]
+            },
+            "content": {
+                "devi_name": "T30",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66617",
+                "lng": "99.075721666667",
+                "speed": "",
+                "course": "310",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "58"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.076721666667,
+                    18.66717
+                ]
+            },
+            "content": {
+                "devi_name": "T31",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66717",
+                "lng": "99.076721666667",
+                "speed": "",
+                "course": "320",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "59"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.077721666667,
+                    18.66817
+                ]
+            },
+            "content": {
+                "devi_name": "T32",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66817",
+                "lng": "99.077721666667",
+                "speed": "",
+                "course": "330",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "60"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.078721666667,
+                    18.66917
+                ]
+            },
+            "content": {
+                "devi_name": "T33",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.66917",
+                "lng": "99.078721666667",
+                "speed": "",
+                "course": "340",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "61"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.079721666667,
+                    18.67017
+                ]
+            },
+            "content": {
+                "devi_name": "T34",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67017",
+                "lng": "99.079721666667",
+                "speed": "",
+                "course": "350",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "62"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.080721666667,
+                    18.67117
+                ]
+            },
+            "content": {
+                "devi_name": "T35",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67117",
+                "lng": "99.080721666667",
+                "speed": "",
+                "course": "360",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "63"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.081721666667,
+                    18.67217
+                ]
+            },
+            "content": {
+                "devi_name": "T36",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67217",
+                "lng": "99.081721666667",
+                "speed": "",
+                "course": "370",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "64"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.082721666667,
+                    18.67317
+                ]
+            },
+            "content": {
+                "devi_name": "T37",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67317",
+                "lng": "99.082721666667",
+                "speed": "",
+                "course": "380",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "65"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.083721666667,
+                    18.67417
+                ]
+            },
+            "content": {
+                "devi_name": "T38",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67417",
+                "lng": "99.083721666667",
+                "speed": "",
+                "course": "390",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "66"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.084721666667,
+                    18.67517
+                ]
+            },
+            "content": {
+                "devi_name": "T39",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67517",
+                "lng": "99.084721666667",
+                "speed": "",
+                "course": "400",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "67"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.085721666667,
+                    18.67617
+                ]
+            },
+            "content": {
+                "devi_name": "T40",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67617",
+                "lng": "99.085721666667",
+                "speed": "",
+                "course": "410",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "68"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.086721666667,
+                    18.67717
+                ]
+            },
+            "content": {
+                "devi_name": "T41",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67717",
+                "lng": "99.086721666667",
+                "speed": "",
+                "course": "420",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "69"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.087721666667,
+                    18.67817
+                ]
+            },
+            "content": {
+                "devi_name": "T42",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67817",
+                "lng": "99.087721666667",
+                "speed": "",
+                "course": "430",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "70"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.088721666667,
+                    18.67917
+                ]
+            },
+            "content": {
+                "devi_name": "T43",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.67917",
+                "lng": "99.088721666667",
+                "speed": "",
+                "course": "440",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "71"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.089721666667,
+                    18.68017
+                ]
+            },
+            "content": {
+                "devi_name": "T44",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68017",
+                "lng": "99.089721666667",
+                "speed": "",
+                "course": "450",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "72"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.090721666667,
+                    18.68117
+                ]
+            },
+            "content": {
+                "devi_name": "T45",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68117",
+                "lng": "99.090721666667",
+                "speed": "",
+                "course": "460",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "73"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.091721666667,
+                    18.68217
+                ]
+            },
+            "content": {
+                "devi_name": "T46",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68217",
+                "lng": "99.091721666667",
+                "speed": "",
+                "course": "470",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "74"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.092721666667,
+                    18.68317
+                ]
+            },
+            "content": {
+                "devi_name": "T47",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68317",
+                "lng": "99.092721666667",
+                "speed": "",
+                "course": "480",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "75"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.093721666667,
+                    18.68417
+                ]
+            },
+            "content": {
+                "devi_name": "T48",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68417",
+                "lng": "99.093721666667",
+                "speed": "",
+                "course": "490",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "76"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.094721666667,
+                    18.68517
+                ]
+            },
+            "content": {
+                "devi_name": "T49",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68517",
+                "lng": "99.094721666667",
+                "speed": "",
+                "course": "500",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "77"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.095721666667,
+                    18.68617
+                ]
+            },
+            "content": {
+                "devi_name": "T50",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68617",
+                "lng": "99.095721666667",
+                "speed": "",
+                "course": "510",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "78"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.096721666667,
+                    18.68717
+                ]
+            },
+            "content": {
+                "devi_name": "T51",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68717",
+                "lng": "99.096721666667",
+                "speed": "",
+                "course": "520",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "79"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.097721666667,
+                    18.68817
+                ]
+            },
+            "content": {
+                "devi_name": "T52",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68817",
+                "lng": "99.097721666667",
+                "speed": "",
+                "course": "530",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "80"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.098721666667,
+                    18.68917
+                ]
+            },
+            "content": {
+                "devi_name": "T53",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.68917",
+                "lng": "99.098721666667",
+                "speed": "",
+                "course": "540",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "81"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.099721666667,
+                    18.69017
+                ]
+            },
+            "content": {
+                "devi_name": "T54",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69017",
+                "lng": "99.099721666667",
+                "speed": "",
+                "course": "550",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "82"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.100721666667,
+                    18.69117
+                ]
+            },
+            "content": {
+                "devi_name": "T55",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69117",
+                "lng": "99.100721666667",
+                "speed": "",
+                "course": "560",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "83"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.101721666667,
+                    18.69217
+                ]
+            },
+            "content": {
+                "devi_name": "T56",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69217",
+                "lng": "99.101721666667",
+                "speed": "",
+                "course": "570",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "84"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.102721666667,
+                    18.69317
+                ]
+            },
+            "content": {
+                "devi_name": "T57",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69317",
+                "lng": "99.102721666667",
+                "speed": "",
+                "course": "580",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "85"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.103721666667,
+                    18.69417
+                ]
+            },
+            "content": {
+                "devi_name": "T58",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69417",
+                "lng": "99.103721666667",
+                "speed": "",
+                "course": "590",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "86"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.104721666667,
+                    18.69517
+                ]
+            },
+            "content": {
+                "devi_name": "T59",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69517",
+                "lng": "99.104721666667",
+                "speed": "",
+                "course": "600",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "87"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.105721666667,
+                    18.69617
+                ]
+            },
+            "content": {
+                "devi_name": "T60",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69617",
+                "lng": "99.105721666667",
+                "speed": "",
+                "course": "610",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "88"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.106721666667,
+                    18.69717
+                ]
+            },
+            "content": {
+                "devi_name": "T61",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69717",
+                "lng": "99.106721666667",
+                "speed": "",
+                "course": "620",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "89"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.107721666667,
+                    18.69817
+                ]
+            },
+            "content": {
+                "devi_name": "T62",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69817",
+                "lng": "99.107721666667",
+                "speed": "",
+                "course": "630",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "90"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.108721666667,
+                    18.69917
+                ]
+            },
+            "content": {
+                "devi_name": "T63",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.69917",
+                "lng": "99.108721666667",
+                "speed": "",
+                "course": "640",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "91"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.109721666667,
+                    18.70017
+                ]
+            },
+            "content": {
+                "devi_name": "T64",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": "0",
+                "lat": "18.70017",
+                "lng": "99.109721666667",
+                "speed": "",
+                "course": "650",
+                "valid": "0",
+                "state": ""
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "92"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    0,
+                    0
+                ]
+            },
+            "content": {
+                "devi_name": "T65",
+                "devi_imei": "",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "0000-00-00 00:00:00",
+                "servertime": "0000-00-00 00:00:00",
+                "altitude": null,
+                "lat": null,
+                "lng": null,
+                "speed": null,
+                "course": null,
+                "valid": null,
+                "state": null
             }
         }
     ]

@@ -4,7 +4,7 @@ require "config.php";
 $lat = 18.63517;
 $lng = 99.044721666667;
 
-for ($i=0; $i <=2000 ; $i++) { 
+for ($i=500; $i <=2000 ; $i++) { 
     $lat = $lat + 0.001 ;
     $lng = $lng + 0.001;
     $course = $course + 10;
