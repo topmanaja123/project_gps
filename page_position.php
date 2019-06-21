@@ -173,7 +173,7 @@
 		center: [18.635346666667, 99.044695],
 		zoom: 15,
 		layers: [
-			L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 				maxZoom: 20,
 				attribution: 'Map data &copy; OpenStreetMap contributors',
 			})
