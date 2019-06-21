@@ -159,7 +159,7 @@
 			</table>
 		</div>
 
-		<div class="col-9">
+		<div class="col-sm-6 col-md-9">
 			<div id="map" style="height:88.88vh"></div>
 		</div>
 
