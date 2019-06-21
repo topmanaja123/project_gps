@@ -146,7 +146,7 @@
         <div class="card card-wrap" style="width: 99%">
             <div class="card-header bg-success">
                 <div class="text-center ">
-                    <span id="head-card"> <strong>ข้อมูลเส้นทาง</strong> </span>
+                    <span id="head-card"> <strong>รายละเอียดเส้นทาง</strong> </span>
                 </div>
             </div>
 
