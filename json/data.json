@@ -1,0 +1,179 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "3"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.044725,
+                    18.63517
+                ]
+            },
+            "content": {
+                "devi_name": "VT900 FWเก่า",
+                "devi_imei": "142181051839",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-06-20 17:25:05",
+                "servertime": "2019-06-20 17:25:06",
+                "altitude": "297",
+                "lat": "18.63517",
+                "lng": "99.044725",
+                "speed": "0",
+                "course": "107",
+                "valid": "1",
+                "state": "0400"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "4"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.044681666667,
+                    18.63531
+                ]
+            },
+            "content": {
+                "devi_name": "VT900 FWใหม่",
+                "devi_imei": "142181256120",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-03-19 01:16:43",
+                "servertime": "2019-03-19 11:23:26",
+                "altitude": "296",
+                "lat": "18.63531",
+                "lng": "99.044681666667",
+                "speed": "0",
+                "course": "153",
+                "valid": "0",
+                "state": "0000"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "5"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.04461,
+                    18.634996666667
+                ]
+            },
+            "content": {
+                "devi_name": "VT900 FWใหม่ เครื่องธรรมดา",
+                "devi_imei": "142180950586",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-06-20 16:25:00",
+                "servertime": "2019-06-20 16:25:01",
+                "altitude": "308",
+                "lat": "18.634996666667",
+                "lng": "99.04461",
+                "speed": "0",
+                "course": "316",
+                "valid": "1",
+                "state": "0400"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "6"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.044685,
+                    18.63525
+                ]
+            },
+            "content": {
+                "devi_name": "VT900 ช่างตรี",
+                "devi_imei": "142181256185",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-04-22 08:54:54",
+                "servertime": "2019-04-28 10:36:57",
+                "altitude": "294",
+                "lat": "18.63525",
+                "lng": "99.044685",
+                "speed": "0",
+                "course": "64",
+                "valid": "0",
+                "state": "0000"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "7"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    99.044795,
+                    18.635231666667
+                ]
+            },
+            "content": {
+                "devi_name": "VT900 FW V1.73 ",
+                "devi_imei": "142190361739",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-06-02 21:39:52",
+                "servertime": "2019-06-04 11:16:56",
+                "altitude": "0",
+                "lat": "18.635231666667",
+                "lng": "99.044795",
+                "speed": "0",
+                "course": "0",
+                "valid": "0",
+                "state": "2000"
+            }
+        },
+        {
+            "type": "Feature",
+            "properties": {
+                "id": "8"
+            },
+            "geometry": {
+                "type": "Point",
+                "coordinates": [
+                    100.08015,
+                    16.803985
+                ]
+            },
+            "content": {
+                "devi_name": "VT900 TEST berm",
+                "devi_imei": "142171200004",
+                "id_position": null,
+                "rfid_name": "",
+                "rfid_number": "",
+                "devicetime": "2019-05-20 14:53:21",
+                "servertime": "2019-05-19 14:50:15",
+                "altitude": "27",
+                "lat": "16.803985",
+                "lng": "100.08015",
+                "speed": "0",
+                "course": "248",
+                "valid": "1",
+                "state": "0000"
+            }
+        }
+    ]
+}
