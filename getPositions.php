@@ -23,7 +23,7 @@
     `positions`.`servertime`
   FROM
     `positions`
-    INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` LIMIT 100";
+    INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position`";
 	$objQuery = $conn->query($strSQL) or die (mysql_error());
 	$intNumField = mysqli_num_fields($objQuery);
 	$resultArray = array();

@@ -33,7 +33,7 @@ $jsonArr=array('type' => "FeatureCollection", 'features' => array());
             array_push($jsonArr['features'],$propertiesArr);
           }
      echo $json = json_encode($jsonArr,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
-     $file = fopen("json/data.json","w");
+     $file = fopen("/var/www/html/project_gps/json/data.json","w");
      fwrite($file,$json);
      fclose($file);
 ?>
