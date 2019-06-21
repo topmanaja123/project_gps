@@ -9,8 +9,8 @@
             "geometry": {
                 "type": "Point",
                 "coordinates": [
-                    99.044725,
-                    18.63517
+                    99.044726666667,
+                    18.635175
                 ]
             },
             "content": {
@@ -19,13 +19,13 @@
                 "id_position": null,
                 "rfid_name": "",
                 "rfid_number": "",
-                "devicetime": "2019-06-20 17:25:05",
-                "servertime": "2019-06-20 17:25:06",
-                "altitude": "297",
-                "lat": "18.63517",
-                "lng": "99.044725",
+                "devicetime": "2019-06-21 11:13:55",
+                "servertime": "2019-06-21 11:13:57",
+                "altitude": "285",
+                "lat": "18.635175",
+                "lng": "99.044726666667",
                 "speed": "0",
-                "course": "107",
+                "course": "299",
                 "valid": "1",
                 "state": "0400"
             }
