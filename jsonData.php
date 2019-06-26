@@ -32,8 +32,19 @@ $jsonArr=array('type' => "FeatureCollection", 'features' => array());
                 );
             array_push($jsonArr['features'],$propertiesArr);
           }
-     echo $json = json_encode($jsonArr,JSON_UNESCAPED_UNICODE|JSON_PRETTY_PRINT);
+          for ($i=0; $i <= 900  ; $i++) { 
+       echo $json = json_encode($jsonArr,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+    }
+    // $str = gitMBstrspilt($data);
+
      $file = fopen("json/data.json","w");
-     fwrite($file,$json);
+          
+     $pieces = str_split($json, 1024 * 4);
+        foreach ($pieces as $piece) {
+        fwrite($file, $piece, strlen($piece));
+        }
      fclose($file);
+    //  print_r($jsonArr);
+    //  print_r($data);
+     
 ?>
