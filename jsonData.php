@@ -46,5 +46,4 @@ $jsonArr=array('type' => "FeatureCollection", 'features' => array());
      fclose($file);
     //  print_r($jsonArr);
     //  print_r($data);
-     
 ?>

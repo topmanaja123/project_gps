@@ -122,7 +122,7 @@ function getDataFromDb() {
                     arrayData.push(data2);
 
                 });
-                myFunction(); 
+                search();
                 send();
             }
         }
@@ -157,7 +157,7 @@ function send() {
                 <form class="form-inline" method="post">
                     <label>ค้นหา</label>
                     <div class="col">
-                    <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="ทะเบียนรถ">             
+                        <input class="form-control" type="text" id="myInput" onkeyup="search()" placeholder="ทะเบียนรถ">
                     </div>
                 </form>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -291,25 +291,24 @@ function myPanto(id, lat, lng) {
         noMoveStart: true
     });
 }
-
 </script>
 <script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
+function search() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    table = document.getElementById("myTable");
+    tr = table.getElementsByTagName("tr");
+    for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                tr[i].style.display = "";
+            } else {
+                tr[i].style.display = "none";
+            }
+        }
+    }
 }
 </script>
