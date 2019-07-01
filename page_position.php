@@ -67,9 +67,9 @@ function getDataFromDb() {
         url: "getPositions.php",
         type: "POST",
         data: "result",
-        
+
         success: function(result) {
-            
+
             var data2 = '';
             var obj = jQuery.parseJSON(result);
             if (obj != '') {
@@ -101,28 +101,28 @@ function getDataFromDb() {
                     tr = tr + "<td>" + val["servertime"] + "</td>";
                     tr = tr + "</tr>";
                     $('#myTable > tbody:last').append(tr);
-                    
-                
-                   data2 = {
-                                'devi_id': devi_id,
-                                'devi_name': devi_name,
-                                'devi_imei': devi_imei,
-                                'id_position': id_position,
-                                'rfid_name': rfid_name,
-                                'rfid_number': rfid_number,
-                                'devicetime': devicetime,
-                                'servertime': servertime,
-                                'altitude': altitude,
-                                'lat': lat,
-                                'lng': lng,
-                                'speed': speed,
-                                'course': course,
-                                // 'attributes':attributes,
-                                'valid': valid,
-                                'state': state
-                            };
-                            
-                arrayData.push(data2);
+
+
+                    data2 = {
+                        'devi_id': devi_id,
+                        'devi_name': devi_name,
+                        'devi_imei': devi_imei,
+                        'id_position': id_position,
+                        'rfid_name': rfid_name,
+                        'rfid_number': rfid_number,
+                        'devicetime': devicetime,
+                        'servertime': servertime,
+                        'altitude': altitude,
+                        'lat': lat,
+                        'lng': lng,
+                        'speed': speed,
+                        'course': course,
+                        // 'attributes':attributes,
+                        'valid': valid,
+                        'state': state
+                    };
+
+                    arrayData.push(data2);
                 });
                 // console.log(obj);
                 search();
@@ -136,52 +136,35 @@ function getDataFromDb() {
     });
 }
 
-setInterval(getDataFromDb,5000); // 1000 = 1 second
+setInterval(getDataFromDb, 5000); // 1000 = 1 second
 
-
-
-//ส่งข้อมูลไปหา jsonData.php
-// var data2 = '';
-
-// data2.forEach((data2) => {
-//   console.log(data2);
-// });
 
 var markers = {};
 // var dataArr = data2;
 var arrayData = [];
 
-function dataRealtime(arrayData){
+function dataRealtime(arrayData) {
     var dataArr = arrayData;
     dataArr.forEach(dataArr => {
-            // console.log(dataArr['lat']+dataArr['lng'])
-            if (!markers.hasOwnProperty(dataArr['devi_id'])) {
-      markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'] , dataArr['lng']]).addTo(map);
-      markers[dataArr['devi_id']].previousLatLngs = [];
-    } else {
-      markers[dataArr['devi_id']].previousLatLngs.push(markers[dataArr['devi_id']].getLatLng());
-      markers[dataArr['devi_id']].setLatLng([dataArr['lat'] , dataArr['lng']]);
-    }
+        // console.log(dataArr['lat']+dataArr['lng'])
+        if (!markers.hasOwnProperty(dataArr['devi_id'])) {
+            markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {/*icon: greenIcon, rotationAngle: 0,*/ rotationOrigin: 'center center'}).addTo(map).bindPopup(
+                'Device :  <br> Speed :  ').bindTooltip("6666", {
+                permanent: true,
+                direction: 'bottom',
+                offset: [0, 30],
+                interactive: true,
+                opacity: 10,
+                className: 'myCSSClass'
+            }).openTooltip();;
+            markers[dataArr['devi_id']].previousLatLngs = [];
+        } else {
+            markers[dataArr['devi_id']].previousLatLngs.push(markers[dataArr['devi_id']].getLatLng());
+            markers[dataArr['devi_id']].setLatLng([dataArr['lat'], dataArr['lng']]);
+        }
 
-   });
+    });
 };
-
-
-// function send() {
-//     var json = arrayData;
-//     $.ajax({
-//         url: "jsonData.php",
-//         type: "POST",
-//         data: {
-//             data: json
-//         },
-//         success: function(data) {
-//             console.log(json);
-//             // alert(data);            
-//         }
-//     });
-//     arrayData = [];
-// };
 </script>
 
 <body>
@@ -247,69 +230,6 @@ var map = L.map('map', {
 //zoom add a scale at your map.
 var scale = L.control.scale().addTo(map);
 
-// ดึงข้อมูลใน json มาใช้เป็น realtime
-// var realtime = L.realtime({
-//     url: 'json/data.json',
-//     crossOrigin: true,
-//     type: 'json'
-// }, {
-//     interval: 3 * 1000,
-//     pointToLayer: function(feature, latlng) {
-//         return L.marker(latlng, {
-//             'icon': L.icon({
-//                 iconUrl: 'images/truck.png',
-//                 iconSize: [35, 35],
-//                 iconAnchor: [17, 17],
-//                 popupAnchor: [0, -20],
-//                 autoPan: false
-//             }),
-//             riseOnHover: true
-//         }).bindTooltip("6666", {
-//             permanent: true,
-//             direction: 'bottom',
-//             offset: [0, 15],
-//             interactive: false,
-//             opacity: 10,
-//             className: 'myCSSClass'
-//         }).openTooltip();
-//         animate: true
-//     }
-// }).addTo(map);
-
-
-//Detail Marker
-// realtime.on('update', function(e) {
-//     popupContent = function(fId) {
-//             var feature = e.features[fId];
-//             var c_name = feature.properties.id;
-//             var devi_id = feature.content.devi_id;
-//             var content = feature.content.devi_name;
-//             var servertime = feature.content.servertime;
-//             var speed = feature.content.speed;
-//             var lat = feature.content.lat;
-//             var lng = feature.content.lng;
-
-//             return 'ทะเบียน : ' + devi_id +
-//             '<br> เวลา : ' + servertime +
-//                 '<br> ความเร็ว : ' + speed +
-//                 '<br> ตำแหน่ง : ' + lat + ',' + lng
-//             // + '<br> น้ำมัน : ' + ;
-//         },
-//         bindFeaturePopup = function(fId) {
-//             realtime.getLayer(fId).bindPopup(popupContent(fId));
-//         },
-//         updateFeaturePopup = function(fId) {
-//             realtime.getLayer(fId).getPopup().setContent(popupContent(fId));
-//         },
-//         click = function(fId) {
-//             realtime.getLayer(fId).onclick(fId);
-//         };
-//     Object.keys(e.enter).forEach(bindFeaturePopup);
-//     Object.keys(e.update).forEach(updateFeaturePopup);
-// });
-
-//click Marker Zoom
-
 map.on('popupopen', function(centerMarker) {
     var cM = map.project(centerMarker.popup._latlng);
     cM.y -= centerMarker.popup._container.clientHeight /
@@ -326,11 +246,6 @@ function myPanto(id, lat, lng) {
         noMoveStart: true
     });
 }
-
-// function update(){
-//     var marker = L.marker([lat, lng]).update(marker);
-// }
-// map.on('locationfound', update1);
 </script>
 <script>
 function search() {
