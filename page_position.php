@@ -149,7 +149,10 @@ function dataRealtime(arrayData) {
         // console.log(dataArr['lat']+dataArr['lng'])
         if (!markers.hasOwnProperty(dataArr['devi_id'])) {
             markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {/*icon: greenIcon, rotationAngle: 0,*/ rotationOrigin: 'center center'}).addTo(map).bindPopup(
-                'Device :  <br> Speed :  ').bindTooltip("6666", {
+                'รายละเอียด'
+                +'<br>ทะเบียน : '+dataArr['devi_name']
+                +'<br>ความเร็ว : '+dataArr['speed']
+                +'<br>เวลา : '+dataArr['devicetime']).bindTooltip(dataArr['devi_name'], {
                 permanent: true,
                 direction: 'bottom',
                 offset: [0, 30],
