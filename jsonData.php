@@ -14,6 +14,7 @@ $jsonArr=array('type' => "FeatureCollection", 'features' => array());
                     'coordinates' => array((float)"$value[lng]", (float)"$value[lat]")
                   ),
                   'content' => array(
+                    'devi_id'=> $value['devi_id'],
                     'devi_name' => $value['devi_name'],
                     'devi_imei'=> $value['devi_imei'],
                     'id_position'=> $value['id_position'],
@@ -32,9 +33,8 @@ $jsonArr=array('type' => "FeatureCollection", 'features' => array());
                 );
             array_push($jsonArr['features'],$propertiesArr);
           }
-          for ($i=0; $i <= 900  ; $i++) { 
-       echo $json = json_encode($jsonArr,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
-    }
+        echo $json = json_encode($jsonArr,JSON_PRETTY_PRINT|JSON_UNESCAPED_UNICODE);
+
     // $str = gitMBstrspilt($data);
 
      $file = fopen("json/data.json","w");

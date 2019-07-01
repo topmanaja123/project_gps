@@ -1,8 +1,20 @@
 <html>
 
 <head>
-    <!-- <link href="vender/select2/css/select2.min.css" rel="stylesheet" /> -->
-    <!-- <link rel="stylesheet" href="vender/select2/css/select2-bootstrap4.css" type="text/css" /> -->
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+
+    <!-- map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin="" />
@@ -10,6 +22,7 @@
         integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
     <script rel="stylesheet" src="js/leaflet.rotatedMarker.js"></script>
+
     <style media="screen">
     .bg-green {
         background-color: #e2e2e2;
@@ -44,42 +57,27 @@
 
 <body>
     <?php
-require "config.php";
-$sql = "SELECT
-     `devices`.`devi_id`,
-     `devices`.`devi_name`,
-     `devices`.`devi_imei`,
-     `devices`.`id_position`,
-     `devices`.`rfid_name`,
-     `devices`.`rfid_number`,
-     `positions`.`devicetime`,
-     `positions`.`servertime`,
-     `positions`.`altitude`,
-     `positions`.`lat`,
-     `positions`.`lng`,
-     `positions`.`speed`,
-     `positions`.`course`,
-     `positions`.`attributes`,
-     `positions`.`valid`,
-     `positions`.`state`
-   FROM
-     `devices`
-      INNER JOIN `positions` ON `devices`.`id_position` = `positions`.`posi_id`";
-$result = $conn->query($sql);
-?>
+    require "config.php";
+    $sql = "SELECT `devices`.* FROM `devices`";
+    $result = $conn->query($sql);
+    ?>
 
     <?php
 if (isset($_POST['serach'])) {
-    $sqlDate = "SELECT MIN(posit_mark_start) AS posi_start, MAX(posit_mark_end) AS posi_end ,device_code FROM positions_mark
-    WHERE device_code = '$_POST[dev_id]' AND posit_mark_date BETWEEN '$_POST[date_start]' AND '$_POST[date_start]'";
-    $resultDate = $conn->query($sqlDate);
-    $rs = $resultDate->fetch_assoc();
+    // $sqlDate = "SELECT MIN(posit_mark_start) AS posi_start, MAX(posit_mark_end) AS posi_end ,device_code FROM positions_mark
+    // WHERE device_code = '$_POST[dev_id]' AND posit_mark_date BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
+    // $resultDate = $conn->query($sqlDate);
+    // $rs = $resultDate->fetch_assoc();
 
-    $sqlPosition = "SELECT * FROM positions WHERE posi_id BETWEEN $rs[posi_start] AND $rs[posi_end] AND device_id = $rs[device_code]";
+    // $sqlPosition = "SELECT * FROM positions WHERE device_id = $_POST[dev_id] AND devicetime BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
+    // $resultPosition = $conn->query($sqlPosition);
+    // $resultPositionLine = $conn->query($sqlPosition);
+
+    $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[dev_id] AND devicetime >='$_POST[date_start]' AND devicetime <= '$_POST[date_end]'";
     $resultPosition = $conn->query($sqlPosition);
     $resultPositionLine = $conn->query($sqlPosition);
-    echo $sqlDate;
-    //   echo '<br>';
+    // echo $sqlDate;
+    // echo '<br>';
     echo $sqlPosition;
     }
     ?>
@@ -96,18 +94,20 @@ if (isset($_POST['serach'])) {
                                         <span>อุปกรณ์</span>
                                     </div>
                                     <div class="col">
-                                        <select class="form-control form-control-sm" name="dev_id">
+                                        <select class="form-control form-control-sm select2" name="dev_id">
                                             <option selected>--เลือก--</option>
                                             <?php
                                               while ($rs = $result->fetch_assoc()) {
                                             ?>
-                                            <option value="<?=$rs['devi_id'];?>"><?=$rs['devi_name'];?></option>
+                                            <!-- <option value="<?=$rs['devi_id'];?>"><?=$rs['devi_name'];?></option> -->
+                                            <option value="<?=$rs['id'];?>"><?=$rs['name'];?></option>
                                             <?php
                                               }
                                             ?>
                                         </select>
                                     </div>
                                 </div>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -118,7 +118,12 @@ if (isset($_POST['serach'])) {
                                         <span>วันที่ย้อนหลัง</span>
                                     </div>
                                     <div class="col">
-                                        <input type="date" name="date_start" class=" form-control form-control-sm">
+                                        <input type="datetime-local" name="date_start"
+                                            class=" form-control form-control-sm">
+                                    </div>
+                                    <div class="col">
+                                        <input type="datetime-local" name="date_end"
+                                            class=" form-control form-control-sm">
                                     </div>
                                 </div>
                             </div>
@@ -158,14 +163,14 @@ if (isset($_POST['serach'])) {
                         if ($resultPosition) {
                             while ($rs1 = $resultPosition->fetch_assoc()) {
                         ?>
-                            <tr>
-                                <td class="text-center" width="5%"><input type="checkbox" name="checkboxList"></td>
-                                <td class="text-center" width="30%"><?=$rs1['devicetime'];?></td>
-                                <td class="text-center" width="10%"><?=$rs1['speed'];?></td>
-                                <td class="text-center" width="10%"><?=$rs1['course'];?></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                        <tr>
+                            <td class="text-center" width="5%"><input type="checkbox" name="checkboxList"></td>
+                            <td class="text-center" width="30%"><?=$rs1['devicetime'];?></td>
+                            <td class="text-center" width="10%"><?=$rs1['speed'];?></td>
+                            <td class="text-center" width="10%"><?=$rs1['course'];?></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
                         <?php
                             } //while($rs1=$result1->fetch_assoc())
                           } //if ($result1) {
@@ -174,7 +179,7 @@ if (isset($_POST['serach'])) {
                 </table>
             </div>
         </div>
-        
+
         <div class="col-9">
             <div class="card-header full-background" id="map" style="height:90vh"></div>
         </div>
@@ -213,7 +218,7 @@ var latlngStr = "";
 if ($resultPositionLine) {
     while ($resultPolyline = $resultPositionLine->fetch_assoc()) {
         ?>
-latlngStr = [<?=$resultPolyline['lat']?>, <?=$resultPolyline['lng']?>];
+latlngStr = [<?=$resultPolyline['latitude']?>, <?=$resultPolyline['longitude']?>];
 latlng.push(latlngStr);
 // L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: greenIcon, rotationAngle: <?=$resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(mymap);
 // console.log(latlng);
@@ -226,4 +231,8 @@ var showLine = [latlng];
 var polyline = L.polyline(showLine, {
     color: 'red'
 }).addTo(mymap); //show polyline
+
+$(document).ready(function() {
+    $('.select2').select2();
+});
 </script>

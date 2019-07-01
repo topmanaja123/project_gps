@@ -67,8 +67,9 @@ function getDataFromDb() {
         url: "getPositions.php",
         type: "POST",
         data: "result",
+        
         success: function(result) {
-
+            
             var data2 = '';
             var obj = jQuery.parseJSON(result);
             if (obj != '') {
@@ -100,54 +101,74 @@ function getDataFromDb() {
                     tr = tr + "<td>" + val["servertime"] + "</td>";
                     tr = tr + "</tr>";
                     $('#myTable > tbody:last').append(tr);
+                    
+                
+                   data2 = {
+                                'devi_id': devi_id,
+                                'devi_name': devi_name,
+                                'devi_imei': devi_imei,
+                                'id_position': id_position,
+                                'rfid_name': rfid_name,
+                                'rfid_number': rfid_number,
+                                'devicetime': devicetime,
+                                'servertime': servertime,
+                                'altitude': altitude,
+                                'lat': lat,
+                                'lng': lng,
+                                'speed': speed,
+                                'course': course,
+                                // 'attributes':attributes,
+                                'valid': valid,
+                                'state': state
+                            };
 
-                    data2 = {
-                        'devi_id': devi_id,
-                        'devi_name': devi_name,
-                        'devi_imei': devi_imei,
-                        'id_position': id_position,
-                        'rfid_name': rfid_name,
-                        'rfid_number': rfid_number,
-                        'devicetime': devicetime,
-                        'servertime': servertime,
-                        'altitude': altitude,
-                        'lat': lat,
-                        'lng': lng,
-                        'speed': speed,
-                        'course': course,
-                        // 'attributes':attributes,
-                        'valid': valid,
-                        'state': state
-                    };
-                    arrayData.push(data2);
-
+                arrayData.push(data2);
                 });
+                // console.log(arrayData);
                 search();
-                send();
+                // send();
+                dataRealtime(arrayData);
             }
         }
     });
 }
-setInterval(getDataFromDb, 5000); // 1000 = 1 second
+
+setInterval(getDataFromDb, 10000); // 1000 = 1 second
+
 
 //ส่งข้อมูลไปหา jsonData.php
-var arrayData = [];
+// var data2 = '';
 
-function send() {
-    var json = arrayData;
-    $.ajax({
-        url: "jsonData.php",
-        type: "POST",
-        data: {
-            data: json
-        },
-        success: function(data) {
-            console.log(data.length);
-            // alert(data);            
-        }
-    });
-    arrayData = [];
+// data2.forEach((data2) => {
+//   console.log(data2);
+// });
+
+
+// var dataArr = data2;
+var arrayData = [];
+function dataRealtime(arrayData){
+    var dataArr = arrayData;
+    dataArr.forEach(dataArr => {
+            console.log(dataArr)
+   });
 };
+
+// console.log(arrayData);
+// function send() {
+//     var json = arrayData;
+//     $.ajax({
+//         url: "jsonData.php",
+//         type: "POST",
+//         data: {
+//             data: json
+//         },
+//         success: function(data) {
+//             console.log(json);
+//             // alert(data);            
+//         }
+//     });
+//     arrayData = [];
+// };
 </script>
 
 <body>
@@ -248,14 +269,15 @@ realtime.on('update', function(e) {
     popupContent = function(fId) {
             var feature = e.features[fId];
             var c_name = feature.properties.id;
+            var devi_id = feature.content.devi_id;
             var content = feature.content.devi_name;
             var servertime = feature.content.servertime;
             var speed = feature.content.speed;
             var lat = feature.content.lat;
             var lng = feature.content.lng;
 
-            return 'รายละเอียด <br>' + 'ทะเบียน : ' + content +
-                '<br> เวลา : ' + servertime +
+            return 'ทะเบียน : ' + devi_id +
+            '<br> เวลา : ' + servertime +
                 '<br> ความเร็ว : ' + speed +
                 '<br> ตำแหน่ง : ' + lat + ',' + lng
             // + '<br> น้ำมัน : ' + ;
@@ -291,6 +313,11 @@ function myPanto(id, lat, lng) {
         noMoveStart: true
     });
 }
+
+function update(){
+    var marker = L.marker([lat, lng]).update(marker);
+}
+// map.on('locationfound', update1);
 </script>
 <script>
 function search() {
