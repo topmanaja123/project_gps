@@ -90,7 +90,7 @@ function getDataFromDb() {
                     var lng = val['lng'];
                     var speed = val['speed'];
                     var course = val['course'];
-                    // var attributes = val['attributes'];
+                    var attributes = val['attributes'].hdop;
                     var valid = val['valid'];
                     var state = val['state'];
                     var devi_category = val['devi_category'];
@@ -126,7 +126,8 @@ function getDataFromDb() {
 
                     arrayData.push(data2);
                 });
-                // console.log(obj);
+                console.log(attributes);
+
                 search();
                 // send();
                 dataRealtime(arrayData);
