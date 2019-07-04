@@ -102,7 +102,6 @@ function getDataFromDb() {
                     tr = tr + "</tr>";
                     $('#myTable > tbody:last').append(tr);
 
-
                     data2 = {
                         'devi_id': devi_id,
                         'devi_name': devi_name,
@@ -148,18 +147,14 @@ function dataRealtime(arrayData) {
     dataArr.forEach(dataArr => {
         // console.log(dataArr['lat']+dataArr['lng'])
         if (!markers.hasOwnProperty(dataArr['devi_id'])) {
-            markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {/*icon: greenIcon, rotationAngle: 0,*/ rotationOrigin: 'center center'}).addTo(map).bindPopup(
-                'รายละเอียด'
-                +'<br>ทะเบียน : '+dataArr['devi_name']
-                +'<br>ความเร็ว : '+dataArr['speed']
-                +'<br>เวลา : '+dataArr['devicetime']).bindTooltip(dataArr['devi_name'], {
-                permanent: true,
-                direction: 'bottom',
-                offset: [0, 30],
-                interactive: true,
-                opacity: 10,
-                className: 'myCSSClass'
-            }).openTooltip();;
+            markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
+                /*icon: greenIcon, rotationAngle: 0,*/
+                rotationOrigin: 'center center'
+            }).addTo(map).bindPopup(
+                'รายละเอียด' +
+                '<br>ทะเบียน : ' + dataArr['devi_name'] +
+                '<br>ความเร็ว : ' + dataArr['speed'] +
+                '<br>เวลา : ' + dataArr['devicetime']).bindTooltip("my tooltip text").openTooltip();
             markers[dataArr['devi_id']].previousLatLngs = [];
         } else {
             markers[dataArr['devi_id']].previousLatLngs.push(markers[dataArr['devi_id']].getLatLng());
