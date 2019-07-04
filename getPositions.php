@@ -1,29 +1,30 @@
 <?php
 	require'config.php';
-	$strSQL = "SELECT 
-    `devices`.`devi_id`,
-    `devices`.`devi_name`,
-    `devices`.`devi_imei`,
-    `positions`.`posi_id`,
-    `positions`.`devicetime`,
-    `positions`.`lat`,
-    `positions`.`lng`,
-    `positions`.`speed`,
-    `positions`.`course`,
-    `positions`.`state`,
-    `positions`.`altitude`,
-    `devices`.`connect_dlt`,
-    `devices`.`connect_post`,
-    `devices`.`connect_acc`,
-    `devices`.`rfid_name`,
-    `devices`.`rfid_number`,
-    `devices`.`devi_fuel`,
-    `positions`.`valid`,
-    `positions`.`attributes`,
-    `positions`.`servertime`
-  FROM
-    `positions`
-    INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` LIMIT 500";
+	$strSQL = "SELECT
+  `devices`.`devi_id`,
+  `devices`.`devi_name`,
+  `devices`.`devi_imei`,
+  `positions`.`posi_id`,
+  `positions`.`devicetime`,
+  `positions`.`lat`,
+  `positions`.`lng`,
+  `positions`.`speed`,
+  `positions`.`course`,
+  `positions`.`state`,
+  `positions`.`altitude`,
+  `devices`.`connect_dlt`,
+  `devices`.`connect_post`,
+  `devices`.`connect_acc`,
+  `devices`.`rfid_name`,
+  `devices`.`rfid_number`,
+  `devices`.`devi_fuel`,
+  `positions`.`valid`,
+  `positions`.`attributes`,
+  `positions`.`servertime`,
+  `devices`.`devi_category`
+FROM
+  `positions`
+  INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` LIMIT 500";
 	$objQuery = $conn->query($strSQL) or die (mysql_error());
 	$intNumField = mysqli_num_fields($objQuery);
 	$resultArray = array();
@@ -48,6 +49,7 @@
       // 'attributes' =>	$arrAtt,
       'valid' => $obResult['valid'],
       'state' => $obResult['state'],
+      'devi_category' => $obResult['devi_category']
 		);
 		array_push($resultArray,$arrCol);
 	}

@@ -32,9 +32,10 @@
     }
 
     .myCSSClass {
-        font-size: 20px;
+        font-size: 14px;
         color: red;
         font-weight: bold;
+        font-family: cursive;
         background: none;
         /* background-color: none; */
         border: none;
@@ -92,6 +93,7 @@ function getDataFromDb() {
                     // var attributes = val['attributes'];
                     var valid = val['valid'];
                     var state = val['state'];
+                    var devi_category = val['devi_category'];
 
                     var tr = "<tr>";
                     tr = tr + "<td id='" + val["devi_id"] + "' onclick='myPanto(" + val["devi_id"] +
@@ -118,7 +120,8 @@ function getDataFromDb() {
                         'course': course,
                         // 'attributes':attributes,
                         'valid': valid,
-                        'state': state
+                        'state': state,
+                        'devi_category': devi_category
                     };
 
                     arrayData.push(data2);
@@ -142,19 +145,57 @@ var markers = {};
 // var dataArr = data2;
 var arrayData = [];
 
+
+var LeafIcon = L.Icon.extend({
+    options: {
+        iconSize: [100, 100],
+        iconAnchor: [50, 50]
+    }
+});
+var LeafIcon1 = L.Icon.extend({
+    options: {
+        iconSize: [29, 29],
+        iconAnchor: [15, 15],
+        popupAnchor: [0, -7]
+    }
+});
+
 function dataRealtime(arrayData) {
     var dataArr = arrayData;
     dataArr.forEach(dataArr => {
+
         // console.log(dataArr['lat']+dataArr['lng'])
         if (!markers.hasOwnProperty(dataArr['devi_id'])) {
+
+            var greenIcon = new LeafIcon({
+                iconUrl: 'images/van.png'
+            });
+            var blueIcon = new LeafIcon({
+                iconUrl: 'images/truck.png'
+            });
+
+
             markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
-                /*icon: greenIcon, rotationAngle: 0,*/
+                icon: greenIcon,
+                rotationAngle: 0,
                 rotationOrigin: 'center center'
             }).addTo(map).bindPopup(
                 'รายละเอียด' +
                 '<br>ทะเบียน : ' + dataArr['devi_name'] +
                 '<br>ความเร็ว : ' + dataArr['speed'] +
-                '<br>เวลา : ' + dataArr['devicetime']).bindTooltip("my tooltip text").openTooltip();
+                '<br>เวลา : ' + dataArr['devicetime']).bindTooltip(dataArr['devi_name'], {
+                permanent: true,
+                direction: 'bottom',
+                offset: [0, 15],
+                interactive: false,
+                opacity: 10,
+                className: 'myCSSClass'
+            }).openTooltip();
+            markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
+                icon: blueIcon,
+                rotationAngle: 0,
+                rotationOrigin: 'center center'
+            }).addTo(map);
             markers[dataArr['devi_id']].previousLatLngs = [];
         } else {
             markers[dataArr['devi_id']].previousLatLngs.push(markers[dataArr['devi_id']].getLatLng());
@@ -219,7 +260,7 @@ var map = L.map('map', {
     zoom: 15,
     layers: [
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            maxZoom: 20,
+            maxZoom: 19,
             attribution: 'Map data &copy; OpenStreetMap contributors',
         })
     ]
