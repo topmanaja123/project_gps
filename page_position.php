@@ -249,46 +249,34 @@ var map = L.map('map', {
     zoom: 15,
 });
 
+// Map Google 
+var Streets = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
+    }).addTo(map);
 
-// Add WMTS OpenStreetMap(OSM)
-var opst = L.tileLayer(
-      'http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
-        minZoom: 0,
-        maxZoom: 20,
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        subdomains:['mt0','mt1','mt2','mt3'],
-      }).addTo(map);
-
-var DaowTeim = L.tileLayer(
-      'http://go-tiles1.gistda.or.th/mapproxy/wmts/thaichote/GLOBAL_WEBMERCATOR/{z}/{x}/{y}.png', {
-        minZoom: 0,
-        maxZoom: 20,
-        format: 'image/png',
-        attribution: '&copy; <a href = "http://www.gistda.or.th">GISTDA</a>',
+var Hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
+    maxZoom: 20,
+    subdomains:['mt0','mt1','mt2','mt3']
       }).addTo(map);
       
 
-    var test = L.tileLayer(
-    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    minZoom: 0,
+    var Satellite = L.tileLayer('http://{s}.google.com/vt/lyrs=s&x={x}&y={y}&z={z}',{
     maxZoom: 20,
-    attribution: '&copy; <a href = "http://www.gistda.or.th">GISTDA</a>',
+    subdomains:['mt0','mt1','mt2','mt3']
     }).addTo(map);
 
     
-    var world = L.tileLayer(
-    'http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}', {
-    minZoom: 0,
+    var Terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
     maxZoom: 20,
-    attribution: '&copy; <a href = "http://www.gistda.or.th">GISTDA</a>',
-    subdomains:['mt0','mt1','mt2','mt3'],
+    subdomains:['mt0','mt1','mt2','mt3']
     }).addTo(map);
     
 var basemaps = {
-      'OpenStreetMap': opst,
-      'Test': test,
-      'world': world,
-      'DaowTeim': DaowTeim
+      'Streets': Streets,
+      'Hybrid': Hybrid,
+      'Satellite': Satellite,
+      'Terrain': Terrain
     };
 
 
