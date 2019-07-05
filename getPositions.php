@@ -24,7 +24,7 @@
   `devices`.`devi_category`
 FROM
   `positions`
-  INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` LIMIT 50";
+  INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` LIMIT 100";
 	$objQuery = $conn->query($strSQL) or die (mysql_error());
 	$intNumField = mysqli_num_fields($objQuery);
 	$resultArray = array();

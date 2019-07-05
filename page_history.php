@@ -189,16 +189,10 @@ if (isset($_POST['serach'])) {
 
 </html>
 
+<script src="map.js"></script>
 <!-- scrip map -->
 <script>
-var mymap = L.map('map').setView([18.635245, 99.044696666667], 13);
-// map
-L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-    maxZoom: 22,
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>',
-}).addTo(mymap);
-//zoom add a scale at at your map.
-var scale = L.control.scale().addTo(mymap);
+
 //icon
 var LeafIcon = L.Icon.extend({
     options: {
