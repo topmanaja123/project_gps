@@ -90,7 +90,7 @@ function getDataFromDb() {
                     var lng = val['lng'];
                     var speed = val['speed'];
                     var course = val['course'];
-                    var attributes = val['attributes'].hdop;
+                    var attributes = val['attributes'];
                     var valid = val['valid'];
                     var state = val['state'];
                     var devi_category = val['devi_category'];
@@ -123,10 +123,10 @@ function getDataFromDb() {
                         'state': state,
                         'devi_category': devi_category
                     };
-
+                    dataRealtime(data2);
                     arrayData.push(data2);
                 });
-                console.log(attributes);
+                // console.log(attributes);
 
                 search();
                 // send();
@@ -160,15 +160,15 @@ var LeafIcon1 = L.Icon.extend({
     }
 });
 
-function dataRealtime(arrayData){
-    var dataArr = arrayData;
-    dataArr.forEach(dataArr => {
+function dataRealtime(Data){
+    var dataArr = Data;
         // console.log(dataArr['course'])
         if (!markers.hasOwnProperty(dataArr['devi_id'])) {
 
             var greenIcon = new LeafIcon1({
                 iconUrl: 'images/top-truck.png'
             });
+
             markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
                 icon: greenIcon,
                 rotationAngle: dataArr['course'],
@@ -183,18 +183,15 @@ function dataRealtime(arrayData){
                 direction: 'bottom',
                 offset: [0, 25],
                 interactive: false,
-                opacity: 15,
-                className: 'myCSSClass'
+                opacity: 15
+                // className: 'myCSSClass'
             }).openTooltip();
             markers[dataArr['devi_id']].previousLatLngs = [];
         } else {
-
-
             markers[dataArr['devi_id']].previousLatLngs.push(markers[dataArr['devi_id']].getLatLng());
             markers[dataArr['devi_id']].setLatLng([dataArr['lat'], dataArr['lng']]);
+           
         }
-
-    });
 };
 </script>
 
