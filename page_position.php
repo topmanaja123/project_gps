@@ -193,6 +193,10 @@ function dataRealtime(Data){
 
         }
 };
+
+
+
+
 </script>
 
 <body>
@@ -267,16 +271,16 @@ var Hybrid = L.tileLayer('http://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}',{
     }).addTo(map);
 
     
-    var Terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
-    maxZoom: 20,
-    subdomains:['mt0','mt1','mt2','mt3']
-    }).addTo(map);
+    // var Terrain = L.tileLayer('http://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{
+    // maxZoom: 20,
+    // subdomains:['mt0','mt1','mt2','mt3']
+    // }).addTo(map);
     
 var basemaps = {
       'Streets': Streets,
       'Hybrid': Hybrid,
       'Satellite': Satellite,
-      'Terrain': Terrain
+    //   'Terrain': Terrain
     };
 
 
