@@ -190,7 +190,7 @@ function dataRealtime(Data){
         } else {
             markers[dataArr['devi_id']].previousLatLngs.push(markers[dataArr['devi_id']].getLatLng());
             markers[dataArr['devi_id']].setLatLng([dataArr['lat'], dataArr['lng']]);
-           
+
         }
 };
 </script>
@@ -247,13 +247,43 @@ function dataRealtime(Data){
 var map = L.map('map', {
     center: [18.635346666667, 99.044695],
     zoom: 15,
-    layers: [
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: 'Map data &copy; OpenStreetMap contributors',
-        })
-    ]
 });
+
+
+// Add WMTS OpenStreetMap(OSM)
+var opst = L.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        minZoom: 0,
+        maxZoom: 20,
+        format: 'image/png',
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+
+var DaowTeim = L.tileLayer(
+      'http://go-tiles1.gistda.or.th/mapproxy/wmts/thaichote/GLOBAL_WEBMERCATOR/{z}/{x}/{y}.png', {
+        minZoom: 0,
+        maxZoom: 20,
+        format: 'image/png',
+        attribution: '&copy; <a href = "http://www.gistda.or.th">GISTDA</a>',
+      }).addTo(map);
+      
+
+    var test = L.tileLayer(
+    'https://raw.githubusercontent.com/osm2vectortiles/mapbox-gl-styles/master/styles/bright-v9-cdn.json', {
+    minZoom: 0,
+    maxZoom: 20,
+    format: 'image/png',
+    attribution: '&copy; <a href = "http://www.gistda.or.th">GISTDA</a>',
+    }).addTo(map);
+
+var basemaps = {
+      'OpenStreetMap': opst,
+      'Test': test,
+      'DaowTeim': DaowTeim
+    };
+
+
+    L.control.layers(basemaps).addTo(map);
 
 //zoom add a scale at your map.
 var scale = L.control.scale().addTo(map);
