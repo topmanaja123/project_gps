@@ -47,37 +47,13 @@
 <body>
     <?php
       require "config.php";
-      $sql = "SELECT
-          `devices`.`devi_id`,
-          `devices`.`devi_name`,
-          `devices`.`devi_imei`,
-          `devices`.`id_position`,
-          `devices`.`rfid_name`,
-          `devices`.`rfid_number`,
-          `positions`.`devicetime`,
-          `positions`.`servertime`,
-          `positions`.`altitude`,
-          `positions`.`lat`,
-          `positions`.`lng`,
-          `positions`.`speed`,
-          `positions`.`course`,
-          `positions`.`attributes`,
-          `positions`.`valid`,
-          `positions`.`state`
-        FROM
-          `devices`
-            INNER JOIN `positions` ON `devices`.`id_position` = `positions`.`posi_id`";
-      $result = $conn->query($sql);
+        $sql = "SELECT `devices`.* FROM `devices`";
+        $result = $conn->query($sql);
     ?>
 
     <?php
       if (isset($_POST['serach'])) {
-        $sqlDate = "SELECT MIN(posit_mark_start) AS posi_start, MAX(posit_mark_end) AS posi_end ,device_code FROM positions_mark
-        WHERE device_code = '$_POST[dev_id]' AND posit_mark_date BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
-        $resultDate = $conn->query($sqlDate);
-        $rs = $resultDate->fetch_assoc();
-
-        $sqlPosition = "SELECT * FROM positions WHERE posi_id BETWEEN $rs[posi_start] AND $rs[posi_end] AND device_id = $rs[device_code]";
+        $sqlPosition = "SELECT * FROM positions WHERE device_id = $_POST[dev_id] AND devicetime BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
         $resultPosition = $conn->query($sqlPosition);
         // $resultPositionLine = $conn->query($sqlPosition);
         // echo $sqlDate;

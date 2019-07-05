@@ -42,7 +42,7 @@
         /* border-color: none; */
         box-shadow: none;
         cursor: none;
-        margin: 0;
+        margin: ;
     }
 
     .leaflet-tooltip-bottom:before {
@@ -130,8 +130,8 @@ function getDataFromDb() {
                 search();
                 // send();
                 dataRealtime(arrayData);
-                var myJSON = JSON.stringify(arrayData);
-                // console.log(myJSON);
+                // var myJSON = JSON.stringify(arrayData);
+                // console.log(arrayData);
 
             }
         }
@@ -145,7 +145,6 @@ var markers = {};
 // var dataArr = data2;
 var arrayData = [];
 
-
 var LeafIcon = L.Icon.extend({
     options: {
         iconSize: [100, 100],
@@ -154,50 +153,42 @@ var LeafIcon = L.Icon.extend({
 });
 var LeafIcon1 = L.Icon.extend({
     options: {
-        iconSize: [29, 29],
+        iconSize: [29, 50],
         iconAnchor: [15, 15],
         popupAnchor: [0, -7]
     }
 });
 
-function dataRealtime(arrayData) {
+function dataRealtime(arrayData){
     var dataArr = arrayData;
     dataArr.forEach(dataArr => {
-
-        // console.log(dataArr['lat']+dataArr['lng'])
+        // console.log(dataArr['course'])
         if (!markers.hasOwnProperty(dataArr['devi_id'])) {
 
-            var greenIcon = new LeafIcon({
-                iconUrl: 'images/van.png'
+            var greenIcon = new LeafIcon1({
+                iconUrl: 'images/top-truck.png'
             });
-            var blueIcon = new LeafIcon({
-                iconUrl: 'images/truck.png'
-            });
-
-
             markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
                 icon: greenIcon,
-                rotationAngle: 0,
+                rotationAngle: dataArr['course'],
                 rotationOrigin: 'center center'
             }).addTo(map).bindPopup(
                 'รายละเอียด' +
                 '<br>ทะเบียน : ' + dataArr['devi_name'] +
                 '<br>ความเร็ว : ' + dataArr['speed'] +
-                '<br>เวลา : ' + dataArr['devicetime']).bindTooltip(dataArr['devi_name'], {
+                '<br>เวลา : ' + dataArr['devicetime'] +
+                '<br>ตำแหน่ง : ' + dataArr['lat'] + ',' + dataArr['lng']).bindTooltip(dataArr['devi_name'], {
                 permanent: true,
                 direction: 'bottom',
-                offset: [0, 15],
+                offset: [0, 25],
                 interactive: false,
-                opacity: 10,
+                opacity: 15,
                 className: 'myCSSClass'
             }).openTooltip();
-            markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
-                icon: blueIcon,
-                rotationAngle: 0,
-                rotationOrigin: 'center center'
-            }).addTo(map);
             markers[dataArr['devi_id']].previousLatLngs = [];
         } else {
+
+
             markers[dataArr['devi_id']].previousLatLngs.push(markers[dataArr['devi_id']].getLatLng());
             markers[dataArr['devi_id']].setLatLng([dataArr['lat'], dataArr['lng']]);
         }
