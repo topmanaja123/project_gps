@@ -64,13 +64,14 @@
 <script>
 //รับค่าจาก getPositions.php
 function getDataFromDb() {
+    var sc = $("#sc").val();
+    console.log("Debug : "+sc);
     $.ajax({
         url: "getPositions.php",
         type: "POST",
-        data: "result",
-
+        data: {data:sc},
         success: function(result) {
-
+            // console.log(result)
             var data2 = '';
             var obj = jQuery.parseJSON(result);
             if (obj != '') {
@@ -124,21 +125,12 @@ function getDataFromDb() {
                         'devi_category': devi_category
                     };
                     dataRealtime(data2);
-                    arrayData.push(data2);
                 });
-                // console.log(attributes);
-
                 search();
-                // send();
-                dataRealtime(arrayData);
-                // var myJSON = JSON.stringify(arrayData);
-                // console.log(arrayData);
-
             }
         }
     });
 }
-
 setInterval(getDataFromDb, 5000); // 1000 = 1 second
 
 
@@ -163,6 +155,7 @@ var LeafIcon1 = L.Icon.extend({
 function dataRealtime(Data){
     var dataArr = Data;
         // console.log(dataArr['course'])
+        
         if (!markers.hasOwnProperty(dataArr['devi_id'])) {
 
             var greenIcon = new LeafIcon1({
@@ -190,7 +183,6 @@ function dataRealtime(Data){
         } else {
             markers[dataArr['devi_id']].previousLatLngs.push(markers[dataArr['devi_id']].getLatLng());
             markers[dataArr['devi_id']].setLatLng([dataArr['lat'], dataArr['lng']]);
-
         }
 };
 
@@ -206,7 +198,7 @@ function dataRealtime(Data){
                 <form class="form-inline" method="post">
                     <label>ค้นหา</label>
                     <div class="col">
-                        <input class="form-control" type="text" id="myInput" onkeyup="search()" placeholder="ทะเบียนรถ">
+                        <input class="form-control" type="text" id="sc" name="sc" onkeyup="getDataFromDb()" placeholder="ทะเบียนรถ">
                     </div>
                 </form>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -267,7 +259,7 @@ function myPanto(id, lat, lng) {
 <script>
 function search() {
     var input, filter, table, tr, td, i, txtValue;
-    input = document.getElementById("myInput");
+    input = document.getElementById("sc");
     filter = input.value.toUpperCase();
     table = document.getElementById("myTable");
     tr = table.getElementsByTagName("tr");
@@ -282,5 +274,6 @@ function search() {
             }
         }
     }
+    // ;
 }
 </script>

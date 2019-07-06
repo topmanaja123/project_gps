@@ -1,6 +1,7 @@
 <?php
-	require'config.php';
-	$strSQL = "SELECT
+$sc = $_POST['data'];
+require 'config.php';
+$strSQL = "SELECT
   `devices`.`devi_id`,
   `devices`.`devi_name`,
   `devices`.`devi_imei`,
@@ -24,37 +25,39 @@
   `devices`.`devi_category`
 FROM
   `positions`
-  INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` LIMIT 100";
-	$objQuery = $conn->query($strSQL) or die (mysql_error());
-	$intNumField = mysqli_num_fields($objQuery);
-	$resultArray = array();
-	while($obResult = $objQuery->fetch_assoc())
-	{
-		$arrCol = array();
-        $arrCol =array(
-			'devi_id' => $obResult['devi_id'],
-      'devi_name' => $obResult['devi_name'],
-      'devi_imei' => $obResult['devi_imei'],
-      'devi_fuel' => $obResult['devi_fuel'],
-      'posi_id' => $obResult['posi_id'],
-      'rfid_name' => $obResult['rfid_name'],
-      'rfid_number' => $obResult['rfid_number'],
-      'devicetime' => $obResult['devicetime'],
-      'servertime' => $obResult['servertime'],
-      'altitude' => $obResult['altitude'],
-      'lat' => $obResult['lat'],
-      'lng' => $obResult['lng'],
-      'speed' => $obResult['speed'],
-      'course' => $obResult['course'],
-      // 'attributes' =>	$arrAtt,
-      'valid' => $obResult['valid'],
-      'state' => $obResult['state'],
-      'devi_category' => $obResult['devi_category']
-		);
-		array_push($resultArray,$arrCol);
-	}
-	
-	mysqli_close($conn);
-	
-	echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
-?>
+  INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` ";
+if ($sc !== "") {
+  $strSQL .= " WHERE devi_name = '$sc' ";
+}
+$strSQL .= " LIMIT 100";
+$objQuery = $conn->query($strSQL) or die(mysql_error());
+$intNumField = mysqli_num_fields($objQuery);
+$resultArray = array();
+while ($obResult = $objQuery->fetch_assoc()) {
+  $arrCol = array();
+  $arrCol = array(
+    'devi_id' => $obResult['devi_id'],
+    'devi_name' => $obResult['devi_name'],
+    'devi_imei' => $obResult['devi_imei'],
+    'devi_fuel' => $obResult['devi_fuel'],
+    'posi_id' => $obResult['posi_id'],
+    'rfid_name' => $obResult['rfid_name'],
+    'rfid_number' => $obResult['rfid_number'],
+    'devicetime' => $obResult['devicetime'],
+    'servertime' => $obResult['servertime'],
+    'altitude' => $obResult['altitude'],
+    'lat' => $obResult['lat'],
+    'lng' => $obResult['lng'],
+    'speed' => $obResult['speed'],
+    'course' => $obResult['course'],
+    // 'attributes' =>	$arrAtt,
+    'valid' => $obResult['valid'],
+    'state' => $obResult['state'],
+    'devi_category' => $obResult['devi_category']
+  );
+  array_push($resultArray, $arrCol);
+}
+// echo $strSQL;
+mysqli_close($conn);
+
+echo json_encode($resultArray, JSON_UNESCAPED_UNICODE);
