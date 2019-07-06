@@ -23,6 +23,8 @@
         crossorigin=""></script>
     <script rel="stylesheet" src="js/leaflet.rotatedMarker.js"></script>
 
+    <script rel="stylesheet" src="js/polyline/leaflet.polylineDecorator.js"></script>
+
     <style media="screen">
     .bg-green {
         background-color: #e2e2e2;
@@ -118,12 +120,10 @@ if (isset($_POST['serach'])) {
                                         <span>วันที่ย้อนหลัง</span>
                                     </div>
                                     <div class="col">
-                                        <input type="datetime-local" name="date_start"
-                                            class=" form-control form-control-sm">
+                                        <input type="date" name="date_start" class=" form-control form-control-sm">
                                     </div>
                                     <div class="col">
-                                        <input type="datetime-local" name="date_end"
-                                            class=" form-control form-control-sm">
+                                        <input type="date" name="date_end" class=" form-control form-control-sm">
                                     </div>
                                 </div>
                             </div>
@@ -214,13 +214,35 @@ if ($resultPositionLine) {
 latlngStr = [<?=$resultPolyline['lat']?>, <?=$resultPolyline['lng']?>];
 latlng.push(latlngStr);
 
-L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: arrow, rotationAngle: <?=$resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(map);
-console.log(latlng);
+var marker = L.marker(latlngStr, {
+    icon: arrow,
+    rotationAngle: dataArr['course'],
+    rotationOrigin: 'center center'
+}).addTo(map);
+console.log(latlngStr);
 
 <?php
-} //while($resultPolyline = $resultPositionLine->fetch_assoc()) {
+}//while($resultPolyline = $resultPositionLine->fetch_assoc()) {
+    ?>
+
+
+
+// var markerPatterns = L.polylineDecorator(latlng, {
+//         patterns: [
+//             { offset: '25', repeat: '14%', symbol: L.Symbol.arrowHead({pixelSize: 15, pathOptions: {fillOpacity: 1, weight: 0}})}
+//         ]
+//     }).addTo(map);
+<?php
 } //if($resultPositionLine){
 ?>
+
+// var markerLine = L.polyline([[58.44773, -28.65234], [52.9354, -23.33496], [53.01478, -14.32617], [58.1707, -10.37109], [59.68993, -0.65918]], {}).addTo(map);
+//     var markerPatterns = L.polylineDecorator(markerLine, {
+//         patterns: [
+//             { offset: '5%', repeat: '10%', symbol: L.Symbol.marker()}
+//         ]
+//     }).addTo(map);
+
 var showLine = [latlng];
 var polyline = L.polyline(showLine, {
     color: 'red'
