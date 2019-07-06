@@ -69,13 +69,13 @@ if (isset($_POST['serach'])) {
     // $resultDate = $conn->query($sqlDate);
     // $rs = $resultDate->fetch_assoc();
 
-    // $sqlPosition = "SELECT * FROM positions WHERE device_id = $_POST[dev_id] AND devicetime BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
-    // $resultPosition = $conn->query($sqlPosition);
-    // $resultPositionLine = $conn->query($sqlPosition);
-
-    $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[dev_id] AND devicetime >='$_POST[date_start]' AND devicetime <= '$_POST[date_end]'";
+    $sqlPosition = "SELECT * FROM positions WHERE device_id = $_POST[dev_id] AND devicetime BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
     $resultPosition = $conn->query($sqlPosition);
     $resultPositionLine = $conn->query($sqlPosition);
+
+    // $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[dev_id] AND devicetime >='$_POST[date_start]' AND devicetime <= '$_POST[date_end]'";
+    // $resultPosition = $conn->query($sqlPosition);
+    // $resultPositionLine = $conn->query($sqlPosition);
     // echo $sqlDate;
     // echo '<br>';
     echo $sqlPosition;
@@ -99,8 +99,8 @@ if (isset($_POST['serach'])) {
                                             <?php
                                               while ($rs = $result->fetch_assoc()) {
                                             ?>
-                                            <!-- <option value="<?=$rs['devi_id'];?>"><?=$rs['devi_name'];?></option> -->
-                                            <option value="<?=$rs['id'];?>"><?=$rs['name'];?></option>
+                                            <option value="<?=$rs['devi_id'];?>"><?=$rs['devi_name'];?></option>
+                                            <!-- <option value="<?=$rs['id'];?>"><?=$rs['name'];?></option> -->
                                             <?php
                                               }
                                             ?>
@@ -192,7 +192,6 @@ if (isset($_POST['serach'])) {
 <script src="map.js"></script>
 <!-- scrip map -->
 <script>
-
 //icon
 var LeafIcon = L.Icon.extend({
     options: {
@@ -212,9 +211,10 @@ var latlngStr = "";
 if ($resultPositionLine) {
     while ($resultPolyline = $resultPositionLine->fetch_assoc()) {
         ?>
-latlngStr = [<?=$resultPolyline['latitude']?>, <?=$resultPolyline['longitude']?>];
+latlngStr = [<?=$resultPolyline['lat']?>, <?=$resultPolyline['lng']?>];
 latlng.push(latlngStr);
-// L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: greenIcon, rotationAngle: <?=$resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(mymap);
+
+// L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: greenIcon, rotationAngle: <?=$resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(map);
 // console.log(latlng);
 
 <?php
