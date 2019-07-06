@@ -27,7 +27,7 @@ FROM
   `positions`
   INNER JOIN `devices` ON `positions`.`posi_id` = `devices`.`id_position` ";
 if ($sc !== "") {
-  $strSQL .= " WHERE devi_name = '$sc' ";
+  $strSQL .= " WHERE devi_name LIKE '%$sc%' ";
 }
 $strSQL .= " LIMIT 100";
 $objQuery = $conn->query($strSQL) or die(mysql_error());

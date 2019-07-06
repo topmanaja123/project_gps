@@ -65,11 +65,13 @@
 //รับค่าจาก getPositions.php
 function getDataFromDb() {
     var sc = $("#sc").val();
+    
     console.log("Debug : "+sc);
     $.ajax({
         url: "getPositions.php",
         type: "POST",
         data: {data:sc},
+
         success: function(result) {
             // console.log(result)
             var data2 = '';
@@ -77,6 +79,7 @@ function getDataFromDb() {
             if (obj != '') {
                 //$("#myTable tbody tr:not(:first-child)").remove();
                 $("#myBody").empty();
+                markers.clearLayers();
                 $.each(obj, function(key, val) {
                     var devi_id = val['devi_id'];
                     var devi_name = val['devi_name'];
@@ -134,7 +137,9 @@ function getDataFromDb() {
 setInterval(getDataFromDb, 5000); // 1000 = 1 second
 
 
-var markers = {};
+var markers = L.layerGroup();
+
+var markerX = {};
 // var dataArr = data2;
 var arrayData = [];
 
@@ -153,20 +158,22 @@ var LeafIcon1 = L.Icon.extend({
 });
 
 function dataRealtime(Data){
+   
     var dataArr = Data;
         // console.log(dataArr['course'])
         
+    
         if (!markers.hasOwnProperty(dataArr['devi_id'])) {
 
             var greenIcon = new LeafIcon1({
                 iconUrl: 'images/top-truck.png'
             });
 
-            markers[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
+           markerX[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
                 icon: greenIcon,
                 rotationAngle: dataArr['course'],
                 rotationOrigin: 'center center'
-            }).addTo(map).bindPopup(
+            }).bindPopup(
                 'รายละเอียด' +
                 '<br>ทะเบียน : ' + dataArr['devi_name'] +
                 '<br>ความเร็ว : ' + dataArr['speed'] +
@@ -179,11 +186,13 @@ function dataRealtime(Data){
                 opacity: 15
                 // className: 'myCSSClass'
             }).openTooltip();
-            markers[dataArr['devi_id']].previousLatLngs = [];
+            markerX[dataArr['devi_id']].previousLatLngs = [];
+            markers.addLayer(markerX[dataArr['devi_id']]);
         } else {
-            markers[dataArr['devi_id']].previousLatLngs.push(markers[dataArr['devi_id']].getLatLng());
-            markers[dataArr['devi_id']].setLatLng([dataArr['lat'], dataArr['lng']]);
+            markerX[dataArr['devi_id']].previousLatLngs.push(markerX[dataArr['devi_id']].getLatLng());
+            markerX[dataArr['devi_id']].setLatLng([dataArr['lat'], dataArr['lng']]);
         }
+        markers.addTo(map);
 };
 
 
