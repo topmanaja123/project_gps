@@ -207,7 +207,7 @@ function dataRealtime(Data){
                 <form class="form-inline" method="post">
                     <label>ค้นหา</label>
                     <div class="col">
-                        <input class="form-control" type="text" id="sc" name="sc" onkeyup="getDataFromDb()" placeholder="ทะเบียนรถ">
+                        <input class="form-control select2" type="text" id="sc" name="sc" onchange="getDataFromDb()" placeholder="ทะเบียนรถ">
                     </div>
                 </form>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -285,4 +285,8 @@ function search() {
     }
     // ;
 }
+
+$(document).ready(function() {
+    $('.select2').select2();
+});
 </script>

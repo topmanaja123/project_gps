@@ -199,7 +199,7 @@ var LeafIcon = L.Icon.extend({
         iconAnchor: [10, 10]
     }
 });
-var greenIcon = new LeafIcon({
+var arrow = new LeafIcon({
     iconUrl: 'images/arrow.png'
 });
 
@@ -214,8 +214,8 @@ if ($resultPositionLine) {
 latlngStr = [<?=$resultPolyline['lat']?>, <?=$resultPolyline['lng']?>];
 latlng.push(latlngStr);
 
-// L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: greenIcon, rotationAngle: <?=$resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(map);
-// console.log(latlng);
+L.marker([<?=$resultPolyline['lat']?>,<?=$resultPolyline['lng']?>], {icon: arrow, rotationAngle: <?=$resultPolyline['course']?>, rotationOrigin: 'center center'}).addTo(map);
+console.log(latlng);
 
 <?php
 } //while($resultPolyline = $resultPositionLine->fetch_assoc()) {
@@ -224,7 +224,7 @@ latlng.push(latlngStr);
 var showLine = [latlng];
 var polyline = L.polyline(showLine, {
     color: 'red'
-}).addTo(mymap); //show polyline
+}).addTo(map); //show polyline
 
 $(document).ready(function() {
     $('.select2').select2();
