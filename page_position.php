@@ -103,11 +103,13 @@ function getDataFromDb() {
                     var tr = "<tr>";
                     tr = tr + "<td id='" + val["devi_id"] + "' onclick='myPanto(" + val["devi_id"] +
                         "," + val["lat"] + "," + val["lng"] + ")'>" + val["devi_name"] + "</td>";
-                    tr = tr + "<td>" + val["speed"] + "</td>";
-                    tr = tr + "<td>" + val["course"] + "</td>";
-                    tr = tr + "<td>" + val["servertime"] + "</td>";
+                    tr = tr + "<td>" + val["servertime"]  + "</td>";
+                    tr = tr + "<td>" + val["speed"] +"</td>";
+                    tr = tr + "<td>" +  "</td>";
                     tr = tr + "</tr>";
                     $('#myTable > tbody:last').append(tr);
+
+                    
 
                     data2 = {
                         'devi_id': devi_id,
@@ -197,12 +199,12 @@ function dataRealtime(Data) {
 <body Onload="onLoad();">
 
     <div class="form-row row">
-        <div class="table-responsive col-md-3 col-sm-6">
+        <div class="table-responsive col-sm-6 col-md-4 col-lg-3">
             <p>
                 <form class="form-inline" method="post">
                     <label>ค้นหา</label>
                     <div class="col">
-                    <input class="form-control select2" type="text" id="sc" name="sc" onkeyup="getDataFromDb()"
+                    <input class="form-control" type="text" id="sc" name="sc" onkeyup="getDataFromDb()"
                             placeholder="ทะเบียนรถ">
                     </div>
                 </form>
@@ -210,17 +212,17 @@ function dataRealtime(Data) {
                     <table class="table table-bordered table-striped table-hover table-sm" id="myTable">
                         <thead>
                             <tr class="header">
-                                <th width="40%">
+                                <th width="30%">
                                     <div align="center">ทะเบียนรถ</div>
                                 </th>
-                                <th width="10%">
+                                <th >
+                                    <div align="center">เชื่อมต่อล่าสุด</div>
+                                </th>
+                                <th>
                                     <div align="center">ความเร็ว</div>
                                 </th>
-                                <th width="10%">
-                                    <div align="center">ทิศทาง</div>
-                                </th>
-                                <th width="35%">
-                                    <div align="center">เชื่อมต่อล่าสุด</div>
+                                <th>
+                                    <div align="center">น้ำมัน</div>
                                 </th>
                             </tr>
                         </thead>
@@ -233,7 +235,7 @@ function dataRealtime(Data) {
                 </div>
         </div>
 
-        <div class="col-sm-6 col-md-9">
+        <div class="col-sm-6 col-md-8 col-lg-9">
             <div id="map" style="height:88.88vh"></div>
         </div>
 
@@ -256,7 +258,7 @@ function dataRealtime(Data) {
 map.on('popupopen', function(centerMarker) {
     var cM = map.project(centerMarker.popup._latlng);
     cM.y -= centerMarker.popup._container.clientHeight /
-        map.setView(map.unproject(cM), 17, {
+        map.setView(map.unproject(cM), 20, {
             markerZoomAnimation: true,
             animate: true
         });
@@ -269,10 +271,6 @@ function myPanto(id, lat, lng) {
         noMoveStart: true
     }).bindpopup();
 }
-
-$(document).ready(function() {
-    $('.select2').select2();
-});
 </script>
 <script>
 function search() {
