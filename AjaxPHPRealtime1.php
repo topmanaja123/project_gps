@@ -53,9 +53,7 @@
 				  }
 				
 			}
-
 	   }
-	   
 	</script>
 
 <body Onload="bodyOnload();">
@@ -74,7 +72,6 @@
 	{
 		bodyOnload();
 	}
-
 	</script>
 
 <span id="mySpan"></span>

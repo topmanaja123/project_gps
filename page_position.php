@@ -24,7 +24,6 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-    <!-- <link rel="stylesheet" href="css/bootstrap.css"> -->
     <title>Document</title>
     <style>
     .table {
@@ -65,12 +64,14 @@
 //รับค่าจาก getPositions.php
 function getDataFromDb() {
     var sc = $("#sc").val();
-    
-    console.log("Debug : "+sc);
+
+    console.log("Debug : " + sc);
     $.ajax({
         url: "getPositions.php",
         type: "POST",
-        data: {data:sc},
+        data: {
+            data: sc
+        },
 
         success: function(result) {
             // console.log(result)
@@ -134,8 +135,7 @@ function getDataFromDb() {
         }
     });
 }
-setInterval(getDataFromDb, 5000); // 1000 = 1 second
-
+// setInterval(getDataFromDb, 5000); // 1000 = 1 second
 
 var markers = L.layerGroup();
 
@@ -157,57 +157,53 @@ var LeafIcon1 = L.Icon.extend({
     }
 });
 
-function dataRealtime(Data){
-   
+function dataRealtime(Data) {
     var dataArr = Data;
-        // console.log(dataArr['course'])
-        
-    
-        if (!markers.hasOwnProperty(dataArr['devi_id'])) {
+    // console.log(dataArr['course'])
 
-            var greenIcon = new LeafIcon1({
-                iconUrl: 'images/top-truck.png'
-            });
+    if (!markers.hasOwnProperty(dataArr['devi_id'])) {
 
-           markerX[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
-                icon: greenIcon,
-                rotationAngle: dataArr['course'],
-                rotationOrigin: 'center center'
-            }).bindPopup(
-                'รายละเอียด' +
-                '<br>ทะเบียน : ' + dataArr['devi_name'] +
-                '<br>ความเร็ว : ' + dataArr['speed'] +
-                '<br>เวลา : ' + dataArr['devicetime'] +
-                '<br>ตำแหน่ง : ' + dataArr['lat'] + ',' + dataArr['lng']).bindTooltip(dataArr['devi_name'], {
-                permanent: true,
-                direction: 'bottom',
-                offset: [0, 25],
-                interactive: false,
-                opacity: 15
-                // className: 'myCSSClass'
-            }).openTooltip();
-            markerX[dataArr['devi_id']].previousLatLngs = [];
-            markers.addLayer(markerX[dataArr['devi_id']]);
-        } else {
-            markerX[dataArr['devi_id']].previousLatLngs.push(markerX[dataArr['devi_id']].getLatLng());
-            markerX[dataArr['devi_id']].setLatLng([dataArr['lat'], dataArr['lng']]);
-        }
-        markers.addTo(map);
+        var greenIcon = new LeafIcon1({
+            iconUrl: 'images/top-truck.png'
+        });
+
+        markerX[dataArr['devi_id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
+            icon: greenIcon,
+            rotationAngle: dataArr['course'],
+            rotationOrigin: 'center center'
+        }).bindPopup(
+            'รายละเอียด' +
+            '<br>ทะเบียน : ' + dataArr['devi_name'] +
+            '<br>ความเร็ว : ' + dataArr['speed'] +
+            '<br>เวลา : ' + dataArr['devicetime'] +
+            '<br>ตำแหน่ง : ' + dataArr['lat'] + ',' + dataArr['lng']).bindTooltip(dataArr['devi_name'], {
+            permanent: true,
+            direction: 'bottom',
+            offset: [0, 25],
+            interactive: false,
+            opacity: 15
+            // className: 'myCSSClass'
+        }).openTooltip();
+        markerX[dataArr['devi_id']].previousLatLngs = [];
+        markers.addLayer(markerX[dataArr['devi_id']]);
+    } else {
+        markerX[dataArr['devi_id']].previousLatLngs.push(markerX[dataArr['devi_id']].getLatLng());
+        markerX[dataArr['devi_id']].setLatLng([dataArr['lat'], dataArr['lng']]);
+    }
+    markers.addTo(map);
 };
-
-
-
-
 </script>
 
-<body>
+<body Onload="onLoad();">
+
     <div class="form-row row">
         <div class="table-responsive col-md-3 col-sm-6">
             <p>
                 <form class="form-inline" method="post">
                     <label>ค้นหา</label>
                     <div class="col">
-                        <input class="form-control select2" type="text" id="sc" name="sc" onchange="getDataFromDb()" placeholder="ทะเบียนรถ">
+                    <input class="form-control select2" type="text" id="sc" name="sc" onkeyup="getDataFromDb()"
+                            placeholder="ทะเบียนรถ">
                     </div>
                 </form>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -233,7 +229,6 @@ function dataRealtime(Data){
                         <tbody id='myBody' style="cursor:pointer;">
 
                         </tbody>
-
                     </table>
                 </div>
         </div>
@@ -243,6 +238,16 @@ function dataRealtime(Data){
         </div>
 
     </div>
+    <script>
+    function onLoad() {
+        getDataFromDb()
+        setTimeout("doLoop();", 10000);
+    }
+
+    function doLoop() {
+        onLoad();
+    }
+    </script>
 </body>
 
 </html>
@@ -264,6 +269,10 @@ function myPanto(id, lat, lng) {
         noMoveStart: true
     }).bindpopup();
 }
+
+$(document).ready(function() {
+    $('.select2').select2();
+});
 </script>
 <script>
 function search() {
@@ -285,5 +294,6 @@ function search() {
     }
     // ;
 }
+
 
 </script>

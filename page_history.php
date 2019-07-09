@@ -216,7 +216,7 @@ latlng.push(latlngStr);
 
 var marker = L.marker(latlngStr, {
     icon: arrow,
-    rotationAngle: dataArr['course'],
+    rotationAngle: <?=$resultPolyline['course']?>,
     rotationOrigin: 'center center'
 }).addTo(map);
 console.log(latlngStr);
@@ -224,24 +224,10 @@ console.log(latlngStr);
 <?php
 }//while($resultPolyline = $resultPositionLine->fetch_assoc()) {
     ?>
-
-
-
-// var markerPatterns = L.polylineDecorator(latlng, {
-//         patterns: [
-//             { offset: '25', repeat: '14%', symbol: L.Symbol.arrowHead({pixelSize: 15, pathOptions: {fillOpacity: 1, weight: 0}})}
-//         ]
-//     }).addTo(map);
 <?php
 } //if($resultPositionLine){
 ?>
 
-// var markerLine = L.polyline([[58.44773, -28.65234], [52.9354, -23.33496], [53.01478, -14.32617], [58.1707, -10.37109], [59.68993, -0.65918]], {}).addTo(map);
-//     var markerPatterns = L.polylineDecorator(markerLine, {
-//         patterns: [
-//             { offset: '5%', repeat: '10%', symbol: L.Symbol.marker()}
-//         ]
-//     }).addTo(map);
 
 var showLine = [latlng];
 var polyline = L.polyline(showLine, {
