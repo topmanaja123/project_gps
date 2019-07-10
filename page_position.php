@@ -26,6 +26,8 @@
 
     <title>Document</title>
     <style>
+    #status {}
+
     .table {
         font-size: 14px;
     }
@@ -100,16 +102,15 @@ function getDataFromDb() {
                     var state = val['state'];
                     var devi_category = val['devi_category'];
 
-                    var tr = "<tr>";
+                    var tr = "<tr style='background-color : " + status(val["devicetime"]) + "'>";
                     tr = tr + "<td id='" + val["devi_id"] + "' onclick='myPanto(" + val["devi_id"] +
                         "," + val["lat"] + "," + val["lng"] + ")'>" + val["devi_name"] + "</td>";
-                    tr = tr + "<td>" + val["servertime"]  + "</td>";
-                    tr = tr + "<td>" + val["speed"] +"</td>";
-                    tr = tr + "<td>" +  "</td>";
+                    tr = tr + "<td>" + dateTime(val["devicetime"]) + "</td>";
+                    tr = tr + "<td>" + val["speed"] + "</td>";
+                    tr = tr + "<td>" + "</td>";
                     tr = tr + "</tr>";
                     $('#myTable > tbody:last').append(tr);
 
-                    
 
                     data2 = {
                         'devi_id': devi_id,
@@ -194,28 +195,80 @@ function dataRealtime(Data) {
     }
     markers.addTo(map);
 };
+
+function dateTime(dateT) {
+
+    // console.log(date);
+    if (dateT == "0000-00-00 00:00:00") {
+        return "NOT TIME";
+    } else {
+        var date = new Date(dateT);
+        var day = date.getDate();
+        var month = date.getMonth() + 1;
+        var year = date.getFullYear();
+        var Hours = date.getHours();
+        var Minutes = date.getMinutes();
+        var Seconds = date.getSeconds();
+        var strTime = Hours + ':' + Minutes;
+        var strDate = day + "-" + month + "-" + year;
+        return strDate + '&nbsp; &nbsp;' + strTime;
+    }
+}
+
+// console.log(status("2019-07-10 00:00:00"));
+function status(date) {
+    // console.log(date)
+    if (date == "0000-00-00 00:00:00") {
+        return '#FFB1B1';
+    } else {
+        var date1 = new Date(date);
+        var date2 = new Date();
+
+        var diff = date2.getTime() - date1.getTime();
+
+        var msec = diff;
+        var hh = Math.floor(msec / 1000 / 60 / 60);
+        msec -= hh * 1000 * 60 * 60;
+        var mm = Math.floor(msec / 1000 / 60);
+        msec -= mm * 1000 * 60;
+        var ss = Math.floor(msec / 1000);
+        msec -= ss * 1000;
+
+        if (hh = '0' && mm > '1' && mm < '5') {
+            return '#FFFF8D';
+        } else if (hh = '0' && mm < '1') {
+            return '#BDFF73';
+        } else {
+            return '#FFB1B1';
+        }
+    }
+}
+
+
+
+// console.log(dateTime('2019-07-09 13:35:17'));
 </script>
 
 <body Onload="onLoad();">
 
     <div class="form-row row">
-        <div class="table-responsive col-sm-6 col-md-4 col-lg-3">
+        <div class="table-responsive col-sm-6 col-md-5 col-lg-4 col-xl-3">
             <p>
                 <form class="form-inline" method="post">
                     <label>ค้นหา</label>
                     <div class="col">
-                    <input class="form-control" type="text" id="sc" name="sc" onkeyup="getDataFromDb()"
+                        <input class="form-control" type="text" id="sc" name="sc" onkeyup="getDataFromDb()"
                             placeholder="ทะเบียนรถ">
                     </div>
                 </form>
                 <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                    <table class="table table-bordered table-striped table-hover table-sm" id="myTable">
+                    <table class="table table-bordered table-hover table-sm" id="myTable">
                         <thead>
                             <tr class="header">
                                 <th width="30%">
                                     <div align="center">ทะเบียนรถ</div>
                                 </th>
-                                <th >
+                                <th width="auto">
                                     <div align="center">เชื่อมต่อล่าสุด</div>
                                 </th>
                                 <th>
@@ -235,7 +288,7 @@ function dataRealtime(Data) {
                 </div>
         </div>
 
-        <div class="col-sm-6 col-md-8 col-lg-9">
+        <div class="col-sm-6 col-md-7 col-lg-8 col-xl-9">
             <div id="map" style="height:88.88vh"></div>
         </div>
 
@@ -253,6 +306,7 @@ function dataRealtime(Data) {
 </body>
 
 </html>
+
 <script src="map.js"></script>
 <script>
 map.on('popupopen', function(centerMarker) {
@@ -269,10 +323,9 @@ function myPanto(id, lat, lng) {
     map.panTo([lat, lng], {
         animate: true,
         noMoveStart: true
-    }).bindpopup();
+    });
 }
-</script>
-<script>
+
 function search() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("sc");
@@ -290,8 +343,5 @@ function search() {
             }
         }
     }
-    // ;
 }
-
-
 </script>
