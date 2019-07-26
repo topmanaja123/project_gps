@@ -2,16 +2,8 @@
 
 <head>
     <!-- bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
 
     <!-- map -->
@@ -35,9 +27,15 @@
         width: 100vw;
     }
 
-    .scrollbar {
-        height: 450px !important;
-        overflow: scroll;
+    .my-custom-scrollbar {
+
+        position: relative;
+        height: 660px;
+        overflow: auto;
+    }
+
+    .table-wrapper-scroll-y {
+        display: block;
     }
 
     .full-background {
@@ -52,6 +50,20 @@
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
+    }
+
+    #style-3::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 1);
+        background-color: #F5F5F5;
+    }
+
+    #style-3::-webkit-scrollbar {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    #style-3::-webkit-scrollbar-thumb {
+        background-color: #46ff46;
     }
     </style>
 
@@ -114,75 +126,81 @@ if (isset($_POST['serach'])) {
                     </tr>
                     <tr>
                         <td>
-                            <div class="container">
-                                <div class="form-row">
-                                    <div class="col-3 text-right">
-                                        <span>วันที่ย้อนหลัง</span>
+                        
+                                <div class="form-group row">
+                                    <div class="col-sm-4 text-right">
+                                        <span>วันที่เริ่มต้น</span>
                                     </div>
                                     <div class="col">
                                         <input type="date" name="date_start" class=" form-control form-control-sm">
                                     </div>
-                                    <div class="col">
-                                        <input type="date" name="date_end" class=" form-control form-control-sm">
-                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="container">
-                                <div class="form-row">
-                                    <div class="col-sm-12 text-center">
-                                        <button class="btn btn-info btn-sm" type="submit" name="serach">
-                                            <i class="fas fa-search"></i>
-                                            ค้นหา
-                                        </button>
-                                    </div>
+                                <div class="form-group row">
+                                <div class="col-sm-4 text-right">
+                                    <span>วันที่สิ้นสุด</span>
                                 </div>
-                            </div>
-                        </td>
+                                <div class="col">
+                                    <input type="date" name="date_end" class=" form-control form-control-sm">
+                                </div>
+                                </div>
+                        
+        </div>
+        </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="container">
+                    <div class="form-row">
+                        <div class="col-sm-12 text-center">
+                            <button class="btn btn-info btn-sm" type="submit" name="serach">
+                                <i class="fas fa-search"></i>
+                                ค้นหา
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        </form>
+        </table>
+        <div class="table-wrapper-scroll-y my-custom-scrollbar" id="style-3">
+            <!-- table show data -->
+            <table class="table table-bordered table-sm" x:str BORDER="1">
+                <thead>
+                    <tr id="history_head ">
+                        <td class="text-center"><i class="fas fa-check-circle"></i> </td>
+                        <td class="text-center"><i class="fas fa-history"></i> </td>
+                        <td class="text-center"><i class="fas fa-location-arrow"></i> </td>
+                        <td class="text-center"><i class="far fa-shipping-fast"></i> </td>
+                        <td class="text-center"><i class="far fa-map-marked-alt"></i> </td>
+                        <td class="text-center"><i class="fas fa-ban"></i> </td>
                     </tr>
-                </form>
-            </table>
-            <div class="scrollbar">
-                <!-- table show data -->
-                <table class="table table-bordered table-sm" x:str BORDER="1">
-                    <thead>
-                        <tr id="history_head ">
-                            <td class="text-center"><i class="fas fa-check-circle"></i> </td>
-                            <td class="text-center"><i class="fas fa-history"></i> </td>
-                            <td class="text-center"><i class="fas fa-location-arrow"></i> </td>
-                            <td class="text-center"><i class="far fa-shipping-fast"></i> </td>
-                            <td class="text-center"><i class="far fa-map-marked-alt"></i> </td>
-                            <td class="text-center"><i class="fas fa-ban"></i> </td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php
+                </thead>
+                <tbody>
+                    <?php
                         if ($resultPosition) {
                             while ($rs1 = $resultPosition->fetch_assoc()) {
                         ?>
-                        <tr>
-                            <td class="text-center" width="5%"><input type="checkbox" name="checkboxList"></td>
-                            <td class="text-center" width="30%"><?=$rs1['devicetime'];?></td>
-                            <td class="text-center" width="10%"><?=$rs1['speed'];?></td>
-                            <td class="text-center" width="10%"><?=$rs1['course'];?></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <?php
+                    <tr>
+                        <td class="text-center" width="5%"><input type="checkbox" name="checkboxList"></td>
+                        <td class="text-center" width="30%"><?=$rs1['devicetime'];?></td>
+                        <td class="text-center" width="10%"><?=$rs1['speed'];?></td>
+                        <td class="text-center" width="10%"><?=$rs1['course'];?></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <?php
                             } //while($rs1=$result1->fetch_assoc())
                           } //if ($result1) {
                         ?>
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
+    </div>
 
-        <div class="col-9">
-            <div class="card-header full-background" id="map" style="height:90vh"></div>
-        </div>
+    <div class="col-9">
+        <div class="card-header full-background" id="map" style="height:90vh"></div>
+    </div>
     </div>
 
 </body>

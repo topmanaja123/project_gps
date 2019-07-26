@@ -1,27 +1,18 @@
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>INDEX</title>
-    
-      <style media="screen">
-      #map {
-        background-color: black;
-      }
-      .full-screen {
-        width: 100vw;
-      }
-      </style>
-  </head>
+</head>
 
-  <body>
+<body>
     <?php 
     require'css.php';
     include('nav.php');
     ?>
-      <div class="row" >
-        <div class="col">
-          <?php
+    
+    <?php
           $page=isset($_GET['p']) ? $_GET['p'] : '' ;
           switch ($page) {
             case 'page_position': include('page_position.php') ;break;
@@ -34,9 +25,8 @@
             // break;
           }
           ?>
-        </div>
-      </div>
-  </body>
+</body>
+
 </html>
 <?php 
   require'js.php';

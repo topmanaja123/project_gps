@@ -39,7 +39,7 @@
 
   <p></p>
 
-<div class="row">
+<div class="form-row ">
   <!-- table control -->
   <table id="table-control" class="table table-sm table-respondsive">
     <!-- <tr>
@@ -110,7 +110,7 @@
 
 <hr  id="hr_1">
 
-<div class="row">
+<div class="form-row">
 
   <!-- table list -->
   <table class="table table-bordered table-sm">

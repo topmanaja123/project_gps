@@ -26,8 +26,6 @@
 
     <title>Document</title>
     <style>
-    #status {}
-
     .table {
         font-size: 14px;
     }
@@ -52,12 +50,39 @@
 
     .my-custom-scrollbar {
         position: relative;
-        height: 700px;
+        height: 100vh;
         overflow: auto;
     }
 
     .table-wrapper-scroll-y {
         display: block;
+    }
+
+    .margin-form {
+        margin-left: 10px;
+    }
+
+    #style-3::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 1);
+        background-color: #F5F5F5;
+    }
+
+    #style-3::-webkit-scrollbar {
+        width: 6px;
+        background-color: #F5F5F5;
+    }
+
+    #style-3::-webkit-scrollbar-thumb {
+        background-color: #46ff46;
+    }
+
+    .lockH {
+        height: 100vh;
+    }
+
+    .marginMap{
+        margin : 0;
+        padding : 0;
     }
     </style>
 </head>
@@ -67,7 +92,7 @@
 function getDataFromDb() {
     var sc = $("#sc").val();
 
-    console.log("Debug : " + sc);
+    // console.log("Debug : " + sc);
     $.ajax({
         url: "getPositions.php",
         type: "POST",
@@ -84,24 +109,8 @@ function getDataFromDb() {
                 $("#myBody").empty();
                 markers.clearLayers();
                 $.each(obj, function(key, val) {
-                    var devi_id = val['devi_id'];
-                    var devi_name = val['devi_name'];
-                    var devi_imei = val['devi_imei'];
-                    var id_position = val['id_position'];
-                    var rfid_name = val['rfid_name'];
-                    var rfid_number = val['rfid_number'];
-                    var devicetime = val['devicetime'];
-                    var servertime = val['servertime'];
-                    var altitude = val['altitude'];
-                    var lat = val['lat'];
-                    var lng = val['lng'];
-                    var speed = val['speed'];
-                    var course = val['course'];
-                    var attributes = val['attributes'];
-                    var valid = val['valid'];
-                    var state = val['state'];
-                    var devi_category = val['devi_category'];
 
+                    // console.log(devi_name);
                     var tr = "<tr style='background-color : " + status(val["devicetime"]) + "'>";
                     tr = tr + "<td id='" + val["devi_id"] + "' onclick='myPanto(" + val["devi_id"] +
                         "," + val["lat"] + "," + val["lng"] + ")'>" + val["devi_name"] + "</td>";
@@ -111,25 +120,24 @@ function getDataFromDb() {
                     tr = tr + "</tr>";
                     $('#myTable > tbody:last').append(tr);
 
-
                     data2 = {
-                        'devi_id': devi_id,
-                        'devi_name': devi_name,
-                        'devi_imei': devi_imei,
-                        'id_position': id_position,
-                        'rfid_name': rfid_name,
-                        'rfid_number': rfid_number,
-                        'devicetime': devicetime,
-                        'servertime': servertime,
-                        'altitude': altitude,
-                        'lat': lat,
-                        'lng': lng,
-                        'speed': speed,
-                        'course': course,
+                        'devi_id': val["devi_id"],
+                        'devi_name': val["devi_name"],
+                        'devi_imei': val["devi_imei"],
+                        'id_position': val["id_position"],
+                        'rfid_name': val["rfid_name"],
+                        'rfid_number': val["rfid_number"],
+                        'devicetime': val["devicetime"],
+                        'servertime': val["servertime"],
+                        'altitude': val["altitude"],
+                        'lat': val["lat"],
+                        'lng': val["lng"],
+                        'speed': val["speed"],
+                        'course': val["course"],
                         // 'attributes':attributes,
-                        'valid': valid,
-                        'state': state,
-                        'devi_category': devi_category
+                        'valid': val["valid"],
+                        'state': val["state"],
+                        'devi_category': val["devi_category"]
                     };
                     dataRealtime(data2);
                 });
@@ -160,6 +168,7 @@ var LeafIcon1 = L.Icon.extend({
     }
 });
 
+//realtime marker
 function dataRealtime(Data) {
     var dataArr = Data;
     // console.log(dataArr['course'])
@@ -174,6 +183,7 @@ function dataRealtime(Data) {
             icon: greenIcon,
             rotationAngle: dataArr['course'],
             rotationOrigin: 'center center'
+
         }).bindPopup(
             'รายละเอียด' +
             '<br>ทะเบียน : ' + dataArr['devi_name'] +
@@ -196,9 +206,8 @@ function dataRealtime(Data) {
     markers.addTo(map);
 };
 
+// format date time
 function dateTime(dateT) {
-
-    // console.log(date);
     if (dateT == "0000-00-00 00:00:00") {
         return "NOT TIME";
     } else {
@@ -210,14 +219,12 @@ function dateTime(dateT) {
         var Minutes = date.getMinutes();
         var Seconds = date.getSeconds();
         var strTime = Hours + ':' + Minutes;
-        var strDate = day + "-" + month + "-" + year;
+        var strDate = day + "/" + month + "/" + year;
         return strDate + '&nbsp; &nbsp;' + strTime;
     }
 }
-
-// console.log(status("2019-07-10 00:00:00"));
+//เปลี่ยนสี สถานะรถ offline & online
 function status(date) {
-    // console.log(date)
     if (date == "0000-00-00 00:00:00") {
         return '#FFB1B1';
     } else {
@@ -227,6 +234,7 @@ function status(date) {
         var diff = date2.getTime() - date1.getTime();
 
         var msec = diff;
+
         var hh = Math.floor(msec / 1000 / 60 / 60);
         msec -= hh * 1000 * 60 * 60;
         var mm = Math.floor(msec / 1000 / 60);
@@ -234,34 +242,40 @@ function status(date) {
         var ss = Math.floor(msec / 1000);
         msec -= ss * 1000;
 
-        if (hh = '0' && mm > '1' && mm < '5') {
-            return '#FFFF8D';
-        } else if (hh = '0' && mm < '1') {
-            return '#BDFF73';
-        } else {
+        if (hh == '0' && mm >= '5' || hh == '0' && mm >= '5' || hh > '0') {
             return '#FFB1B1';
+        } else if (hh == '0' && mm >= '2' || hh == '0' && mm < '2'){
+            return '#FFFF8D';
+        }else {
+            return '#BDFF73';
         }
     }
+    
 }
 
-
-
-// console.log(dateTime('2019-07-09 13:35:17'));
+//click panto to marker
+function myPanto(id, lat, lng) {
+    map.setView([lat, lng], 20, {
+        animate: true,
+        noMoveStart: true
+    });
+}
 </script>
 
 <body Onload="onLoad();">
-
-    <div class="form-row row">
-        <div class="table-responsive col-sm-6 col-md-5 col-lg-4 col-xl-3">
+    <div class="form-row row m-0">
+        <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3 lockH marginMap">
             <p>
-                <form class="form-inline" method="post">
-                    <label>ค้นหา</label>
-                    <div class="col">
-                        <input class="form-control" type="text" id="sc" name="sc" onkeyup="getDataFromDb()"
-                            placeholder="ทะเบียนรถ">
+                <form>
+                    <div class="form-row margin-form" style="height : 5vh">
+                        <div class="form-group mb-0 ">ค้นหาทะเบียนรถ</div>
+                        <div class="form-group col mb-0">
+                            <input class="form-control" type="text" id="sc" name="sc" onkeyup="getDataFromDb()"
+                                placeholder="ทะเบียนรถ">
+                        </div>
                     </div>
                 </form>
-                <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <div class="table-wrapper-scroll-y my-custom-scrollbar" id="style-3" style="height : 91.5vh">
                     <table class="table table-bordered table-hover table-sm" id="myTable">
                         <thead>
                             <tr class="header">
@@ -288,8 +302,8 @@ function status(date) {
                 </div>
         </div>
 
-        <div class="col-sm-6 col-md-7 col-lg-8 col-xl-9">
-            <div id="map" style="height:88.88vh"></div>
+        <div class="col-sm-6 col-md-7 col-lg-8 col-xl-9 lockH marginMap">
+            <div id="map" style="height : 100vh" class="marginMap"></div>
         </div>
 
     </div>
@@ -309,6 +323,7 @@ function status(date) {
 
 <script src="map.js"></script>
 <script>
+// click popup to canter
 map.on('popupopen', function(centerMarker) {
     var cM = map.project(centerMarker.popup._latlng);
     cM.y -= centerMarker.popup._container.clientHeight /
@@ -318,14 +333,7 @@ map.on('popupopen', function(centerMarker) {
         });
 });
 
-//click panto to marker
-function myPanto(id, lat, lng) {
-    map.panTo([lat, lng], {
-        animate: true,
-        noMoveStart: true
-    });
-}
-
+// filter table
 function search() {
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById("sc");

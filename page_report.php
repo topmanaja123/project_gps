@@ -7,7 +7,7 @@
     width: 100vw;
   }
 </style>
-<div class="form-row">
+<div class="form-row m-0">
   <div class="col-lg-3 col-md-12 full-block">
     <?php
     include('page_report_menu.php')

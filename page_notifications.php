@@ -7,6 +7,7 @@
     width: 100vw;
   }
 </style>
+<div class="form-row m-0">
   <div class="col-lg-4 col-md-12 bg-green full-block">
     <?php
     include('page_notifications_menu.php');
@@ -16,4 +17,5 @@
     <?php
     //include('history_control.php');
      ?>
+  </div>
   </div>
