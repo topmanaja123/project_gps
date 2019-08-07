@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin="" />
+
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
         integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
@@ -83,9 +84,11 @@ if (isset($_POST['serach'])) {
     // $resultDate = $conn->query($sqlDate);
     // $rs = $resultDate->fetch_assoc();
 
-    $sqlPosition = "SELECT * FROM positions WHERE device_id = $_POST[dev_id] AND devicetime BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
+    $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[dev_id] AND fixtime BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
     $resultPosition = $conn->query($sqlPosition);
+    $resultNums=$resultPosition->num_rows;
     $resultPositionLine = $conn->query($sqlPosition);
+    echo $resultNums;
 
     // $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[dev_id] AND devicetime >='$_POST[date_start]' AND devicetime <= '$_POST[date_end]'";
     // $resultPosition = $conn->query($sqlPosition);
@@ -96,111 +99,96 @@ if (isset($_POST['serach'])) {
     }
     ?>
     <div class="form-row">
-        <div class="col-3 table-responsive">
+        <div class="col-3">
             <!-- table control -->
-            <table class="table table-bordered table-sm">
-                <form action="" method="post">
-                    <tr>
-                        <td>
-                            <div class="container-fluid">
-                                <div class="form-row">
-                                    <div class="col-3 text-right">
-                                        <span>อุปกรณ์</span>
-                                    </div>
-                                    <div class="col">
-                                        <select class="form-control form-control-sm select2" name="dev_id">
-                                            <option selected>--เลือก--</option>
-                                            <?php
+            <form action="" method="post">
+                <div class="container-fluid">
+                    <div class="form-row">
+                        <div class="col-4 text-right">
+                            <span>อุปกรณ์</span>
+                        </div>
+                        <div class="col">
+                            <select class="form-control form-control-sm select2" name="dev_id">
+                                <option selected>--เลือก--</option>
+                                <?php
                                               while ($rs = $result->fetch_assoc()) {
                                             ?>
-                                            <option value="<?=$rs['devi_id'];?>"><?=$rs['devi_name'];?></option>
-                                            <!-- <option value="<?=$rs['id'];?>"><?=$rs['name'];?></option> -->
-                                            <?php
+                                <option value="<?=$rs['id'];?>"><?=$rs['name'];?></option>
+                                <!-- <option value="<?=$rs['id'];?>"><?=$rs['name'];?></option> -->
+                                <?php
                                               }
                                             ?>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                        
-                                <div class="form-group row">
-                                    <div class="col-sm-4 text-right">
-                                        <span>วันที่เริ่มต้น</span>
-                                    </div>
-                                    <div class="col">
-                                        <input type="date" name="date_start" class=" form-control form-control-sm">
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                <div class="col-sm-4 text-right">
-                                    <span>วันที่สิ้นสุด</span>
-                                </div>
-                                <div class="col">
-                                    <input type="date" name="date_end" class=" form-control form-control-sm">
-                                </div>
-                                </div>
-                        
-        </div>
-        </td>
-        </tr>
-        <tr>
-            <td>
-                <div class="container">
-                    <div class="form-row">
-                        <div class="col-sm-12 text-center">
-                            <button class="btn btn-info btn-sm" type="submit" name="serach">
-                                <i class="fas fa-search"></i>
-                                ค้นหา
-                            </button>
+                            </select>
                         </div>
                     </div>
                 </div>
-            </td>
-        </tr>
-        </form>
-        </table>
-        <div class="table-wrapper-scroll-y my-custom-scrollbar" id="style-3">
-            <!-- table show data -->
-            <table class="table table-bordered table-sm" x:str BORDER="1">
-                <thead>
-                    <tr id="history_head ">
-                        <td class="text-center"><i class="fas fa-check-circle"></i> </td>
-                        <td class="text-center"><i class="fas fa-history"></i> </td>
-                        <td class="text-center"><i class="fas fa-location-arrow"></i> </td>
-                        <td class="text-center"><i class="far fa-shipping-fast"></i> </td>
-                        <td class="text-center"><i class="far fa-map-marked-alt"></i> </td>
-                        <td class="text-center"><i class="fas fa-ban"></i> </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        if ($resultPosition) {
+
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <span>วันที่เริ่มต้น</span>
+                    </div>
+                    <div class="col">
+                        <!-- <input type="date" name="date_start" class=" form-control form-control-sm"> -->
+                        <input type="text" name="dates">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4 text-right">
+                        <span>วันที่สิ้นสุด</span>
+                    </div>
+                    <div class="col">
+                        <!-- <input type="date" name="date_end" class=" form-control form-control-sm"> -->
+                    </div>
+                </div>
+            </form>
+            <div class="container">
+                <div class="form-row">
+                    <div class="col-sm-12 text-center">
+                        <button class="btn btn-info btn-sm" type="submit" name="serach">
+                            <i class="fas fa-search"></i>
+                            ค้นหา
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar" id="style-3">
+                <!-- table show data -->
+                <table class="table table-bordered table-sm" x:str BORDER="1">
+                    <thead>
+                        <tr id="history_head ">
+                            <td class="text-center"><i class="fas fa-check-circle"></i> </td>
+                            <td class="text-center"><i class="fas fa-history"></i> </td>
+                            <td class="text-center"><i class="fas fa-location-arrow"></i> </td>
+                            <td class="text-center"><i class="far fa-shipping-fast"></i> </td>
+                            <td class="text-center"><i class="far fa-map-marked-alt"></i> </td>
+                            <td class="text-center"><i class="fas fa-ban"></i> </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if (isset($resultPosition)) {
                             while ($rs1 = $resultPosition->fetch_assoc()) {
                         ?>
-                    <tr>
-                        <td class="text-center" width="5%"><input type="checkbox" name="checkboxList"></td>
-                        <td class="text-center" width="30%"><?=$rs1['devicetime'];?></td>
-                        <td class="text-center" width="10%"><?=$rs1['speed'];?></td>
-                        <td class="text-center" width="10%"><?=$rs1['course'];?></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <?php
+                        <tr>
+                            <td class="text-center" width="5%"><input type="checkbox" name="checkboxList"></td>
+                            <td class="text-center" width="30%"><?=$rs1['devicetime'];?></td>
+                            <td class="text-center" width="10%"><?=$rs1['speed'];?></td>
+                            <td class="text-center" width="10%"><?=$rs1['course'];?></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <?php
                             } //while($rs1=$result1->fetch_assoc())
                           } //if ($result1) {
                         ?>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
 
-    <div class="col-9">
-        <div class="card-header full-background" id="map" style="height:90vh"></div>
-    </div>
+        <div class="col-9">
+            <div class="card-header full-background" id="map" style="height:90vh"></div>
+        </div>
     </div>
 
 </body>
@@ -218,18 +206,22 @@ var LeafIcon = L.Icon.extend({
     }
 });
 var arrow = new LeafIcon({
-    iconUrl: 'images/arrow.png'
+    iconUrl: 'images/arrow.svg'
 });
 
 //polyline
 var latlng = [];
 var latlngStr = "";
 // var show = [ ];
+let countx = 0;
 <?php
-if ($resultPositionLine) {
+if (isset($resultPositionLine)) {
+    
     while ($resultPolyline = $resultPositionLine->fetch_assoc()) {
+    
         ?>
-latlngStr = [<?=$resultPolyline['lat']?>, <?=$resultPolyline['lng']?>];
+countx = countx + 1;
+latlngStr = [<?= $resultPolyline['latitude']?>, <?= $resultPolyline['longitude']?>];
 latlng.push(latlngStr);
 
 var marker = L.marker(latlngStr, {
@@ -237,11 +229,12 @@ var marker = L.marker(latlngStr, {
     rotationAngle: <?=$resultPolyline['course']?>,
     rotationOrigin: 'center center'
 }).addTo(map);
-console.log(latlngStr);
+
 
 <?php
 }//while($resultPolyline = $resultPositionLine->fetch_assoc()) {
     ?>
+console.log(countx);
 <?php
 } //if($resultPositionLine){
 ?>
@@ -255,4 +248,9 @@ var polyline = L.polyline(showLine, {
 $(document).ready(function() {
     $('.select2').select2();
 });
+
+
+</script>
+<script>
+    $('input[name="dates"]').daterangepicker();
 </script>

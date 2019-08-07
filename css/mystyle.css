@@ -1,0 +1,58 @@
+.table {
+    font-size: 14px;
+}
+
+.myCSSClass {
+    font-size: 14px;
+    color: red;
+    font-weight: bold;
+    font-family: cursive;
+    background: none;
+    /* background-color: none; */
+    border: none;
+    /* border-color: none; */
+    box-shadow: none;
+    cursor: none;
+    margin: ;
+}
+
+.leaflet-tooltip-bottom:before {
+    border: none;
+}
+
+.my-custom-scrollbar {
+    position: relative;
+    height: 100vh;
+    overflow: auto;
+}
+
+.table-wrapper-scroll-y {
+    display: block;
+}
+
+.margin-form {
+    margin-left: 10px;
+}
+
+#style-3::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 1);
+    background-color: #F5F5F5;
+}
+
+#style-3::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+#style-3::-webkit-scrollbar-thumb {
+    background-color: #46ff46;
+}
+
+.lockH {
+    height: 100vh;
+}
+
+.marginMap {
+    margin: 0;
+    padding: 0;
+}

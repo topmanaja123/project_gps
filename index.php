@@ -10,6 +10,7 @@
     <?php 
     require'css.php';
     include('nav.php');
+    require'js.php';
     ?>
     
     <?php
@@ -29,5 +30,5 @@
 
 </html>
 <?php 
-  require'js.php';
+
 ?>
