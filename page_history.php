@@ -82,23 +82,12 @@
 
     <?php
 if (isset($_POST['serach'])) {
-    // $sqlDate = "SELECT MIN(posit_mark_start) AS posi_start, MAX(posit_mark_end) AS posi_end ,device_code FROM positions_mark
-    // WHERE device_code = '$_POST[dev_id]' AND posit_mark_date BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
-    // $resultDate = $conn->query($sqlDate);
-    // $rs = $resultDate->fetch_assoc();
 
     $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[dev_id] AND fixtime BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
     $resultPosition = $conn->query($sqlPosition);
     $resultNums=$resultPosition->num_rows;
     $resultPositionLine = $conn->query($sqlPosition);
-    echo $resultNums;
-
-    // $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[dev_id] AND devicetime >='$_POST[date_start]' AND devicetime <= '$_POST[date_end]'";
-    // $resultPosition = $conn->query($sqlPosition);
-    // $resultPositionLine = $conn->query($sqlPosition);
-    // echo $sqlDate;
-    // echo '<br>';
-    echo $sqlPosition;
+    // echo $resultNums;
     }
     ?>
     <div class="row">
