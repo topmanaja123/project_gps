@@ -2,6 +2,14 @@
     font-size: 14px;
 }
 
+#hisMenu {
+    padding: 0;
+}
+
+#mapBox {
+    padding: 0;
+}
+
 .myCSSClass {
     font-size: 14px;
     color: red;
@@ -13,7 +21,7 @@
     /* border-color: none; */
     box-shadow: none;
     cursor: none;
-    margin: ;
+    /* margin: ; */
 }
 
 .leaflet-tooltip-bottom:before {

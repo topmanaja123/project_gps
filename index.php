@@ -11,6 +11,7 @@
     require'css.php';
     include('nav.php');
     require'js.php';
+    require_once('all_functions.php');
     ?>
     
     <?php

@@ -11,14 +11,14 @@
         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin="" />
     <link rel="stylesheet" href="vendor/Lightpick/css/lightpick.css">
+    <link rel="stylesheet" href="css/mystyle.css">
 
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
         integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
     <script rel="stylesheet" src="js/leaflet.rotatedMarker.js"></script>
     <script rel="stylesheet" src="js/polyline/leaflet.polylineDecorator.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/th.js"
-        integrity="sha256-p2W93O+vSx9WeMoysQcwoOkbExKS/gISb+muTjcgQDA=" crossorigin="anonymous"></script>
+    <script src="js/moment.js"></script>
     <script src="vendor/Lightpick/lightpick.js"></script>
 
     <style media="screen">
@@ -81,30 +81,64 @@
     ?>
 
     <?php
+    // date_default_timezone_set("Asia/Bangkok");
 if (isset($_POST['serach'])) {
+    $dateRange = $_POST['dateRange'];
+    $dateRangeArr = explode("-",$dateRange);
 
-    $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[dev_id] AND fixtime BETWEEN '$_POST[date_start]' AND '$_POST[date_end]'";
+     $dateStart = trim($dateRangeArr['0']);
+     $dateEnd = trim($dateRangeArr['1']);
+
+    
+    // Creating time from given date
+    echo $dateStart = DateYMD($dateStart);
+    echo $dateEnd = DateYMD($dateEnd);
+
+    // // Creating new date format from that timestamp
+    // $dateStart = date("Y-d-m", $dateStart);
+    // // echo "--";
+    // $dateEnd = date("Y-d-m", $dateEnd);
+
+
+    echo $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
     $resultPosition = $conn->query($sqlPosition);
     $resultNums=$resultPosition->num_rows;
     $resultPositionLine = $conn->query($sqlPosition);
-    // echo $resultNums;
+    echo $resultNums;
     }
     ?>
-    <div class="row">
-        <div class="col-3">
-            <div class="form-row">
+    <div class="form-row">
+        <div id="hisMenu" class="form-group col-3 mb-0 pb-0">
+            <form action="" method="post">
+                <div class="form-row pt-2 pr-3 pl-3">
+                    <div class="form-group col-md-3 col-lg-4 text-right align-self-center">
+                        เลือกอุปกรณ์
+                    </div>
+                    <div class="form-group col-sm-12 col-md-9 col-lg-8 mb-0 pb-0">
+                        <select class="form-control form-control-sm select2" name="deviceid" id="deviceid">
+                            <?php while($row = $result->fetch_assoc()) { ?>
+                            <option value="<?= $row['id']?>"><?= $row['name']?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+
                     <div class="form-group col-md-3 col-lg-4 text-right align-self-center">
                         เลือกวันที่
                     </div>
-                    <div class="form-group col-sm-12 col-md-9 col-lg-8">
-                        <input class="form-control" type="text" id="datepicker" readonly>
+                    <div class="form-group col-sm-12 col-md-9 col-lg-8 mb-0 pb-0">
+                        <input class="form-control form-control-sm" type="text" name="dateRange" id="datepicker"
+                            readonly>
                     </div>
 
-                <div class="col-md-12 col-lg-12 text-center">
-                    <p id="resultDate"></p>
+                    <div class="form-group col-md-12 col-lg-12 text-center mt-0 mb-0 pb-0">
+                        <p id="resultDate"></p>
+                    </div>
+                    <div class="form-group col-md-12 col-lg-12 text-center  mt-0 mb-0 pb-0">
+                        <button type="submit" name="serach">ค้นหา</button>
+                    </div>
                 </div>
-            </div>
-            <div class="table-wrapper-scroll-y my-custom-scrollbar" id="style-3">
+            </form>
+            <div class="table-wrapper-scroll-y my-custom-scrollbar p-0" id="style-3">
                 <!-- table show data -->
                 <table class="table table-bordered table-sm" x:str BORDER="1">
                     <thead>
@@ -114,7 +148,7 @@ if (isset($_POST['serach'])) {
                             <td class="text-center"><i class="fas fa-location-arrow"></i> </td>
                             <td class="text-center"><i class="far fa-shipping-fast"></i> </td>
                             <td class="text-center"><i class="far fa-map-marked-alt"></i> </td>
-                            <td class="text-center"><i class="fas fa-ban"></i> </td>
+                         
                         </tr>
                     </thead>
                     <tbody>
@@ -125,10 +159,11 @@ if (isset($_POST['serach'])) {
                         <tr>
                             <td class="text-center" width="5%"><input type="checkbox" name="checkboxList"></td>
                             <td class="text-center" width="30%"><?=$rs1['devicetime'];?></td>
-                            <td class="text-center" width="10%"><?=$rs1['speed'];?></td>
                             <td class="text-center" width="10%"><?=$rs1['course'];?></td>
-                            <td></td>
-                            <td></td>
+                            <td class="text-center" width="10%"><?=$rs1['speed'];?></td>
+
+                            <td class="text-center" width="auto" style="cursor:pointer" <?= "onclick='pantoLatLng(".$rs1['latitude'].",".$rs1['longitude'].")'"?> ><?=$rs1['latitude'];?>,<?=$rs1['longitude'];?></td>
+                          
                         </tr>
                         <?php
                             } //while($rs1=$result1->fetch_assoc())
@@ -139,7 +174,7 @@ if (isset($_POST['serach'])) {
             </div>
         </div>
 
-        <div class="col-9">
+        <div id="mapBox" class="form-group col-9 mb-0 pb-0">
             <div class="card-header full-background" id="map" style="height:90vh"></div>
         </div>
     </div>
@@ -148,12 +183,21 @@ if (isset($_POST['serach'])) {
 
 </html>
 
-<script src="map.js"></script>
+<script src="app/map.js"></script>
 <!-- scrip map -->
 <script>
+//click panto to marker
+function pantoLatLng(lat, lng) {
+    map.setView([lat, lng], 18, {
+        animate: true,
+        noMoveStart: true
+    });
+}
+
 var picker = new Lightpick({
     field: document.getElementById('datepicker'),
     singleDate: false,
+    maxDays: 7,
     onSelect: function(start, end) {
         var str = '';
         str += start ? start.format('[ Do MMMM YYYY') + ' ถึง ' : '';
