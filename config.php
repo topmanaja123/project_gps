@@ -1,21 +1,21 @@
 <?php
 //โฮส Green_GPS
-$host = "217.175.242.25";
+// $host = "217.175.242.25";
 // $host = "27.254.81.27";
 //Username phpmyadmin
-$username = "root";
+// $username = "root";
 //Password phpMyadmin
-$password = "Ple01010!@#";
-$db = "traccar";
+// $password = "Ple01010!@#";
+// $db = "traccar";
 
 
 // //โฮส traccar
-// $host = "217.175.242.25";
+$host = "27.254.81.41";
 // //Username phpmyadmin
-// $username = "root";
+$username = "root";
 // //Password phpMyadmin
-// $password = "Ple01010!@#";
-// $db = "traccar";
+$password = "Ple01010!@#";
+$db = "traccar_1";
 
 //คำสั่ง Connect ฐานข้อมูล
 $conn = new mysqli($host, $username, $password, $db);

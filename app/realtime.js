@@ -73,8 +73,8 @@
     });
     var LeafIcon1 = L.Icon.extend({
         options: {
-            iconSize: [29, 50],
-            iconAnchor: [15, 15],
+            iconSize: [22, 45],
+            iconAnchor: [11, 22],
             popupAnchor: [0, -7]
         }
     });
@@ -87,7 +87,7 @@
         if (!markers.hasOwnProperty(dataArr['id'])) {
 
             var greenIcon = new LeafIcon1({
-                iconUrl: 'images/top-truck.png'
+                iconUrl: 'images/deli/Untitled-25.png'
             });
 
             markerX[dataArr['id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
@@ -103,10 +103,10 @@
                 '<br>ตำแหน่ง : ' + dataArr['lat'] + ',' + dataArr['lng']).bindTooltip(dataArr['name'], {
                 permanent: true,
                 direction: 'bottom',
-                offset: [0, 35],
+                offset: [0, 32],
                 interactive: false,
-                opacity: 15
-                    // className: 'myCSSClass'
+                opacity: 15,
+                className: 'myCSSClass'
             }).openTooltip();
             markerX[dataArr['id']].previousLatLngs = [];
             markers.addLayer(markerX[dataArr['id']]);
@@ -166,7 +166,7 @@
     }
 
     //click panto to marker
-    function myPanto(id, lat, lng) {
+    function myPanto(lat, lng) {
         map.setView([lat, lng], 16, {
             animate: true,
             noMoveStart: true
