@@ -73,8 +73,8 @@
     });
     var LeafIcon1 = L.Icon.extend({
         options: {
-            iconSize: [29, 50],
-            iconAnchor: [15, 15],
+            iconSize: [22, 45],
+            iconAnchor: [11, 22],
             popupAnchor: [0, -7]
         }
     });
@@ -103,10 +103,10 @@
                 '<br>ตำแหน่ง : ' + dataArr['lat'] + ',' + dataArr['lng']).bindTooltip(dataArr['name'], {
                 permanent: true,
                 direction: 'bottom',
-                offset: [0, 35],
+                offset: [0, 32],
                 interactive: false,
-                opacity: 15
-                    // className: 'myCSSClass'
+                opacity: 15,
+                className: 'myCSSClass'
             }).openTooltip();
             markerX[dataArr['id']].previousLatLngs = [];
             markers.addLayer(markerX[dataArr['id']]);

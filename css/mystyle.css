@@ -1,19 +1,22 @@
 .table {
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .myCSSClass {
     font-size: 14px;
-    color: red;
+    /* text-shadow: 2px 3px 2px rgba(147, 150, 150, 1); */
+    /* color: red; */
     font-weight: bold;
-    font-family: cursive;
+    /* font-family: cursive; */
     background: none;
-    /* background-color: none; */
-    border: none;
-    /* border-color: none; */
-    box-shadow: none;
+    background-color: white;
+    /* border: none;
+    border-color: black; */
+    box-shadow: black;
     cursor: none;
-    margin: ;
+    margin: 0px;
+    padding: 0px;
+
 }
 
 .leaflet-tooltip-bottom:before {
