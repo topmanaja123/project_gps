@@ -2,21 +2,24 @@
 
 <head>
     <!-- bootstrap -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-    </script>
+    </script> -->
 
     <!-- map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
         integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
         crossorigin="" />
+    <link rel="stylesheet" href="vendor/Lightpick/css/lightpick.css">
 
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
         integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
         crossorigin=""></script>
     <script rel="stylesheet" src="js/leaflet.rotatedMarker.js"></script>
-
     <script rel="stylesheet" src="js/polyline/leaflet.polylineDecorator.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/th.js"
+        integrity="sha256-p2W93O+vSx9WeMoysQcwoOkbExKS/gISb+muTjcgQDA=" crossorigin="anonymous"></script>
+    <script src="vendor/Lightpick/lightpick.js"></script>
 
     <style media="screen">
     .bg-green {
@@ -98,57 +101,18 @@ if (isset($_POST['serach'])) {
     echo $sqlPosition;
     }
     ?>
-    <div class="form-row">
+    <div class="row">
         <div class="col-3">
-            <!-- table control -->
-            <form action="" method="post">
-                <div class="container-fluid">
-                    <div class="form-row">
-                        <div class="col-4 text-right">
-                            <span>อุปกรณ์</span>
-                        </div>
-                        <div class="col">
-                            <select class="form-control form-control-sm select2" name="dev_id">
-                                <option selected>--เลือก--</option>
-                                <?php
-                                              while ($rs = $result->fetch_assoc()) {
-                                            ?>
-                                <option value="<?=$rs['id'];?>"><?=$rs['name'];?></option>
-                                <!-- <option value="<?=$rs['id'];?>"><?=$rs['name'];?></option> -->
-                                <?php
-                                              }
-                                            ?>
-                            </select>
-                        </div>
+            <div class="form-row">
+                    <div class="form-group col-md-3 col-lg-4 text-right align-self-center">
+                        เลือกวันที่
                     </div>
-                </div>
+                    <div class="form-group col-sm-12 col-md-9 col-lg-8">
+                        <input class="form-control" type="text" id="datepicker" readonly>
+                    </div>
 
-                <div class="form-group row">
-                    <div class="col-sm-4 text-right">
-                        <span>วันที่เริ่มต้น</span>
-                    </div>
-                    <div class="col">
-                        <!-- <input type="date" name="date_start" class=" form-control form-control-sm"> -->
-                        <input type="text" name="dates">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <div class="col-sm-4 text-right">
-                        <span>วันที่สิ้นสุด</span>
-                    </div>
-                    <div class="col">
-                        <!-- <input type="date" name="date_end" class=" form-control form-control-sm"> -->
-                    </div>
-                </div>
-            </form>
-            <div class="container">
-                <div class="form-row">
-                    <div class="col-sm-12 text-center">
-                        <button class="btn btn-info btn-sm" type="submit" name="serach">
-                            <i class="fas fa-search"></i>
-                            ค้นหา
-                        </button>
-                    </div>
+                <div class="col-md-12 col-lg-12 text-center">
+                    <p id="resultDate"></p>
                 </div>
             </div>
             <div class="table-wrapper-scroll-y my-custom-scrollbar" id="style-3">
@@ -198,6 +162,17 @@ if (isset($_POST['serach'])) {
 <script src="map.js"></script>
 <!-- scrip map -->
 <script>
+var picker = new Lightpick({
+    field: document.getElementById('datepicker'),
+    singleDate: false,
+    onSelect: function(start, end) {
+        var str = '';
+        str += start ? start.format('[ Do MMMM YYYY') + ' ถึง ' : '';
+        str += end ? end.format('Do MMMM YYYY ]') : '...';
+        document.getElementById('resultDate').innerHTML = str;
+    }
+});
+
 //icon
 var LeafIcon = L.Icon.extend({
     options: {
@@ -205,6 +180,7 @@ var LeafIcon = L.Icon.extend({
         iconAnchor: [10, 10]
     }
 });
+
 var arrow = new LeafIcon({
     iconUrl: 'images/arrow.svg'
 });
@@ -248,9 +224,7 @@ var polyline = L.polyline(showLine, {
 $(document).ready(function() {
     $('.select2').select2();
 });
-
-
 </script>
 <script>
-    $('input[name="dates"]').daterangepicker();
+$('input[name="dates"]').daterangepicker();
 </script>
