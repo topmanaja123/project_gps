@@ -87,7 +87,7 @@
         if (!markers.hasOwnProperty(dataArr['id'])) {
 
             var greenIcon = new LeafIcon1({
-                iconUrl: 'images/top-truck.png'
+                iconUrl: 'images/deli/Untitled-25.png'
             });
 
             markerX[dataArr['id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
@@ -166,7 +166,7 @@
     }
 
     //click panto to marker
-    function myPanto(id, lat, lng) {
+    function myPanto(lat, lng) {
         map.setView([lat, lng], 16, {
             animate: true,
             noMoveStart: true
