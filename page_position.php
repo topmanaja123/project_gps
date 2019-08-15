@@ -44,7 +44,7 @@
                     <div class="form-row margin-form" style="height : 5vh">
                         <div class="form-group mb-0 ">ค้นหา</div>
                         <div class="form-group col mb-0">
-                            <input class="form-control" type="text" id="sc" name="sc" onkeyup="getDataFromDb()"
+                            <input class="form-control" type="text" id="sc" name="sc" onkeyup="keySearch()"
                                 placeholder="ทะเบียนรถ">
                         </div>
                     </div>

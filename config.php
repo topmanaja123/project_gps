@@ -1,15 +1,15 @@
 <?php
 // โฮส Green_GPS
 // $host = "217.175.242.25";
-// // $host = "27.254.81.27";
-// //Username phpmyadmin
+// // // $host = "27.254.81.27";
+// // //Username phpmyadmin
 // $username = "root";
-// //Password phpMyadmin
+// // //Password phpMyadmin
 // $password = "Ple01010!@#";
 // $db = "traccar";
 
 
-// //โฮส traccar
+//โฮส traccar
 $host = "27.254.81.41";
 //Username phpmyadmin
 $username = "root";
