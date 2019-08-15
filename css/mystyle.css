@@ -11,22 +11,24 @@
 }
 
 .myCSSClass {
-    font-size: 14px;
-    /* text-shadow: 2px 3px 2px rgba(147, 150, 150, 1); */
+    font-size: 12px;
+    text-shadow: 1px 1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px 0px 0 #ffffff, 0px 1px 0 #ffffff, -1px 0px 0 #ffffff, 0px -1px 0 #ffffff, 1px 1px 1px rgba(70,206,0,0);
     /* color: red; */
+    
     font-weight: bold;
     /* font-family: cursive; */
     background: none;
-    background-color: white;
-    /* border: none;
-    border-color: black; */
-    box-shadow: black;
+    /* background-color: white; */
+    border: none;
+    /* border-color: black; */
+    box-shadow: none;
     cursor: none;
 <<<<<<< HEAD
     /* margin: ; */
 =======
     margin: 0px;
     padding: 0px;
+    
 
 >>>>>>> develop1
 }
