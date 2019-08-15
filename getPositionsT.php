@@ -70,7 +70,8 @@
 ?>
 
 <?php
-$sc = isset($_POST['data']) ? $_POST['data'] : '';
+$sc = $_POST['data'];
+
 require 'config.php';
 $strSQL = "SELECT
 `devices`.`id`,
@@ -98,16 +99,16 @@ $strSQL = "SELECT
 `devices`.`category`
 FROM
 `devices`
-INNER JOIN `positions` ON `devices`.`positionid` = `positions`.`id`";
-if ($sc !== "") {
+INNER JOIN `positions` ON `devices`.`positionid` = `positions`.`id` ";
+if ($sc) {
   $strSQL .= " WHERE name LIKE '%$sc%' ";
 }
-$strSQL .= " LIMIT 200";
+$strSQL .= " LIMIT 100";
 $objQuery = $conn->query($strSQL) or die(mysql_error());
 $intNumField = mysqli_num_fields($objQuery);
 $resultArray = array();
 while ($obResult = $objQuery->fetch_assoc()) {
-  $arrCol = array();
+  // $arrCol = array();
   $arrCol = array(
     'id' => $obResult['id'],
     'name' => $obResult['name'],
@@ -122,7 +123,7 @@ while ($obResult = $objQuery->fetch_assoc()) {
     'attributes' => $obResult['attributes'],
     'lat' => $obResult['latitude'],
     'lng' => $obResult['longitude'],
-    'speed' => $obResult['speed'],
+    'speed' => ($obResult['speed']*1.852),
     'course' => $obResult['course'],
     // 'attributes' =>	$arrAtt,
     'valid' => $obResult['valid'],
