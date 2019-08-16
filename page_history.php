@@ -16,6 +16,7 @@
     <script rel="stylesheet" src="js/polyline/leaflet.polylineDecorator.js"></script>
     <script src="js/moment.js"></script>
     <script src="vendor/Lightpick/lightpick.js"></script>
+    <script src="app/history.js"></script>
 
     <style media="screen">
         .bg-green {
@@ -140,7 +141,7 @@
             </form>
             <div class="table-wrapper-scroll-y my-custom-scrollbar p-0" id="style-3">
                 <!-- table show data -->
-                <table class="table table-bordered table-sm" x:str BORDER="1">
+                <table class="table table-bordered" BORDER="1" id="tblNeedsScrolling">
                     <thead>
                         <tr id="history_head ">
                             <td class="text-center"><i class="fas fa-check-circle"></i> </td>
@@ -226,6 +227,7 @@
     var latlngStr = "";
     // var show = [ ];
     var countx = 0;
+    var markers = {};
     <?php
 
     if (isset($resultPositionLine)) {
@@ -234,6 +236,8 @@
             $statusStr = $attributes->{'status'};
             ?>
             countx = countx + 1;
+            var id = <?= $resultPolyline['id'] ?>;
+            // console.log(id);
             var course = <?= $resultPolyline['course'] ?>;
             var status = <?= $statusStr ?>;
             var speed = <?= $resultPolyline['speed'] ?>;
@@ -255,14 +259,12 @@
 
             if (status == '6400' && speed != '0') {
 
-                var marker = L.marker(latlngStr, {
+                markers[id] = L.marker(latlngStr, {
                     icon: arrow,
                     rotationAngle: course,
                     rotationOrigin: 'center center'
                 }).addTo(map);
             }
-
-
 
         <?php
         } //while($resultPolyline = $resultPositionLine->fetch_assoc()) {
@@ -286,7 +288,6 @@
     <?php
     } //if($resultPositionLine){
     ?>
-
 
     var showLine = [latlng];
     var polyline = L.polyline(showLine, {
