@@ -1,23 +1,17 @@
+<html>
+   <body>
+      <script>
+         var dateFirst = new Date("11/28/2017 10:10:10");
+         var dateSecond = new Date("11/28/2017 10:25:10");
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+         // time difference
+         var timeDiff = dateSecond.getTime() - dateFirst.getTime();
 
-<input type="text" name="dates">
+         // days difference
+         var diffDays = Math.ceil(timeDiff / (1000 * 60));
 
-<script>
-$('input[name="dates"]').daterangepicker();
-</script>
-<script>
-$(function() {
-  $('input[name="datetimes"]').daterangepicker({
-    timePicker: true,
-    startDate: moment().startOf('hour'),
-    endDate: moment().startOf('hour').add(32, 'hour'),
-    locale: {
-      format: 'M/DD hh:mm A'
-    }
-  });
-});
-</script>
+         // difference
+         alert(diffDays);
+      </script>
+   </body>
+</html>i 
