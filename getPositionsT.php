@@ -115,7 +115,7 @@ while ($obResult = $objQuery->fetch_assoc()) {
     'uniqueid' => $obResult['uniqueid'],
     // 'fuel' => $obResult['devi_fuel'],
     'positionid' => $obResult['positionid'],
-    // 'rfid_name' => $obResult['rfid_name'],
+    'driverLicense' => $obResult['driverLicense'],
     // 'rfid_number' => $obResult['rfid_number'],
     'devicetime' => $obResult['devicetime'],
     'servertime' => $obResult['servertime'],
@@ -125,11 +125,11 @@ while ($obResult = $objQuery->fetch_assoc()) {
     'lng' => $obResult['longitude'],
     'speed' => ($obResult['speed']*1.852),
     'course' => $obResult['course'],
-    // 'attributes' =>	$arrAtt,
+    'attributes' =>	$obResult['attributes'],
     'valid' => $obResult['valid'],
     // 'state' => $obResult['state'],
     'category' => $obResult['category']
-  );
+  ); 
   array_push($resultArray, $arrCol);
 }
 // echo $strSQL;

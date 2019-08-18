@@ -6,11 +6,12 @@ var arrayData = [];
 
 var LeafIcon = L.Icon.extend({
 	options: {
-		iconSize: [100, 100],
-		iconAnchor: [50, 50],
+		iconSize: [22, 45],
+		iconAnchor: [11, 22],
+		popupAnchor: [0, -7],
 	},
 });
-var LeafIcon1 = L.Icon.extend({
+var LeafIcon1 = L.Icon({
 	options: {
 		iconSize: [22, 45],
 		iconAnchor: [11, 22],
@@ -29,7 +30,7 @@ function getDataFromDb() {
 		data: {
 			data: sc,
 		},
-		success: function(result) {
+		success: function (result) {
 			// console.log(result)
 
 			var data2 = '';
@@ -38,8 +39,9 @@ function getDataFromDb() {
 				//$("#myTable tbody tr:not(:first-child)").remove();
 				$('#myBody').empty();
 				// markerGroup.hide();
-				$.each(obj, function(key, val) {
+				$.each(obj, function (key, val) {
 					// console.log(devi_name);
+					var att = jQuery.parseJSON(val['attributes']);
 					var tr = "<tr style='background-color : " + get_time_diff(val['devicetime']) + "'>";
 					tr =
 						tr +
@@ -55,8 +57,9 @@ function getDataFromDb() {
 						val['name'] +
 						'</td>';
 					tr = tr + '<td>' + dateTime(val['devicetime']) + '</td>';
+					tr = tr + '<td>' + license(val['driverLicense']) + '</td>';
 					tr = tr + '<td>' + toFixed(val['speed'], 2) + '</td>';
-					tr = tr + '<td>' + '</td>';
+					tr = tr + '<td>' + fuel(att['adc1']) + '</td>';
 					tr = tr + '</tr>';
 					$('#myTable > tbody:last').append(tr);
 
@@ -66,20 +69,34 @@ function getDataFromDb() {
 						uniqueid: val['uniqueid'],
 						positionid: val['positionid'],
 						// 'rfid_name': val["rfid_name"],
-						// 'rfid_number': val["rfid_number"],
+						driverLicense: val['driverLicense'],
 						devicetime: val['devicetime'],
 						servertime: val['servertime'],
 						fixtime: val['fixtime'],
-						attributes: val['attributes'],
+						attributes: att['attributes'],
 						lat: val['lat'],
 						lng: val['lng'],
 						speed: val['speed'],
 						course: val['course'],
-						// 'attributes':attributes,
+						// attributes: val['attributes'],
 						valid: val['valid'],
 						// 'state': val["state"],
 						photo: val['photo'],
 					};
+					// var licenseZ = [];
+					// 23            1            0005460  30100                     ?
+					// 22            1            0008052  60602
+					// ;6007641500900095877=181019880713=?+             12            1            0026558  50200                     ? *68
+					// 22            1            0069961  20100                     
+
+					var driL = [];
+					driL = ";6007645660800026867=210919741003=?+             23            1            0061961  10400                     ?";
+					
+					var resultEx1 = driL.substr(49, 41);
+					var result = resultEx1.replace(/\s+/g, ' ');
+					console.log(result);
+
+					// console.log(val['driverLicense']);
 					dataRealtime(data2);
 				});
 				search();
@@ -97,29 +114,35 @@ function dataRealtime(Data) {
 
 	if (!markers.hasOwnProperty(dataArr['id'])) {
 		// console.log("5555");
-		var greenIcon = new LeafIcon1({
-			iconUrl: 'images/show/' + dataArr['photo'],
-		});
+		// var car = new LeafIcon1({
+		// 	iconUrl: 'images/show/bus.png'
+		// });
 
+		var myIcon = L.icon({
+			iconUrl: 'images/show/bus.png',
+			iconSize: [22, 45],
+			iconAnchor: [11, 22],
+			popupAnchor: [0, -7],
+		});
 
 		// console.log(greenIcon);
 		markers[dataArr['id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
-			icon: greenIcon,
+			icon: myIcon,
 			rotationAngle: dataArr['course'],
-			rotationOrigin: 'center center',
+			rotationOrigin: 'center center'
 		})
 			.bindPopup(
 				'รายละเอียด' +
-					'<br>ทะเบียน : ' +
-					dataArr['name'] +
-					'<br>ความเร็ว : ' +
-					dataArr['speed'] +
-					'<br>เวลา : ' +
-					dataArr['devicetime'] +
-					'<br>ตำแหน่ง : ' +
-					toFixed(dataArr['lat'], 5) +
-					',' +
-					toFixed(dataArr['lng'], 5)
+				'<br>ทะเบียน : ' +
+				dataArr['name'] +
+				'<br>ความเร็ว : ' +
+				dataArr['speed'] +
+				'<br>เวลา : ' +
+				dataArr['devicetime'] +
+				'<br>ตำแหน่ง : ' +
+				toFixed(dataArr['lat'], 5) +
+				',' +
+				toFixed(dataArr['lng'], 5)
 			)
 			.bindTooltip(dataArr['name'], {
 				permanent: true,
@@ -138,25 +161,24 @@ function dataRealtime(Data) {
 	} else {
 		// console.log("fff");
 		markers[dataArr['id']].previousLatLngs.push(markers[dataArr['id']].getLatLng());
-		markers[dataArr['id']]
-			.setLatLng([dataArr['lat'], dataArr['lng']])
+		markers[dataArr['id']].setLatLng([dataArr['lat'], dataArr['lng']])
 			.bindPopup(
 				'รายละเอียด' +
-					'<br>ทะเบียน : ' +
-					dataArr['name'] +
-					'<br>ความเร็ว : ' +
-					dataArr['speed'] +
-					'<br>เวลา : ' +
-					dataArr['devicetime'] +
-					'<br>ตำแหน่ง : ' +
-					toFixed(dataArr['lat'], 5) +
-					',' +
-					toFixed(dataArr['lng'], 5)
+				'<br>ทะเบียน : ' +
+				dataArr['name'] +
+				'<br>ความเร็ว : ' +
+				dataArr['speed'] +
+				'<br>เวลา : ' +
+				dataArr['devicetime'] +
+				'<br>ตำแหน่ง : ' +
+				toFixed(dataArr['lat'], 5) +
+				',' +
+				toFixed(dataArr['lng'], 5)
 			);
 		markerGroup.addLayer(markers[dataArr['id']]);
 		// markerGroup.hide(markers[dataArr["id"]]);
 	}
-	// console.log(markerGroup);
+	// console.log(setLatLng);
 }
 
 // format date time
@@ -178,68 +200,61 @@ function dateTime(dateT) {
 }
 
 //เปลี่ยนสี สถานะรถ offline & online
-// function status(date) {
-// 	if (date == '0000-00-00 00:00:00') {
-// 		return '#FFB1B1';
-// 	} else {
-// 		var date1 = new Date(date);
-// 		var date2 = new Date();
-
-// 		var diff = date2.getTime() - date1.getTime();
-
-// 		var msec = diff;
-
-// 		var hh = Math.floor(msec / 1000 / 60 / 60);
-// 		msec -= hh * 1000 * 60 * 60;
-// 		var mm = Math.floor(msec / 1000 / 60);
-// 		msec -= mm * 1000 * 60;
-// 		var ss = Math.floor(msec / 1000);
-// 		msec -= ss * 1000;
-
-// 		if ((hh == '0' && mm >= '5') || (hh == '0' && mm >= '5') || hh > '0') {
-// 			return '#FFB1B1';
-// 		} else if ((hh == '0' && mm >= '2') || (hh == '0' && mm < '5')) {
-// 			return '#FFFF8D';
-// 		} else {
-// 			return '#BDFF73';
-// 		}
-// 	}
-// }
-
 function get_time_diff(datetime) {
 	var datetime = new Date(datetime).getTime();
 	var now = new Date().getTime();
 
 	if (isNaN(datetime)) {
-    // console.log("N");
+		// console.log("N");
 		return '';
 	}
 
 	if (datetime == '0000-00-00 00:00:00') {
-    // console.log("dd");
+		// console.log("dd");
 		return '#FFB1B1';
-	} 
-		var milisec_diff = now - datetime;
+	}
+	var milisec_diff = now - datetime;
 
-		var M = milisec_diff / 1000;
-		// var date_diff = new Date(milisec_diff);
-		if (M < '0') {
-      // console.log("O");
-			return '#fdb14a';
-		} else if (M >= '0' && M < '300') {
-      // console.log("G");
-			return '#BDFF73';
-		} else if (M > '300' && M <= '600') {
-      // console.log("Y");
-			return '#FFFF8D';
-		} else if (M > '600') {
-      // console.log("R");
-			return '#FFB1B1';
-		}
-
-		console.log(M);
+	var M = milisec_diff / 1000;
+	// var date_diff = new Date(milisec_diff);
+	if (M < '0') {
+		// console.log("O");
+		return '#fdb14a';
+	} else if (M >= '0' && M < '300') {
+		// console.log("G");
+		return '#BDFF73';
+	} else if (M > '300' && M <= '600') {
+		// console.log("Y");
+		return '#FFFF8D';
+	} else if (M > '600') {
+		// console.log("R");
+		return '#FFB1B1';
 	}
 
+	// console.log(M);
+}
+
+function fuel(fuelid) {
+
+	// console.log(fuelid);
+	if (typeof fuelid !== 'undefined') {
+		return fuelid;
+	} else {
+		return '';
+	}
+}
+
+function license(licenseid) {
+
+
+	if (licenseid !== null) {
+		return licenseid;
+	} else {
+
+		return '';
+
+	}
+}
 
 //click panto to marker
 function myPanto(id, lat, lng) {

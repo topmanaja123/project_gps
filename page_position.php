@@ -34,8 +34,6 @@
     </style>
 </head>
 
-
-
 <body Onload="onLoad();">
     <div class="form-row row m-0">
         <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3 lockH marginMap">
@@ -60,10 +58,13 @@
                                     <div align="center">เชื่อมต่อล่าสุด</div>
                                 </th>
                                 <th>
-                                    <div align="center">ความเร็ว</div>
+                                    <div align="center"><i class="far fa-id-badge"></i></div>
                                 </th>
                                 <th>
-                                    <div align="center">น้ำมัน</div>
+                                    <div align="center"><i class="far fa-tachometer-alt-fast"></i></div>
+                                </th>
+                                <th>
+                                    <div align="center"><i class="fas fa-gas-pump"></i></div>
                                 </th>
                             </tr>
                         </thead>
