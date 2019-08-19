@@ -122,7 +122,7 @@ function dataRealtime(Data) {
 				'<br>ทะเบียน : ' +
 				dataArr['name'] +
 				'<br>ความเร็ว : ' +
-				dataArr['speed'] +
+				toFixed(dataArr['speed'], 2) +
 				'<br>เวลา : ' +
 				dataArr['devicetime'] +
 				'<br>ตำแหน่ง : ' +
@@ -130,7 +130,7 @@ function dataRealtime(Data) {
 				',' +
 				toFixed(dataArr['lng'], 5) +
 				'<br>รหัสใบขับขี่ : ' +
-				license(dataArr['driverLicense'])
+				devLicense(dataArr['driverLicense'])
 			)
 			.bindTooltip(dataArr['name'], {
 				permanent: true,
@@ -155,7 +155,7 @@ function dataRealtime(Data) {
 				'<br>ทะเบียน : ' +
 				dataArr['name'] +
 				'<br>ความเร็ว : ' +
-				dataArr['speed'] +
+				toFixed(dataArr['speed'], 2) +
 				'<br>เวลา : ' +
 				dataArr['devicetime'] +
 				'<br>ตำแหน่ง : ' +
@@ -163,7 +163,7 @@ function dataRealtime(Data) {
 				',' +
 				toFixed(dataArr['lng'], 5)+
 				'<br>รหัสใบขับขี่ : ' +
-				license(dataArr['driverLicense'])
+				devLicense(dataArr['driverLicense'])
 			);
 		markerGroup.addLayer(markers[dataArr['id']]);
 		// markerGroup.hide(markers[dataArr["id"]]);
@@ -235,7 +235,7 @@ function fuel(fuelid) {
 }
 
 
-function license(licenseid) {
+function devLicense(licenseid) {
 	var result = '';
 	if (licenseid == null) {
 		return '';
