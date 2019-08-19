@@ -21,164 +21,154 @@ var LeafIcon1 = L.Icon({
 
 //รับค่าจาก getPositions.php
 function getDataFromDb() {
-    var sc = $("#sc").val();
+	var sc = $('#sc').val();
 
-    // console.log("Debug : " + sc);
-    $.ajax({
-        url: './getPositionsT.php',
-        type: 'POST',
-        data: {
-            data: sc,
-        },
-        success: function(result) {
-            // console.log(result)
+	// console.log("Debug : " + sc);
+	$.ajax({
+		url: './getPositionsT.php',
+		type: 'POST',
+		data: {
+			data: sc,
+		},
+		success: function (result) {
+			// console.log(result)
 
-            var data2 = '';
-            var obj = jQuery.parseJSON(result);
-            if (obj != '') {
-                //$("#myTable tbody tr:not(:first-child)").remove();
-                $('#myBody').empty();
-                // markerGroup.hide();
-                $.each(obj, function(key, val) {
-                    // console.log(devi_name);
-                    var att = jQuery.parseJSON(val['attributes']);
-                    var tr = "<tr style='background-color : " + get_time_diff(val['devicetime']) + "'>";
-                    tr =
-                        tr +
-                        "<td id='" +
-                        val[''] +
-                        "' onclick='myPanto(" +
-                        val['devi_id'] +
-                        ',' +
-                        val['lat'] +
-                        ',' +
-                        val['lng'] +
-                        ")' style=cursor:pointer; >" +
-                        val['name'] +
-                        '</td>';
-                    tr = tr + '<td>' + dateTime(val['devicetime']) + '</td>';
-                    tr = tr + '<td>' + license(val['driverLicense']) + '</td>';
-                    tr = tr + '<td>' + toFixed(val['speed'], 2) + '</td>';
-                    tr = tr + '<td>' + fuel(att['adc1']) + '</td>';
-                    tr = tr + '</tr>';
-                    $('#myTable > tbody:last').append(tr);
+			var data2 = '';
+			var obj = jQuery.parseJSON(result);
+			if (obj != '') {
+				//$("#myTable tbody tr:not(:first-child)").remove();
+				$('#myBody').empty();
+				// markerGroup.hide();
+				$.each(obj, function (key, val) {
+					// console.log(devi_name);
+					var att = jQuery.parseJSON(val['attributes']);
+					var tr = "<tr style='background-color : " + get_time_diff(val['devicetime']) + "'>";
+					tr =
+						tr +
+						"<td id='" +
+						val[''] +
+						"' onclick='myPanto(" +
+						val['devi_id'] +
+						',' +
+						val['lat'] +
+						',' +
+						val['lng'] +
+						")' style=cursor:pointer; >" +
+						val['name'] +
+						'</td>';
+					tr = tr + '<td>' + dateTime(val['devicetime']) + '</td>';
+					tr = tr + '<td>' + toFixed(val['speed'], 2) + '</td>';
+					tr = tr + '<td>' + fuel(att['adc1']) + '</td>';
+					tr = tr + '</tr>';
+					$('#myTable > tbody:last').append(tr);
 
-                    data2 = {
-                        id: val['id'],
-                        name: val['name'],
-                        uniqueid: val['uniqueid'],
-                        positionid: val['positionid'],
-                        // 'rfid_name': val["rfid_name"],
-                        driverLicense: val['driverLicense'],
-                        devicetime: val['devicetime'],
-                        servertime: val['servertime'],
-                        fixtime: val['fixtime'],
-                        attributes: att['attributes'],
-                        lat: val['lat'],
-                        lng: val['lng'],
-                        speed: val['speed'],
-                        course: val['course'],
-                        // attributes: val['attributes'],
-                        valid: val['valid'],
-                        // 'state': val["state"],
-                        photo: val['photo'],
-                    };
-                    // var licenseZ = [];
-                    // 23            1            0005460  30100                     ?
-                    // 22            1            0008052  60602
-                    // ;6007641500900095877=181019880713=?+             12            1            0026558  50200                     ? *68
-                    // 22            1            0069961  20100                     
-
-                    var driL = [];
-                    driL = ";6007645660800026867=210919741003=?+             23            1            0061961  10400                     ?";
-
-                    var resultEx1 = driL.substr(49, 41);
-                    var result = resultEx1.replace(/\s+/g, ' ');
-                    console.log(result);
-
-                    // console.log(val['driverLicense']);
-                    dataRealtime(data2);
-                });
-                search();
-                markerGroup.addTo(map);
-            }
-        },
-    });
+					data2 = {
+						id: val['id'],
+						name: val['name'],
+						uniqueid: val['uniqueid'],
+						positionid: val['positionid'],
+						// 'rfid_name': val["rfid_name"],
+						driverLicense: val['driverLicense'],
+						devicetime: val['devicetime'],
+						servertime: val['servertime'],
+						fixtime: val['fixtime'],
+						attributes: att['attributes'],
+						lat: val['lat'],
+						lng: val['lng'],
+						speed: val['speed'],
+						course: val['course'],
+						// attributes: val['attributes'],
+						valid: val['valid'],
+						// 'state': val["state"],
+						photo: val['photo'],
+					};
+					
+					dataRealtime(data2);
+				});
+				search();
+				markerGroup.addTo(map);
+			}
+		},
+	});
 }
 // setInterval(getDataFromDb, 5000); // 1000 = 1 second
 
 //realtime marker
 function dataRealtime(Data) {
-    var dataArr = Data;
-    // console.log(markerGroup);
+	var dataArr = Data;
+	// console.log(markerGroup);
 
-    if (!markers.hasOwnProperty(dataArr['id'])) {
-        // console.log("5555");
-        // var car = new LeafIcon1({
-        // 	iconUrl: 'images/show/bus.png'
-        // });
+	if (!markers.hasOwnProperty(dataArr['id'])) {
+		// console.log("5555");
+		// var car = new LeafIcon1({
+		// 	iconUrl: 'images/show/bus.png'
+		// });
 
-        var myIcon = L.icon({
-            iconUrl: 'images/show/bus.png',
-            iconSize: [22, 45],
-            iconAnchor: [11, 22],
-            popupAnchor: [0, -7],
-        });
+		var myIcon = L.icon({
+			iconUrl: 'images/show/bus.png',
+			iconSize: [22, 45],
+			iconAnchor: [11, 22],
+			popupAnchor: [0, -7],
+		});
 
-        // console.log(greenIcon);
-        markers[dataArr['id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
-                icon: myIcon,
-                rotationAngle: dataArr['course'],
-                rotationOrigin: 'center center'
-            })
-            .bindPopup(
-                'รายละเอียด' +
-                '<br>ทะเบียน : ' +
-                dataArr['name'] +
-                '<br>ความเร็ว : ' +
-                dataArr['speed'] +
-                '<br>เวลา : ' +
-                dataArr['devicetime'] +
-                '<br>ตำแหน่ง : ' +
-                toFixed(dataArr['lat'], 5) +
-                ',' +
-                toFixed(dataArr['lng'], 5)
-            )
-            .bindTooltip(dataArr['name'], {
-                permanent: true,
-                direction: 'bottom',
-                offset: [0, 20],
-                interactive: false,
-                opacity: 15,
-                className: 'myCSSClass',
-            })
-            .openTooltip();
-        markers.id = dataArr['id'];
+		// console.log(greenIcon);
+		markers[dataArr['id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
+			icon: myIcon,
+			rotationAngle: dataArr['course'],
+			rotationOrigin: 'center center'
+		})
+			.bindPopup(
+				'รายละเอียด' +
+				'<br>ทะเบียน : ' +
+				dataArr['name'] +
+				'<br>ความเร็ว : ' +
+				dataArr['speed'] +
+				'<br>เวลา : ' +
+				dataArr['devicetime'] +
+				'<br>ตำแหน่ง : ' +
+				toFixed(dataArr['lat'], 5) +
+				',' +
+				toFixed(dataArr['lng'], 5) +
+				'<br>รหัสใบขับขี่ : ' +
+				license(dataArr['driverLicense'])
+			)
+			.bindTooltip(dataArr['name'], {
+				permanent: true,
+				direction: 'bottom',
+				offset: [0, 20],
+				interactive: false,
+				opacity: 15,
+				className: 'myCSSClass',
+			})
+			.openTooltip();
+		markers.id = dataArr['id'];
 
-        markers[dataArr['id']].previousLatLngs = [];
-        markerGroup.addLayer(markers[dataArr['id']]);
-        // markers.remove;
-    } else {
-        // console.log("fff");
-        markers[dataArr['id']].previousLatLngs.push(markers[dataArr['id']].getLatLng());
-        markers[dataArr['id']].setLatLng([dataArr['lat'], dataArr['lng']])
-            .bindPopup(
-                'รายละเอียด' +
-                '<br>ทะเบียน : ' +
-                dataArr['name'] +
-                '<br>ความเร็ว : ' +
-                dataArr['speed'] +
-                '<br>เวลา : ' +
-                dataArr['devicetime'] +
-                '<br>ตำแหน่ง : ' +
-                toFixed(dataArr['lat'], 5) +
-                ',' +
-                toFixed(dataArr['lng'], 5)
-            );
-        markerGroup.addLayer(markers[dataArr['id']]);
-        // markerGroup.hide(markers[dataArr["id"]]);
-    }
-    // console.log(setLatLng);
+		markers[dataArr['id']].previousLatLngs = [];
+		markerGroup.addLayer(markers[dataArr['id']]);
+		// markers.remove;
+	} else {
+		// console.log("fff");
+		markers[dataArr['id']].previousLatLngs.push(markers[dataArr['id']].getLatLng());
+		markers[dataArr['id']].setLatLng([dataArr['lat'], dataArr['lng']])
+			.bindPopup(
+				'รายละเอียด' +
+				'<br>ทะเบียน : ' +
+				dataArr['name'] +
+				'<br>ความเร็ว : ' +
+				dataArr['speed'] +
+				'<br>เวลา : ' +
+				dataArr['devicetime'] +
+				'<br>ตำแหน่ง : ' +
+				toFixed(dataArr['lat'], 5) +
+				',' +
+				toFixed(dataArr['lng'], 5)+
+				'<br>รหัสใบขับขี่ : ' +
+				license(dataArr['driverLicense'])
+			);
+		markerGroup.addLayer(markers[dataArr['id']]);
+		// markerGroup.hide(markers[dataArr["id"]]);
+	}
+	// console.log(setLatLng);
 }
 
 // format date time
@@ -244,14 +234,44 @@ function fuel(fuelid) {
     }
 }
 
+
 function license(licenseid) {
-    if (licenseid !== null) {
-        return licenseid;
-    } else {
-
-        return '';
-
-    }
+	var result = '';
+	if (licenseid == null) {
+		return '';
+	} else if (licenseid.length == 112) {
+		licenseid = licenseid.substr(49, 41);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 115) {
+		licenseid = licenseid.substr(49, 44);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 110) {
+		licenseid = licenseid.substr(49, 39);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 63) {
+		licenseid = licenseid.substr(0, 41);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 41) {
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 65) {
+		licenseid = licenseid.substr(3, 41);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 70) {
+		licenseid = licenseid.substr(5, 44);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else {
+		licenseid = licenseid.split(' ');
+		license = licenseid.slice(3, 59);
+		result = license.toString().replace(/,+/g, ' ');
+		return result
+	}
 }
 
 //click panto to marker
