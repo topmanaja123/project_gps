@@ -58,9 +58,6 @@
                                     <div align="center">เชื่อมต่อล่าสุด</div>
                                 </th>
                                 <th>
-                                    <div align="center"><i class="far fa-id-badge"></i></div>
-                                </th>
-                                <th>
                                     <div align="center"><i class="far fa-tachometer-alt-fast"></i></div>
                                 </th>
                                 <th>

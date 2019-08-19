@@ -57,7 +57,6 @@ function getDataFromDb() {
 						val['name'] +
 						'</td>';
 					tr = tr + '<td>' + dateTime(val['devicetime']) + '</td>';
-					tr = tr + '<td>' + license(val['driverLicense']) + '</td>';
 					tr = tr + '<td>' + toFixed(val['speed'], 2) + '</td>';
 					tr = tr + '<td>' + fuel(att['adc1']) + '</td>';
 					tr = tr + '</tr>';
@@ -83,20 +82,7 @@ function getDataFromDb() {
 						// 'state': val["state"],
 						photo: val['photo'],
 					};
-					// var licenseZ = [];
-					// 23            1            0005460  30100                     ?
-					// 22            1            0008052  60602
-					// ;6007641500900095877=181019880713=?+             12            1            0026558  50200                     ? *68
-					// 22            1            0069961  20100                     
-
-					var driL = [];
-					driL = ";6007645660800026867=210919741003=?+             23            1            0061961  10400                     ?";
 					
-					var resultEx1 = driL.substr(49, 41);
-					var result = resultEx1.replace(/\s+/g, ' ');
-					console.log(result);
-
-					// console.log(val['driverLicense']);
 					dataRealtime(data2);
 				});
 				search();
@@ -142,7 +128,9 @@ function dataRealtime(Data) {
 				'<br>ตำแหน่ง : ' +
 				toFixed(dataArr['lat'], 5) +
 				',' +
-				toFixed(dataArr['lng'], 5)
+				toFixed(dataArr['lng'], 5) +
+				'<br>รหัสใบขับขี่ : ' +
+				license(dataArr['driverLicense'])
 			)
 			.bindTooltip(dataArr['name'], {
 				permanent: true,
@@ -173,7 +161,9 @@ function dataRealtime(Data) {
 				'<br>ตำแหน่ง : ' +
 				toFixed(dataArr['lat'], 5) +
 				',' +
-				toFixed(dataArr['lng'], 5)
+				toFixed(dataArr['lng'], 5)+
+				'<br>รหัสใบขับขี่ : ' +
+				license(dataArr['driverLicense'])
 			);
 		markerGroup.addLayer(markers[dataArr['id']]);
 		// markerGroup.hide(markers[dataArr["id"]]);
@@ -244,15 +234,43 @@ function fuel(fuelid) {
 	}
 }
 
+
 function license(licenseid) {
-
-
-	if (licenseid !== null) {
-		return licenseid;
-	} else {
-
+	var result = '';
+	if (licenseid == null) {
 		return '';
-
+	} else if (licenseid.length == 112) {
+		licenseid = licenseid.substr(49, 41);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 115) {
+		licenseid = licenseid.substr(49, 44);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 110) {
+		licenseid = licenseid.substr(49, 39);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 63) {
+		licenseid = licenseid.substr(0, 41);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 41) {
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 65) {
+		licenseid = licenseid.substr(3, 41);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else if (licenseid.length == 70) {
+		licenseid = licenseid.substr(5, 44);
+		result = licenseid.replace(/\s+/g, ' ');
+		return result
+	} else {
+		licenseid = licenseid.split(' ');
+		license = licenseid.slice(3, 59);
+		result = license.toString().replace(/,+/g, ' ');
+		return result
 	}
 }
 
