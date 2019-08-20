@@ -82,7 +82,7 @@ function getDataFromDb() {
 						// 'state': val["state"],
 						photo: val['photo'],
 					};
-					
+
 					dataRealtime(data2);
 				});
 				search();
@@ -161,7 +161,7 @@ function dataRealtime(Data) {
 				'<br>ตำแหน่ง : ' +
 				toFixed(dataArr['lat'], 5) +
 				',' +
-				toFixed(dataArr['lng'], 5)+
+				toFixed(dataArr['lng'], 5) +
 				'<br>รหัสใบขับขี่ : ' +
 				devLicense(dataArr['driverLicense'])
 			);
@@ -226,12 +226,32 @@ function get_time_diff(datetime) {
 
 function fuel(fuelid) {
 
+<<<<<<< HEAD
     // console.log(fuelid);
     if (typeof fuelid !== 'undefined') {
         return fuelid;
     } else {
         return '';
     }
+=======
+	var fuelMax = 100; //น้ำมันเต็ม
+
+	var fuelV = 215; //ค่าโวลต์ ต่ำสุด ที่น้ำมัน 0%
+
+	var fuelUse = fuelid / fuelV * fuelMax; //คำนวณค่าน้ำมันที่ใช้ไป
+	var fueltotal = 100 - fuelUse; //ผลลัพ ค่าน้ำมันเป็น เปอร์เซน
+
+	if (isNaN(fuelid)) {
+		return '';
+	}
+	else if (fuelid == '0') {
+		return '';
+	} else if (fuelid == '0000') {
+		return fueltotal.toFixed(2) + ' %';
+	} else {
+		return fueltotal.toFixed(2) + ' %';
+	}
+>>>>>>> develop1
 }
 
 
