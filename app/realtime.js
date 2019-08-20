@@ -226,14 +226,6 @@ function get_time_diff(datetime) {
 
 function fuel(fuelid) {
 
-<<<<<<< HEAD
-    // console.log(fuelid);
-    if (typeof fuelid !== 'undefined') {
-        return fuelid;
-    } else {
-        return '';
-    }
-=======
 	var fuelMax = 100; //น้ำมันเต็ม
 
 	var fuelV = 215; //ค่าโวลต์ ต่ำสุด ที่น้ำมัน 0%
@@ -251,7 +243,6 @@ function fuel(fuelid) {
 	} else {
 		return fueltotal.toFixed(2) + ' %';
 	}
->>>>>>> develop1
 }
 
 
