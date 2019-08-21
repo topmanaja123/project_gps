@@ -43,22 +43,11 @@ function getDataFromDb() {
 					// console.log(devi_name);
 					var att = jQuery.parseJSON(val['attributes']);
 					var tr = "<tr style='background-color : " + get_time_diff(val['devicetime']) + "'>";
-					tr =
-						tr +
-						"<td id='" +
-						val[''] +
-						"' onclick='myPanto(" +
-						val['devi_id'] +
-						',' +
-						val['lat'] +
-						',' +
-						val['lng'] +
-						")' style=cursor:pointer; >" +
-						val['name'] +
-						'</td>';
-					tr = tr + '<td>' + dateTime(val['devicetime']) + '</td>';
-					tr = tr + '<td>' + toFixed(val['speed'], 2) + '</td>';
-					tr = tr + '<td>' + fuel(att['adc1']) + '</td>';
+					tr = tr + "<td id='" + val[''] + "' onclick='myPanto("+ val['devi_id'] + ',' +	val['lat'] +
+						',' + val['lng'] + ")' style=cursor:pointer; >" + val['name']+ keyCheck(att['status'])  + '</td>';
+					tr = tr + '<td align="center">' + dateTime(val['devicetime']) + '</td>';
+					tr = tr + '<td align="center">' + toFixed(val['speed'], 2) + '</td>';
+					tr = tr + '<td align="center">' + fuel(att['adc1']) + '</td>';
 					tr = tr + '</tr>';
 					$('#myTable > tbody:last').append(tr);
 
@@ -82,7 +71,7 @@ function getDataFromDb() {
 						// 'state': val["state"],
 						photo: val['photo'],
 					};
-
+					// console.log(att['status']);
 					dataRealtime(data2);
 				});
 				search();
@@ -125,10 +114,8 @@ function dataRealtime(Data) {
 				toFixed(dataArr['speed'], 2) +
 				'<br>เวลา : ' +
 				dataArr['devicetime'] +
-				'<br>ตำแหน่ง : ' +
-				toFixed(dataArr['lat'], 5) +
-				',' +
-				toFixed(dataArr['lng'], 5) +
+				'<br>ตำแหน่ง : ' + 
+				'<a href="http://www.google.com/maps/place/'+ toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) +' " target="_blank" color="black">' + toFixed(dataArr['lat'], 5) + ',' +	toFixed(dataArr['lng'], 5) +'</a>'+
 				'<br>รหัสใบขับขี่ : ' +
 				devLicense(dataArr['driverLicense'])
 			)
@@ -159,9 +146,7 @@ function dataRealtime(Data) {
 				'<br>เวลา : ' +
 				dataArr['devicetime'] +
 				'<br>ตำแหน่ง : ' +
-				toFixed(dataArr['lat'], 5) +
-				',' +
-				toFixed(dataArr['lng'], 5) +
+				'<a href="http://www.google.com/maps/place/'+ toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) +' " target="_blank">' + toFixed(dataArr['lat'], 5) + ',' +	toFixed(dataArr['lng'], 5) +'</a>'+
 				'<br>รหัสใบขับขี่ : ' +
 				devLicense(dataArr['driverLicense'])
 			);
@@ -306,6 +291,21 @@ function doLoop() {
 function keySearch() {
     markerGroup.clearLayers();
     getDataFromDb();
+}
+
+function keyCheck(statusKey) {
+
+	if (typeof statusKey == 'undefined') {
+		return ' ';
+	}else if (statusKey == '2000') {
+		return ' ';
+	}else if(statusKey == '2400'){
+		return ' <i class="fas fa-key"></i>';
+	}else if(statusKey == '6400'){
+		return ' <i class="fas fa-key"></i>';
+	}else{
+		return ' ';
+	}
 }
 
 // filter table
