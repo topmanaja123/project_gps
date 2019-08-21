@@ -127,6 +127,9 @@ while ($obResult = $objQuery->fetch_assoc()) {
     'course' => $obResult['course'],
     'attributes' =>	$obResult['attributes'],
     'valid' => $obResult['valid'],
+    'connect' => $obResult['connect'],
+    'connect_post' => $obResult['connect_post'],
+    'connect_acc' => $obResult['connect_acc'],
     // 'state' => $obResult['state'],
     'category' => $obResult['category']
   ); 
