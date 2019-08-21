@@ -43,8 +43,8 @@ function getDataFromDb() {
 					// console.log(devi_name);
 					var att = jQuery.parseJSON(val['attributes']);
 					var tr = "<tr style='background-color : " + get_time_diff(val['devicetime']) + "'>";
-					tr = tr + "<td id='" + val[''] + "' onclick='myPanto("+ val['devi_id'] + ',' +	val['lat'] +
-						',' + val['lng'] + ")' style=cursor:pointer; >" + val['name']+ keyCheck(att['status'])  + '</td>';
+					tr = tr + "<td id='" + val[''] + "' onclick='myPanto(" + val['devi_id'] + ',' + val['lat'] +
+						',' + val['lng'] + ")' style=cursor:pointer; >" + val['name'] + keyCheck(att['status']) + '</td>';
 					tr = tr + '<td align="center">' + dateTime(val['devicetime']) + '</td>';
 					tr = tr + '<td align="center">' + toFixed(val['speed'], 2) + '</td>';
 					tr = tr + '<td align="center">' + fuel(att['adc1']) + '</td>';
@@ -67,9 +67,12 @@ function getDataFromDb() {
 						speed: val['speed'],
 						course: val['course'],
 						// attributes: val['attributes'],
+						connect: val['connect'],
+						connect_post: val['connect_post'],
+						connect_acc: val['connect_acc'],
 						valid: val['valid'],
 						// 'state': val["state"],
-						photo: val['photo'],
+						photo: val['photo']
 					};
 					// console.log(att['status']);
 					dataRealtime(data2);
@@ -93,6 +96,10 @@ function dataRealtime(Data) {
 		// 	iconUrl: 'images/show/bus.png'
 		// });
 
+		// var latlng = L.latLng([dataArr['lat'], dataArr['lng']]);
+
+		// console.log(latlng);
+
 		var myIcon = L.icon({
 			iconUrl: 'images/show/bus.png',
 			iconSize: [22, 45],
@@ -114,10 +121,11 @@ function dataRealtime(Data) {
 				toFixed(dataArr['speed'], 2) +
 				'<br>เวลา : ' +
 				dataArr['devicetime'] +
-				'<br>ตำแหน่ง : ' + 
-				'<a href="http://www.google.com/maps/place/'+ toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) +' " target="_blank" color="black">' + toFixed(dataArr['lat'], 5) + ',' +	toFixed(dataArr['lng'], 5) +'</a>'+
+				'<br>ตำแหน่ง : ' +
+				'<a href="http://www.google.com/maps/place/' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + ' " target="_blank" style="color:#515151;">' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + '</a>' +
 				'<br>รหัสใบขับขี่ : ' +
-				devLicense(dataArr['driverLicense'])
+				devLicense(dataArr['driverLicense']) +
+				'<br>เชื่อมต่อกับ : ' + connectDlt(dataArr['connect']) + ' ' + connectPost(dataArr['connect_post'])
 			)
 			.bindTooltip(dataArr['name'], {
 				permanent: true,
@@ -136,7 +144,7 @@ function dataRealtime(Data) {
 	} else {
 		// console.log("fff");
 		markers[dataArr['id']].previousLatLngs.push(markers[dataArr['id']].getLatLng());
-		markers[dataArr['id']].setLatLng([dataArr['lat'], dataArr['lng']])
+		markers[dataArr['id']].setLatLng([dataArr['lat'], dataArr['lng']]).setRotationAngle(dataArr['course'])
 			.bindPopup(
 				'รายละเอียด' +
 				'<br>ทะเบียน : ' +
@@ -146,10 +154,11 @@ function dataRealtime(Data) {
 				'<br>เวลา : ' +
 				dataArr['devicetime'] +
 				'<br>ตำแหน่ง : ' +
-				'<a href="http://www.google.com/maps/place/'+ toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) +' " target="_blank">' + toFixed(dataArr['lat'], 5) + ',' +	toFixed(dataArr['lng'], 5) +'</a>'+
+				'<a href="http://www.google.com/maps/place/' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + ' " target="_blank" style="color:#515151;">' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + '</a>' +
 				'<br>รหัสใบขับขี่ : ' +
-				devLicense(dataArr['driverLicense'])
-			);
+				devLicense(dataArr['driverLicense']) +
+				'<br>เชื่อมต่อกับ : ' + connectDlt(dataArr['connect']) + ' ' + connectPost(dataArr['connect_post'])
+			)
 		markerGroup.addLayer(markers[dataArr['id']]);
 		// markerGroup.hide(markers[dataArr["id"]]);
 	}
@@ -188,6 +197,7 @@ function get_time_diff(datetime) {
 		// console.log("dd");
 		return '#FFB1B1';
 	}
+
 	var milisec_diff = now - datetime;
 
 	var M = milisec_diff / 1000;
@@ -220,9 +230,8 @@ function fuel(fuelid) {
 
 	if (isNaN(fuelid)) {
 		return '';
-	}
-	else if (fuelid == '0') {
-		return '';
+	} else if (fuelid == '0') {
+		return ' ';
 	} else if (fuelid == '0000') {
 		return fueltotal.toFixed(2) + ' %';
 	} else {
@@ -269,9 +278,25 @@ function devLicense(licenseid) {
 		return result
 	}
 }
+function connectDlt(conDlt) {
+	if (conDlt == '1') {
+		return '<img src="./images/connect/dlt.png" height="25" width="25">';
+	} else {
+		return ' ';
+	}
+}
+
+function connectPost(conPost) {
+	if (conPost == '1') {
+		return '<img src="./images/connect/post.jpg" height="25" width="25"></img>';
+	} else {
+		return ' ';
+	}
+}
+
 
 //click panto to marker
-function myPanto(id, lat, lng) {
+ function myPanto(id, lat, lng) {
 	map.setView([lat, lng], 16, {
 		animate: true,
 		noMoveStart: true,
@@ -297,13 +322,13 @@ function keyCheck(statusKey) {
 
 	if (typeof statusKey == 'undefined') {
 		return ' ';
-	}else if (statusKey == '2000') {
+	} else if (statusKey == '2000') {
 		return ' ';
-	}else if(statusKey == '2400'){
+	} else if (statusKey == '2400') {
 		return ' <i class="fas fa-key"></i>';
-	}else if(statusKey == '6400'){
+	} else if (statusKey == '6400') {
 		return ' <i class="fas fa-key"></i>';
-	}else{
+	} else {
 		return ' ';
 	}
 }
