@@ -185,42 +185,9 @@ function dateTime(dateT) {
 
 //เปลี่ยนสี สถานะรถ offline & online
 function get_time_diff(datetime) {
-<<<<<<< HEAD
-    var datetime = new Date(datetime).getTime();
-    var now = new Date().getTime();
-
-    if (isNaN(datetime)) {
-        // console.log("N");
-        return '';
-    }
-
-    if (datetime == '0000-00-00 00:00:00') {
-        // console.log("dd");
-        return '#FFB1B1';
-    }
-    var milisec_diff = now - datetime;
-
-    var M = milisec_diff / 1000;
-    // var date_diff = new Date(milisec_diff);
-    if (M < '0') {
-        // console.log("O");
-        return '#fdb14a';
-    } else if (M >= '0' && M < '300') {
-        // console.log("G");
-        return '#BDFF73';
-    } else if (M > '300' && M <= '600') {
-        // console.log("Y");
-        return '#FFFF8D';
-    } else if (M > '600') {
-        // console.log("R");
-        return '#FFB1B1';
-    }
-
-    // console.log(M);
-=======
 	var datetime = new Date(datetime).getTime();
 	var now = new Date().getTime();
-
+//55555
 	if (isNaN(datetime)) {
 		// console.log("N");
 		return '';
@@ -250,7 +217,6 @@ function get_time_diff(datetime) {
 	}
 
 	// console.log(M);
->>>>>>> develop1
 }
 
 function fuel(fuelid) {
@@ -330,19 +296,11 @@ function connectPost(conPost) {
 
 
 //click panto to marker
-<<<<<<< HEAD
 function myPanto(id, lat, lng) {
     map.setView([lat, lng], 16, {
         animate: true,
         noMoveStart: true
     });
-=======
- function myPanto(id, lat, lng) {
-	map.setView([lat, lng], 16, {
-		animate: true,
-		noMoveStart: true,
-	});
->>>>>>> develop1
 }
 
 // Realtime 10 Seconds
