@@ -29,9 +29,7 @@
     <!-- realtimeJs  -->
     <script src="app/realtime.js"></script>
     <title>Document</title>
-    <style>
 
-    </style>
 </head>
 
 <body Onload="onLoad();">
