@@ -23,14 +23,7 @@
     /* border-color: black; */
     box-shadow: none;
     cursor: none;
-<<<<<<< HEAD
     /* margin: ; */
-=======
-    margin: 0px;
-    padding: 0px;
-    
-
->>>>>>> develop1
 }
 
 .leaflet-tooltip-bottom:before {

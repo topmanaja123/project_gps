@@ -65,7 +65,7 @@
                         </thead>
 
                         <!-- body dynamic rows -->
-                        <tbody id='myBody' >
+                        <tbody id='myBody'>
 
                         </tbody>
                     </table>

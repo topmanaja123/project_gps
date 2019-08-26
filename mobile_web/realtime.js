@@ -33,7 +33,7 @@ function getDataFromDb() {
 						',' + val['lng'] + ")' style=cursor:pointer; >" + val['name'] + keyCheck(att['status']) + '</td>';
 					tr = tr + '<td align="center">' + dateTime(val['devicetime']) + '</td>';
 					tr = tr + '<td align="center">' + toFixed(val['speed'], 2) + '</td>';
-					tr = tr + '<td align="center">' + fuel(att['adc1']) + '</td>';
+
 					tr = tr + '</tr>';
 					$('#myTable > tbody:last').append(tr);
 
