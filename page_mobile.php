@@ -47,10 +47,10 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <div class="form-row p-1" style="height : 5vh">
-                        <div class="form-group font-mar">ค้นหา</div>
-                        <div class="form-group col">
-                            <input class="form-control" type="text" id="sc" name="sc" onkeyup="keySearch()"
+                    <div class="form-row p-3" style="height : 5vh">
+                        <div class="form-group font-mar text-white align-self-center">ค้นหา</div>
+                        <div class="form-group col ">
+                            <input class="form-control form-control-sm" type="text" id="sc" name="sc" onkeyup="keySearch()"
                                 placeholder="ทะเบียนรถ">
                         </div>
                     </div>
@@ -85,6 +85,13 @@
             <div class="col lockH marginMap">
                 <div id="map" style="height : 100vh" class="marginMap"></div>
             </div>
+        <footer class="page-footer font-small bg-success ">
+            
+          <button>แสดง</button>
+          <button>55</button>
+          <button>555</button>
+
+        </footer>
         </div>
         <!-- /#page-content-wrapper -->
     </div>
