@@ -14,8 +14,8 @@
     }
 
     nav {
-        margin-left: -15px;
-        margin-right: -15px;
+        margin-left: -10px;
+        margin-right: -10px;
     }
 
     .font-mar {
@@ -29,7 +29,6 @@
 
     .navbar-color.navbar-toggler {
         background-color: #46c837;
-        
     }
     </style>
 </head>
@@ -56,23 +55,25 @@
                         </div>
                     </div>
                     <br />
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar" id="style-3" style="height : 50vh">
-                        <table class="table table-bordered table-hover table-sm" id="myTable">
-                            <thead>
-                                <tr class="header color-head-table">
-                                    <th width="30%">
-                                        <div align="center">ทะเบียนรถ</div>
-                                    </th>
-                                    <th width="auto">
-                                        <div align="center">เชื่อมต่อล่าสุด</div>
-                                    </th>
-                                    <th>
-                                        <div align="center"><i class="far fa-tachometer-alt-fast"></i>
-                                        </div>
-                                    </th>
+                    <table class="table table-bordered table-hover table-sm mb-0">
+                        <thead>
+                            <tr class="header color-head-table table-head">
+                                <th width="40%">
+                                    <div align="center">ทะเบียนรถ</div>
+                                </th>
+                                <th width="50%">
+                                    <div align="center">เชื่อมต่อล่าสุด</div>
+                                </th>
+                                <th width="10%">
+                                    <div align="center"><i class="far fa-tachometer-alt-fast"></i>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar " style="height : 50vh">
+                        <table class="table table-bordered table-hover table-sm" id="myTable" style="overflow:hidden;">
 
-                                </tr>
-                            </thead>
                             <!-- body dynamic rows -->
                             <tbody id='myBody'>
 
@@ -80,13 +81,10 @@
                         </table>
                     </div>
                 </div>
-
-
             </nav>
             <div class="col lockH marginMap">
                 <div id="map" style="height : 100vh" class="marginMap"></div>
             </div>
-
         </div>
         <!-- /#page-content-wrapper -->
     </div>
