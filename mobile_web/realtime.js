@@ -30,9 +30,9 @@ function getDataFromDb() {
 					
 					var tr = "<tr style='background-color : " + get_time_diff(val['devicetime']) + "'>";
 					tr = tr + "<td  id='" + val[''] + "' onclick='myPanto(" + val['devi_id'] + ',' + val['lat'] +
-						',' + val['lng'] + ")' style=cursor:pointer; width=40%>" + val['name'] + keyCheck(att['status']) + '</td>';
+						',' + val['lng'] + ")' style=cursor:pointer; width=35%>" + val['name'] + keyCheck(att['status']) + '</td>';
 					tr = tr + '<td align="center" width="50%">' + dateTime(val['devicetime']) + '</td>';
-					tr = tr + '<td align="center" width="10%">' + toFixed(val['speed'], 2) + '</td>';
+					tr = tr + '<td align="center" width="15%">' + toFixed(val['speed'], 2) + '</td>';
 
 					tr = tr + '</tr>';
 					$('#myTable > tbody:last ').append(tr);

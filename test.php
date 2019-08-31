@@ -1,96 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-</head>
-<body>
-     
-    <br><br>
-     
-    <div class="container-fluid" style="margin:auto;width:65%;position:relative;height:300px;">      
-<table class="table table-striped" style="width:500px;position:relative;">
-      <thead>
-       <tr class="bg-warning">
-           <td colspan="4" class="text-center" id="place_show">
- 
-           </td>
-       </tr>
-        <tr class="bg-warning" style="display: table;width:100vw;">
-          <td style="width:50px;">#</td>
-          <td style="width:150px;">First Name</td>
-          <td style="width:150px;">Last Name</td>
-          <td style="width:150px;">Username</td>
-        </tr>
-      </thead>
-<!--      ค่า top 114px คือค่าที่ต้องการยับจากด้านบนออกจากส่วนของ thead-->
-      <tbody id="place_data" style="
-        position: absolute;
+
+    <style>
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+    }
+
+    nav {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+
+    .font-mar {
+        margin-left: 10px;
+        margin-right: -10px;
+    }
+
+
+    .wrapper {
+        height: 100%;
         width: 100%;
-        display: table-column-group;
-        height: 200px;
+        display: table;
+    }
+
+    .header,
+    .content,
+    .footer {
+        display: table-row;
+    }
+
+    .header,
+    .footer {
+        background: silver;
+    }
+
+    .inner {
+        display: table-cell;
+    }
+
+    .content .inner {
+        height: 100%;
+        position: relative;
+        background: pink;
+    }
+
+    .scrollable {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
         overflow: auto;
-         ">
-          <?php for($i=1;$i<20;$i++){?>
-          <tr style="display: table;width:100%;">
-          <td style="width:50px;"><?=$i?></td>
-          <td style="width:150px;">Mark </td>
-          <td style="width:150px;">Otto</td>
-          <td style="width:150px;">@mdo</td>
-        </tr>
-          <?php } ?>
-          <?php for($i=21;$i<51;$i++){?>
-          <tr style="display: table;width:100%;">
-          <td style="width:50px;"><?=$i?></td>
-          <td style="width:150px;">Larry </td>
-          <td style="width:150px;">the Bird</td>
-          <td style="width:150px;">@twitter</td>
-        </tr>
-          <?php } ?>          
-          <?php for($i=51;$i<81;$i++){?>          
-        <tr style="display: table;width:100%;">
-          <td style="width:50px;"><?=$i?></td>
-          <td style="width:150px;">Jacob</td>
-          <td style="width:150px;">Thornton</td>
-          <td style="width:150px;">@fat</td>
-        </tr>
-          <?php } ?>
-      </tbody>
-    </table>        
-    </div>   
-     
-    <br style="clear:both;">    
-    <br style="clear:both;">   
- 
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>  
-<script type="text/javascript">
-$(function(){
- 
-    var objTR = $("#place_data").find("tr"); // อ้างอิง tr ใน tbody
-     
-    // เก็บตัวแปรค่าของข้อมูลของแถวแรก ในตารางส่วนขงอ tbody คอลัมน์ที่ 2 (ค่าในโปรแกรมเป็น 1)
-    var dataTopic = objTR.eq(0).find("td:eq(1)").text();
-    $("#place_show").html("Name: "+dataTopic); // แสดงค่าเริ่มต้น   
-     
-    // เมื่อ tbody มีการเลื่อน
-    $("#place_data").scroll(function () {
-        var pos_one=null; // ไว้เก็บตัวแปรตำแหน่ง tr ที่จะใช้งาน
-        // วน tr ใน tbody
-        objTR.each(function(i,v){
-            var pos_val = objTR.eq(i).offset(); // เก็บค่าตำแหน่ง tr
-            if(pos_val.top>=$("#place_data").offset().top){
-                pos_one=i; // เก็บค่า index ของ tr
-                return false; // ยกเลิกการวนลูป
-            }
-        });
-        // เก็บค่าข้อมูลใน tr จากตำแหน่งที่ได้จากค่า pos_one โดยใช้ค่าในคอลัมน์ 2 (ในโค้ด 1)
-        var dataTopic = objTR.eq(pos_one).find("td:eq(1)").text();
-        $("#place_show").html("Name: "+dataTopic); // แสดงค่าข้อมูล
- 
-    });
-     
-});
-</script>    
+    }
+    </style>
+</head>
+
+<body  Onload="onLoad();">
+    <?php
+require'cssAjs.php';
+?>
+    <div class="wrapper">
+
+        <!-- Header  -->
+        <div class="header">
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-dark bg-success fix-header ">
+
+                <button class="navbar-toggler navbar-color mar-left" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <div class="form-row p-3" style="height : 5vh">
+                        <div class="form-group font-mar text-white align-self-center">ค้นหา</div>
+                        <div class="form-group col ">
+                            <input class="form-control form-control-sm" type="text" id="sc" name="sc"
+                                onkeyup="keySearch()" placeholder="ทะเบียนรถ">
+                        </div>
+                    </div>
+                    <br />
+                    <table class="table table-bordered table-hover table-sm mb-0">
+                        <thead>
+                            <tr class="header color-head-table table-head">
+                                <th width="40%">
+                                    <div align="center">ทะเบียนรถ</div>
+                                </th>
+                                <th width="50%">
+                                    <div align="center">เชื่อมต่อล่าสุด</div>
+                                </th>
+                                <th width="10%">
+                                    <div align="center"><i class="far fa-tachometer-alt-fast"></i>
+                                    </div>
+                                </th>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div class="table-wrapper-scroll-y my-custom-scrollbar " style="height : 50vh">
+                        <table class="table table-bordered table-hover table-sm" id="myTable" style="overflow:hidden;">
+
+                            <!-- body dynamic rows -->
+                            <tbody id='myBody'>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+        </div>
+        <!-- end Header  -->
+
+        <!-- content -->
+        <div class="content">
+            <div class="inner">
+                <div class="scrollable">
+                    <div class="col lockH marginMap">
+                        <div id="map" class="lockH"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end content -->
+
+        <!-- footer -->
+        <div class="footer">
+            <div class="form-row">
+            <button type="button" class="col">แสดง</button>
+            <button type="button" class="col">55</button>
+            <button type="button" class="col">555</button>
+            </div>
+        </div>
+        <!-- end footer -->
+    </div>
+
+
 </body>
+
 </html>
+
+<script src="app/map.js"></script>
