@@ -40,9 +40,10 @@
         html,
         body {
             height: 100%;
+            width : 100%;
             margin: 0;
             overflow: hidden;
-    position:fixed;
+            position:fixed;
         }
 
         nav {
@@ -74,7 +75,7 @@
         .content .inner {
             height: 100%;
             position: relative;
-            /* background: pink; */
+            background: pink;
         }
     </style>
 </head>
@@ -84,7 +85,7 @@
 
         <!-- navbar -->
         <?php
-        include 'navbar/nav-realtime.php';
+        require 'navbar/nav-realtime.php';
         ?>
 
         <!-- content -->
@@ -101,7 +102,7 @@
 
         <!-- footer -->
         <?php
-        include 'footer.php';
+        require 'footer.php';
         ?>
     </div>
 

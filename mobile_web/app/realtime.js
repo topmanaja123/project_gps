@@ -288,6 +288,14 @@ function myPanto(id, lat, lng) {
         animate: true,
         noMoveStart: true
     });
+
+    toggleNav()
+}
+
+function toggleNav() {
+    let element = document.getElementById("navbarSupportedContent");
+    element.classList.remove("show");
+    // console.log(shadesEl.classList);
 }
 
 // Realtime 10 Seconds

@@ -9,7 +9,7 @@
                         <span class="fas fa-bars"></span>
                     </button>
 
-                    <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="form-row p-3" style="height : 5vh">
                             <div class="form-group font-mar text-white align-self-center">ค้นหา</div>
                             <div class="form-group col ">
