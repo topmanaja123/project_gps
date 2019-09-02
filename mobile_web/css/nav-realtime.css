@@ -1,0 +1,23 @@
+.scrollable {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+.navbar-toggler {
+    font-size: 16px !important;
+    color: white !important;
+    border-color: #cecece !important;
+    /* border-radius : 0.5rem !important; */
+}
+
+button .navbar-toggler:focus {
+    color: red !important;
+}
+
+.table-h {
+    background-color: aliceblue;
+}

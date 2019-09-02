@@ -12,9 +12,8 @@
 
 .myCSSClass {
     font-size: 12px;
-    text-shadow: 1px 1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px 0px 0 #ffffff, 0px 1px 0 #ffffff, -1px 0px 0 #ffffff, 0px -1px 0 #ffffff, 1px 1px 1px rgba(70,206,0,0);
+    text-shadow: 1px 1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px 0px 0 #ffffff, 0px 1px 0 #ffffff, -1px 0px 0 #ffffff, 0px -1px 0 #ffffff, 1px 1px 1px rgba(70, 206, 0, 0);
     /* color: red; */
-    
     font-weight: bold;
     /* font-family: cursive; */
     background: none;
@@ -56,10 +55,6 @@
 
 #style-3::-webkit-scrollbar-thumb {
     background-color: #46ff46;
-}
-
-.lockH {
-    height: 100vh;
 }
 
 .marginMap {
