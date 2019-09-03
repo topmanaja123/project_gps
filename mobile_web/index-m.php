@@ -85,7 +85,13 @@
 
         <!-- navbar -->
         <?php
-        require 'navbar/nav-realtime.php';
+        $m=$_GET['m'];
+        switch ($m) {
+            case 'm-real': include'navbar/nav-realtime.php' ;break;
+            
+            default: include'navbar/nav-realtime.php' ;break;
+        }
+        
         ?>
 
         <!-- content -->
