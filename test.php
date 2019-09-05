@@ -7,146 +7,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <style>
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-    }
-
-    nav {
-        margin-left: -10px;
-        margin-right: -10px;
-    }
-
-    .font-mar {
-        margin-left: 10px;
-        margin-right: -10px;
-    }
-
-
-    .wrapper {
-        height: 100%;
-        width: 100%;
-        display: table;
-    }
-
-    .header,
-    .content,
-    .footer {
-        display: table-row;
-    }
-
-    .header,
-    .footer {
-        background: silver;
-    }
-
-    .inner {
-        display: table-cell;
-    }
-
-    .content .inner {
-        height: 100%;
-        position: relative;
-        background: pink;
-    }
-
-    .scrollable {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-        overflow: auto;
-    }
-    </style>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
+        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
+        crossorigin=""></script>
 </head>
 
-<body  Onload="onLoad();">
-    <?php
-require'cssAjs.php';
-?>
-    <div class="wrapper">
-
-        <!-- Header  -->
-        <div class="header">
-        <div id="page-content-wrapper">
-            <nav class="navbar navbar-dark bg-success fix-header ">
-
-                <button class="navbar-toggler navbar-color mar-left" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <div class="form-row p-3" style="height : 5vh">
-                        <div class="form-group font-mar text-white align-self-center">ค้นหา</div>
-                        <div class="form-group col ">
-                            <input class="form-control form-control-sm" type="text" id="sc" name="sc"
-                                onkeyup="keySearch()" placeholder="ทะเบียนรถ">
-                        </div>
-                    </div>
-                    <br />
-                    <table class="table table-bordered table-hover table-sm mb-0">
-                        <thead>
-                            <tr class="header color-head-table table-head">
-                                <th width="40%">
-                                    <div align="center">ทะเบียนรถ</div>
-                                </th>
-                                <th width="50%">
-                                    <div align="center">เชื่อมต่อล่าสุด</div>
-                                </th>
-                                <th width="10%">
-                                    <div align="center"><i class="far fa-tachometer-alt-fast"></i>
-                                    </div>
-                                </th>
-                            </tr>
-                        </thead>
-                    </table>
-                    <div class="table-wrapper-scroll-y my-custom-scrollbar " style="height : 50vh">
-                        <table class="table table-bordered table-hover table-sm" id="myTable" style="overflow:hidden;">
-
-                            <!-- body dynamic rows -->
-                            <tbody id='myBody'>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-            </nav>
-        </div>
-        </div>
-        <!-- end Header  -->
-
-        <!-- content -->
-        <div class="content">
-            <div class="inner">
-                <div class="scrollable">
-                    <div class="col lockH marginMap">
-                        <div id="map" class="lockH"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end content -->
-
-        <!-- footer -->
-        <div class="footer">
-            <div class="form-row">
-            <button type="button" class="col">แสดง</button>
-            <button type="button" class="col">55</button>
-            <button type="button" class="col">555</button>
-            </div>
-        </div>
-        <!-- end footer -->
-    </div>
-
-
+<body>
+<div id="map" style="height : 100vh"></div>
 </body>
 
 </html>
 
-<script src="app/map.js"></script>
+<script>
+var map = L.map('map').setView([51.505, -0.09], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+L.marker([51.5, -0.09]).addTo(map)
+    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+    .openPopup().on('click' , openPP);
+
+    function openPP(e){
+        alert('55555555555');
+    }
+</script>

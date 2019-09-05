@@ -298,6 +298,3 @@
         $('.select2').select2();
     });
 </script>
-<script>
-    $('input[name="dates"]').daterangepicker();
-</script>
