@@ -11,11 +11,13 @@
     <link rel="stylesheet" href="../fontawesome/css/all.css">
     <link href="../css/simple-sidebar.css" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+        integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+        crossorigin="" />
 
     <link rel="stylesheet" href="../css/mystyle.css">
     <link rel="stylesheet" href="css/map.css">
-   
+
     <!-- end css -->
 
 
@@ -23,7 +25,9 @@
     <script src="../vendor/jquery/jquery.min.js"></script>
     <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+        integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+        crossorigin=""></script>
 
     <!-- marker -->
     <script rel="stylesheet" src="../js/leaflet.rotatedMarker.js"></script>
@@ -37,52 +41,51 @@
     <!-- end js -->
 
     <style>
-        html,
-        body {
-            height: 100%;
-            width : 100%;
-            margin: 0;
-            overflow: hidden;
-            position:fixed;
-        }
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        overflow: hidden;
+        position: fixed;
+    }
 
-        nav {
-            margin-left: -10px;
-            margin-right: -10px;
-        }
+    nav {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
 
-        .font-mar {
-            margin-left: 10px;
-            margin-right: -10px;
-        }
+    .font-mar {
+        margin-left: 10px;
+        margin-right: -10px;
+    }
 
-        .wrapper {
-            height: 100%;
-            width: 100%;
-            display: table;
-        }
+    .wrapper {
+        height: 100%;
+        width: 100%;
+        display: table;
+    }
 
-        .header,
-        .content,
-        .footer {
-            display: table-row;
-        }
+    .header,
+    .content,
+    .footer {
+        display: table-row;
+    }
 
-        .inner {
-            display: table-cell;
-        }
+    .inner {
+        display: table-cell;
+    }
 
-        .content .inner {
-            height: 100%;
-            position: relative;
-            background: pink;
-        }
+    .content .inner {
+        height: 100%;
+        position: relative;
+        background: pink;
+    }
     </style>
 </head>
 
 <body Onload="onLoad();">
     <div class="wrapper">
-
         <!-- navbar -->
         <?php
         $m=$_GET['m'];
@@ -111,8 +114,6 @@
         require 'footer.php';
         ?>
     </div>
-
-
 </body>
 
 </html>

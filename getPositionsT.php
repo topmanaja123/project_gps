@@ -103,7 +103,7 @@ INNER JOIN `positions` ON `devices`.`positionid` = `positions`.`id` ";
 if ($sc) {
   $strSQL .= " WHERE name LIKE '%$sc%' ";
 }
-$strSQL .= " LIMIT 20";
+$strSQL .= " LIMIT 500";
 $objQuery = $conn->query($strSQL) or die(mysql_error());
 $intNumField = mysqli_num_fields($objQuery);
 $resultArray = array();
@@ -115,6 +115,7 @@ while ($obResult = $objQuery->fetch_assoc()) {
     'uniqueid' => $obResult['uniqueid'],
     // 'fuel' => $obResult['devi_fuel'],
     'positionid' => $obResult['positionid'],
+    'protocol' => $obResult['protocol'],
     'driverLicense' => $obResult['driverLicense'],
     // 'rfid_number' => $obResult['rfid_number'],
     'devicetime' => $obResult['devicetime'],

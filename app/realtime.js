@@ -30,7 +30,7 @@ function getDataFromDb() {
 					
 					var tr = "<tr style='background-color : " + get_time_diff(val['devicetime']) + "'>";
 					tr = tr + "<td id='" + val[''] + "' onclick='myPanto(" + val['devi_id'] + ',' + val['lat'] +
-						',' + val['lng'] + ")' style=cursor:pointer; >" + val['name'] + keyCheck(att['status']) + '</td>';
+						',' + val['lng'] + ")' style=cursor:pointer; >" + val['name'] + keyCheck(att['status'],val['protocol'],att['ignition']) + '</td>';
 					tr = tr + '<td align="center">' + dateTime(val['devicetime']) + '</td>';
 					tr = tr + '<td align="center">' + toFixed(val['speed'], 2) + '</td>';
 					tr = tr + '<td align="center">' + fuel(att['adc1']) + '</td>';
@@ -45,6 +45,7 @@ function getDataFromDb() {
 						// 'rfid_name': val["rfid_name"],
 						driverLicense: val['driverLicense'],
 						devicetime: val['devicetime'],
+						protocol: val['protocol'],
 						servertime: val['servertime'],
 						fixtime: val['fixtime'],
 						attributes: att['attributes'],
@@ -60,9 +61,11 @@ function getDataFromDb() {
 						// 'state': val["state"],
 						photo: val['photo']
 					};
-					// console.log(att['status']);
+					console.log(val['protocol']);
 					dataRealtime(data2);
+					
 				});
+				
 				search();
 				markerGroup.addTo(map);
 			}
@@ -70,6 +73,7 @@ function getDataFromDb() {
 	});
 }
 // setInterval(getDataFromDb, 5000); // 1000 = 1 second
+
 
 //realtime marker
 function dataRealtime(Data) {
@@ -280,7 +284,6 @@ function connectPost(conPost) {
 	}
 }
 
-
 //click panto to marker
 function myPanto(id, lat, lng) {
     map.setView([lat, lng], 16, {
@@ -304,7 +307,9 @@ function keySearch() {
     getDataFromDb();
 }
 
-function keyCheck(statusKey) {
+function keyCheck(statusKey,namePoto,proGt06) {
+
+if (namePoto == 'meiligao'){
 
 	if (typeof statusKey == 'undefined') {
 		return ' ';
@@ -317,6 +322,43 @@ function keyCheck(statusKey) {
 	} else {
 		return ' ';
 	}
+
+}else if (namePoto == 'meitrack'){
+	if (typeof statusKey == 'undefined') {
+		return ' ';
+	} else if (statusKey == '0000') {
+		return ' ';
+	}else if (statusKey == '0400'){
+		return ' <i class="fas fa-key"></i>';
+	}else {
+		return ' ';
+	}
+
+}else if (namePoto == 'h02'){
+	if (typeof statusKey == 'undefined') {
+		return ' ';
+	} else if (statusKey == '4294949887'){
+		return ' ';
+	}else if (statusKey == '4294942719'){
+		return ' <i class="fas fa-key"></i>';
+	}else {
+		return ' ';
+	}
+
+} else if (namePoto == 'gt06'){
+	if (typeof proGt06 == 'undefined') {
+		return ' ';
+	}else if (proGt06 == 'false') {
+		return ' ';
+	}else if (proGt06 == 'true') {
+		return ' <i class="fas fa-key"></i>';
+	}else {
+		return ' ';
+	}
+}else{
+	return ' ';
+}
+	
 }
 
 // filter table
