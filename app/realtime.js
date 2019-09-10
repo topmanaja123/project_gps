@@ -6,7 +6,7 @@ var arrayData = [];
 
 var popupOption = {
     'className': 'popup-realtime',
-    'autoPan': 'true',
+    // 'autoPan': 'true',
     'maxWidth': '500'
 
 }
@@ -33,9 +33,9 @@ function getDataFromDb() {
                     var att = jQuery.parseJSON(val['attributes']);
 
                     // Realtime table list 
-                    var tr = "<tr style='background-color : " + get_time_diff(val['devicetime']) + "'>";
-                    tr = tr + "<td id='" + val[''] + "' onclick='myPanto(" + val['devi_id'] + ',' + val['lat'] +
-                        ',' + val['lng'] + ")' style=cursor:pointer; >" + val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
+                    var tr = "<tr onclick='myPanto(" + val['devi_id'] + ',' + val['lat'] +
+                        ',' + val['lng'] + ")' style='background-color : " + get_time_diff(val['devicetime']) + "'>";
+                    tr = tr + "<td id='" + val[''] + "' style=cursor:pointer; >" + val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
                     tr = tr + '<td align="center">' + dateTime(val['devicetime']) + '</td>';
                     tr = tr + '<td align="center">' + toFixed(val['speed'], 2) + '</td>';
                     tr = tr + '<td align="center">' + fuel(att['adc1']) + '</td>';
