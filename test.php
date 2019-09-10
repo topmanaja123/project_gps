@@ -1,38 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Reverse Geocoding</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;
+        }
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css"
-        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-        crossorigin="" />
-    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"
-        integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og=="
-        crossorigin=""></script>
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto', 'sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+        #floating-panel {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            margin-left: -180px;
+            width: 350px;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+        }
+
+        #latlng {
+            width: 225px;
+        }
+    </style>
 </head>
 
 <body>
-<div id="map" style="height : 100vh"></div>
+    <div id="floating-panel">
+        <input id="latlng" type="text" value="18.5769503,99.0084035">
+        <input id="submit" type="button" value="Reverse Geocode">
+    </div>
+    <div id="map"></div>
+    <script>
+        //   function initMap() {
+        //     var map = new google.maps.Map(document.getElementById('map'), {
+        //       zoom: 8,
+        //       center: {lat: 40.731, lng: -73.997}
+        //     });
+
+        //     var infowindow = new google.maps.InfoWindow;
+
+        //     document.getElementById('submit').addEventListener('click', function() {
+        //       geocodeLatLng(geocoder, map, infowindow);
+        //     });
+        //   }
+
+        document.getElementById('submit').addEventListener('click', function() {
+            geocodeLatLng();
+        });
+        // var latlngData = '18.5769503,99.0084035';
+        function geocodeLatLng() {
+            var geocoder = new google.maps.Geocoder;
+            var service = new google.maps.places.PlacesService(latlng);
+            var input = document.getElementById('latlng').value;
+            var latlngStr = input.split(',', 2);
+            var latlng = {
+                lat: parseFloat(latlngStr[0]),
+                lng: parseFloat(latlngStr[1])
+            };
+
+
+            geocoder.geocode({
+                'location': latlng
+            }, function(resultsaddr, statusaddr) {
+                if (statusaddr === 'OK') {
+                    if (resultsaddr[0]) {
+                        //   map.setZoom(11);
+                        console.log(resultsaddr);
+
+
+                        geocoder.geocode({
+                            'placeId': resultsaddr[0].place_id
+                        }, function(resultsplace, statusplace) {
+                            if (statusplace === 'OK') {
+                                console.log(resultsplace);
+                            }
+                        });
+
+                        // // place Detail
+                        // service.getDetails(request, function(place, status) {
+                        //     if (status === google.maps.places.PlacesServiceStatus.OK) {
+                        //         var marker = new google.maps.Marker({
+                        //             map: map,
+                        //             position: place.geometry.location
+                        //         });
+                        //         google.maps.event.addListener(marker, 'click', function() {
+                        //             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                        //                 'Place ID: ' + place.place_id + '<br>' +
+                        //                 place.formatted_address + '</div>');
+                        //             infowindow.open(map, this);
+                        //         });
+                        //     }
+                        // });
+
+
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmgbn-fP3rkmLlbpv8wmMimvsmXqexD_o&libraries=places">
+    </script>
 </body>
 
 </html>
-
-<script>
-var map = L.map('map').setView([51.505, -0.09], 13);
-
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-}).addTo(map);
-
-L.marker([51.5, -0.09]).addTo(map)
-    .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-    .openPopup().on('click' , openPP);
-
-    function openPP(e){
-        alert('55555555555');
-    }
-</script>

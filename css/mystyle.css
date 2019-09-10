@@ -10,7 +10,7 @@
     padding: 0;
 }
 
-.myCSSClass {
+.tooltip-realtime {
     font-size: 12px;
     text-shadow: 1px 1px 0 #ffffff, 1px -1px 0 #ffffff, -1px 1px 0 #ffffff, -1px -1px 0 #ffffff, 1px 0px 0 #ffffff, 0px 1px 0 #ffffff, -1px 0px 0 #ffffff, 0px -1px 0 #ffffff, 1px 1px 1px rgba(70, 206, 0, 0);
     /* color: red; */
@@ -23,6 +23,10 @@
     box-shadow: none;
     cursor: none;
     /* margin: ; */
+}
+
+.popup-realtime {
+    font-size: 14px;
 }
 
 .leaflet-tooltip-bottom:before {

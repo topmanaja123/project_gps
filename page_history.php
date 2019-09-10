@@ -88,8 +88,8 @@
 
 
         // Creating time from given date
-        echo $dateStart = DateYMD($dateStart);
-        echo $dateEnd = DateYMD($dateEnd);
+        $dateStart = DateYMD($dateStart);
+        $dateEnd = DateYMD($dateEnd);
 
         // // Creating new date format from that timestamp
         // $dateStart = date("Y-d-m", $dateStart);
@@ -97,16 +97,14 @@
         // $dateEnd = date("Y-d-m", $dateEnd);
 
 
-        echo $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
+        $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
 
         //Query For List Position
         $resultPosition = $conn->query($sqlPosition);
 
         // Query For Marker
         $resultPositionLine = $conn->query($sqlPosition);
-        $resultNums = $resultPosition->num_rows;
 
-        echo $resultNums;
     }
     ?>
     <div class="form-row">
@@ -237,9 +235,8 @@
             ?>
             countx = countx + 1;
             var id = <?= $resultPolyline['id'] ?>;
-            // console.log(id);
             var course = <?= $resultPolyline['course'] ?>;
-            var status = <?= $statusStr ?>;
+            var status = '<?= $statusStr ?>';
             var speed = <?= $resultPolyline['speed'] ?>;
             latlngStr = [<?= $resultPolyline['latitude'] ?>, <?= $resultPolyline['longitude'] ?>];
             latlng.push(latlngStr);
@@ -297,8 +294,4 @@
     $(document).ready(function() {
         $('.select2').select2();
     });
-<<<<<<< HEAD
 </script>
-=======
-</script>
->>>>>>> develop1

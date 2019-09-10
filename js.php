@@ -11,3 +11,11 @@
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<!-- googlemap api -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmgbn-fP3rkmLlbpv8wmMimvsmXqexD_o&libraries=places">
+</script>
+
+<script>
+var key = 'AIzaSyBT6KQUpUXir3DPRVZ6gFKvoi61S25IJvE';
+</script>
