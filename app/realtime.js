@@ -182,7 +182,7 @@ function isMarkerPoi(data) {
                 dataArr['devicetime'] +
                 '<br>ตำแหน่ง : ' +
                 '<a href="http://www.google.com/maps/place/' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + ' " target="_blank" style="color:#515151;">' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + '</a>' +
-                '<br>ที่อยู่ :' + place + '** **' + addr +
+                '<br>ที่อยู่ :' + addr +
                 '<br>รหัสใบขับขี่ : ' +
                 devLicense(dataArr['driverLicense']) +
                 '<br>เชื่อมต่อกับ : ' + connectDlt(dataArr['connect']) + ' ' + connectPost(dataArr['connect_post'])
@@ -208,7 +208,7 @@ function clickMarker(e, data) {
                 dataArr['devicetime'] +
                 '<br>ตำแหน่ง : ' +
                 '<a href="http://www.google.com/maps/place/' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + ' " target="_blank" style="color:#515151;">' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + '</a>' +
-                '<br>ที่อยู่ :' + place + '** **' + addr +
+                '<br>ที่อยู่ :' + addr +
                 '<br>รหัสใบขับขี่ : ' +
                 devLicense(dataArr['driverLicense']) +
                 '<br>เชื่อมต่อกับ : ' + connectDlt(dataArr['connect']) + ' ' + connectPost(dataArr['connect_post'])
@@ -343,7 +343,7 @@ function connectPost(conPost) {
 
 //click panto to marker
 function myPanto(id, lat, lng) {
-    map.setView([lat, lng], 16, {
+    map.setView([lat, lng], 13, {
         animate: true,
         noMoveStart: true
     });
@@ -460,25 +460,4 @@ function geocodeLatLng(datalatlng, fnaddr, fnplace) {
     //     console.log(dataPlace);
     //     // return fnplace(dataPlace.results[0].formatted_address)
     // });
-}
-
-
-
-
-function getContentPoi(data) {
-    let latlngstr = data['lat'] + ',' + data['lng'];
-    data['lng'];
-    'รายละเอียด' +
-    '<br>ทะเบียน : ' +
-    data['name'] +
-        '<br>ความเร็ว : ' +
-        toFixed(data['speed'], 2) +
-        '<br>เวลา : ' +
-        data['devicetime'] +
-        '<br>ตำแหน่ง : ' +
-        '<a href="http://www.google.com/maps/place/' + toFixed(data['lat'], 5) + ',' + toFixed(data['lng'], 5) + ' " target="_blank" style="color:#515151;">' + toFixed(data['lat'], 5) + ',' + toFixed(data['lng'], 5) + '</a>' +
-        '<br>ที่อยู่ :' + geocodeLatLng(latlngstr) +
-        '<br>รหัสใบขับขี่ : ' +
-        devLicense(data['driverLicense']) +
-        '<br>เชื่อมต่อกับ : ' + connectDlt(data['connect']) + ' ' + connectPost(data['connect_post'])
 }

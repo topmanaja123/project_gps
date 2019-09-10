@@ -103,7 +103,7 @@ INNER JOIN `positions` ON `devices`.`positionid` = `positions`.`id` ";
 if ($sc) {
   $strSQL .= " WHERE name LIKE '%$sc%' ";
 }
-$strSQL .= " LIMIT 3";
+$strSQL .= " LIMIT 100";
 $objQuery = $conn->query($strSQL) or die(mysql_error());
 $intNumField = mysqli_num_fields($objQuery);
 $resultArray = array();
