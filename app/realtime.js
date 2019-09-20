@@ -11,6 +11,21 @@ var popupOption = {
 
 }
 
+// Realtime 10 Seconds
+function onLoad() {
+    getDataFromDb();
+    setTimeout("doLoop();", 10000);
+}
+
+function doLoop() {
+    onLoad();
+}
+
+function keySearch() {
+    markerGroup.clearLayers();
+    getDataFromDb();
+}
+
 //รับค่าจาก getPositions.php
 function getDataFromDb() {
     var sc = $('#sc').val();
@@ -33,12 +48,12 @@ function getDataFromDb() {
                     var att = jQuery.parseJSON(val['attributes']);
 
                     // Realtime table list 
-                    var tr = "<tr onclick='myPanto(" + val['devi_id'] + ',' + val['lat'] +
-                        ',' + val['lng'] + ")' style='background-color : " + get_time_diff(val['devicetime']) + "'>";
-                    tr = tr + "<td id='" + val[''] + "' style=cursor:pointer; >" + val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
-                    tr = tr + '<td align="center">' + dateTime(val['devicetime']) + '</td>';
-                    tr = tr + '<td align="center">' + toFixed(val['speed'], 2) + '</td>';
-                    tr = tr + '<td align="center">' + fuel(att['adc1']) + '</td>';
+                    var tr = "<tr onclick='myPanto(" + val['lat'] +
+                        ',' + val['lng'] + ")' style='border-color : " + get_time_diff(val['devicetime']) + "'>";
+                    tr = tr + '<td class="col-sm-4" id=' + val[''] + 'style=cursor:pointer; >' + val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
+                    tr = tr + '<td class="col-sm-4" align="center">' + dateTime(val['devicetime']) + '</td>';
+                    tr = tr + '<td class="col-sm-2" align="center">' + toFixed(val['speed'], 2) + '</td>';
+                    tr = tr + '<td class="col-sm-2" align="center">' + fuel(att['adc1']) + '</td>';
                     tr = tr + '</tr>';
                     $('#myTable > tbody:last').append(tr);
 
@@ -83,19 +98,17 @@ function getDataFromDb() {
 
 //realtime marker
 function dataRealtime(dataArr) {
-
     if (!markers.hasOwnProperty(dataArr['id'])) {
-        isNotMarker(dataArr)
+        isNotMarker(dataArr);
     } else {
         if (markers[dataArr['id']]._popup.isOpen() == true) {
-            isMarkerPoi(dataArr)
+            isMarkerPoi(dataArr);
+            myPanto2(dataArr['lat'], dataArr['lng']);
         } else {
-            isMarker(dataArr)
+            isMarker(dataArr);
         }
     }
-    // console.log(setLatLng);
 }
-
 
 // content Marker is Not Marker 
 function isNotMarker(data) {
@@ -122,13 +135,11 @@ function isNotMarker(data) {
             data['devicetime'] +
             '<br>ตำแหน่ง : ' +
             '<a href="http://www.google.com/maps/place/' + toFixed(data['lat'], 5) + ',' + toFixed(data['lng'], 5) + ' " target="_blank" style="color:#515151;">' + toFixed(data['lat'], 5) + ',' + toFixed(data['lng'], 5) + '</a>' +
-            '<br>ที่อยู่ :' +
+            '<br>ที่อยู่ : <i style="font-size:12px">เรียกข้อมูลที่อยู่.....</i>' +
             '<br>รหัสใบขับขี่ : ' +
             devLicense(data['driverLicense']) +
-            '<br>เชื่อมต่อกับ : ' + connectDlt(data['connect']) + ' ' + connectPost(data['connect_post']) + '<br><table><tr><td>Cell 1</td><td>Cell 2</td></tr></table>', popupOption
-        ).on("click", function(e) {
-            clickMarker(e, dataArr)
-        })
+            '<br>เชื่อมต่อกับ : ' + connectDlt(data['connect']) + ' ' + connectPost(data['connect_post']), popupOption
+        )
         .bindTooltip(dataArr['name'], {
             permanent: true,
             direction: 'bottom',
@@ -139,12 +150,13 @@ function isNotMarker(data) {
         })
         .openTooltip();
     markers.id = dataArr['id'];
-
     markers[dataArr['id']].previousLatLngs = [];
     markerGroup.addLayer(markers[dataArr['id']]);
 }
 
+
 function isMarker(data) {
+
     let dataArr = data;
     markers[dataArr['id']].previousLatLngs.push(markers[dataArr['id']].getLatLng());
     markers[dataArr['id']].setLatLng([dataArr['lat'], dataArr['lng']]).setRotationAngle(dataArr['course'])
@@ -158,44 +170,22 @@ function isMarker(data) {
             dataArr['devicetime'] +
             '<br>ตำแหน่ง : ' +
             '<a href="http://www.google.com/maps/place/' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + ' " target="_blank" style="color:#515151;">' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + '</a>' +
+            '<br>ที่อยู่ : <i style="font-size:12px">เรียกข้อมูลที่อยู่.....</i>' +
             '<br>รหัสใบขับขี่ : ' +
             devLicense(dataArr['driverLicense']) +
             '<br>เชื่อมต่อกับ : ' + connectDlt(dataArr['connect']) + ' ' + connectPost(dataArr['connect_post'])
-        )
+        );
     markerGroup.addLayer(markers[dataArr['id']]);
+    // console.log(markerGroup);
 }
 
 function isMarkerPoi(data) {
+    // console.log('เจอG');
     let dataArr = data;
     let latlngStr = dataArr['lat'] + ',' + dataArr['lng']
         // call geofunction 
-    var address = geocodeLatLng(latlngStr, function(addr, place) {
-        markers[dataArr['id']].previousLatLngs.push(markers[dataArr['id']].getLatLng());
-        markers[dataArr['id']].setLatLng([dataArr['lat'], dataArr['lng']]).setRotationAngle(dataArr['course'])
-            .bindPopup(
-                'รายละเอียด' +
-                '<br>ทะเบียน : ' +
-                dataArr['name'] +
-                '<br>ความเร็ว : ' +
-                toFixed(dataArr['speed'], 2) +
-                '<br>เวลา : ' +
-                dataArr['devicetime'] +
-                '<br>ตำแหน่ง : ' +
-                '<a href="http://www.google.com/maps/place/' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + ' " target="_blank" style="color:#515151;">' + toFixed(dataArr['lat'], 5) + ',' + toFixed(dataArr['lng'], 5) + '</a>' +
-                '<br>ที่อยู่ :' + addr +
-                '<br>รหัสใบขับขี่ : ' +
-                devLicense(dataArr['driverLicense']) +
-                '<br>เชื่อมต่อกับ : ' + connectDlt(dataArr['connect']) + ' ' + connectPost(dataArr['connect_post'])
-            )
-        markerGroup.addLayer(markers[dataArr['id']]);
-    });
-}
+    var address = geocodeLatLng(latlngStr, function(addr) {
 
-function clickMarker(e, data) {
-    let dataArr = data;
-    let latlngStr = dataArr['lat'] + ',' + dataArr['lng']
-        // call geofunction 
-    var address = geocodeLatLng(latlngStr, function(addr, place) {
         markers[dataArr['id']].previousLatLngs.push(markers[dataArr['id']].getLatLng());
         markers[dataArr['id']].setLatLng([dataArr['lat'], dataArr['lng']]).setRotationAngle(dataArr['course'])
             .bindPopup(
@@ -212,8 +202,9 @@ function clickMarker(e, data) {
                 '<br>รหัสใบขับขี่ : ' +
                 devLicense(dataArr['driverLicense']) +
                 '<br>เชื่อมต่อกับ : ' + connectDlt(dataArr['connect']) + ' ' + connectPost(dataArr['connect_post'])
-            )
+            );
         markerGroup.addLayer(markers[dataArr['id']]);
+        // console.log(markerGroup);
     });
 }
 
@@ -342,27 +333,24 @@ function connectPost(conPost) {
 }
 
 //click panto to marker
-function myPanto(id, lat, lng) {
-    map.setView([lat, lng], 13, {
+function myPanto(lat, lng) {
+    let zoom = 13;
+    map.setView([lat, lng], zoom, {
         animate: true,
         noMoveStart: true
     });
     map.closePopup();
 }
 
-// Realtime 10 Seconds
-function onLoad() {
-    getDataFromDb();
-    setTimeout("doLoop();", 10000);
-}
-
-function doLoop() {
-    onLoad();
-}
-
-function keySearch() {
-    markerGroup.clearLayers();
-    getDataFromDb();
+function myPanto2(lat, lng) {
+    let zoom = 13;
+    if (map.getZoom() > 13) {
+        zoom = map.getZoom();
+    }
+    map.setView([lat, lng], zoom, {
+        animate: true,
+        noMoveStart: true
+    });
 }
 
 function keyCheck(statusKey, namePoto, proGt06) {
