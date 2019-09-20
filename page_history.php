@@ -101,7 +101,7 @@
 
         //Query For List Position
         $resultPosition = $conn->query($sqlPosition);
-
+        $numrow = $resultPosition->num_rows;
         // Query For Marker
         $resultPositionLine = $conn->query($sqlPosition);
 
@@ -110,6 +110,7 @@
     <div class="form-row">
         <div id="hisMenu" class="form-group col-3 mb-0 pb-0">
             <form action="" method="post">
+            <?php echo "--".$numrow ?>
                 <div class="form-row pt-2 pr-3 pl-3">
                     <div class="form-group col-md-3 col-lg-4 text-right align-self-center">
                         เลือกอุปกรณ์
@@ -183,7 +184,6 @@
         </div>
     </div>
 </body>
-
 </html>
 <script src="app/map.js"></script>
 <!-- scrip map -->
