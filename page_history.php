@@ -22,23 +22,18 @@
         .bg-green {
             background-color: #e2e2e2;
         }
-
         .full-block {
             height: 90vh;
             width: 100vw;
         }
-
         .my-custom-scrollbar {
-
             position: relative;
             height: 660px;
             overflow: auto;
         }
-
         .table-wrapper-scroll-y {
             display: block;
         }
-
         .full-background {
             background: url("../img/header-image-2.jpg") 50% 0 repeat fixed;
             min-height: 800px;
@@ -52,17 +47,14 @@
             -o-background-size: cover;
             background-size: cover;
         }
-
         #style-3::-webkit-scrollbar-track {
             -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 1);
             background-color: #F5F5F5;
         }
-
         #style-3::-webkit-scrollbar {
             width: 6px;
             background-color: #F5F5F5;
         }
-
         #style-3::-webkit-scrollbar-thumb {
             background-color: #46ff46;
         }
@@ -82,30 +74,21 @@
     if (isset($_POST['serach'])) {
         $dateRange = $_POST['dateRange'];
         $dateRangeArr = explode("-", $dateRange);
-
         $dateStart = trim($dateRangeArr['0']);
         $dateEnd = trim($dateRangeArr['1']);
-
-
         // Creating time from given date
-        echo $dateStart = DateYMD($dateStart);
-        echo $dateEnd = DateYMD($dateEnd);
-
+        $dateStart = DateYMD($dateStart);
+        $dateEnd = DateYMD($dateEnd);
         // // Creating new date format from that timestamp
         // $dateStart = date("Y-d-m", $dateStart);
         // // echo "--";
         // $dateEnd = date("Y-d-m", $dateEnd);
-
-
         echo $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
-
         //Query For List Position
         $resultPosition = $conn->query($sqlPosition);
-
         // Query For Marker
         $resultPositionLine = $conn->query($sqlPosition);
         $resultNums = $resultPosition->num_rows;
-
         echo $resultNums;
     }
     ?>
@@ -197,7 +180,6 @@
             noMoveStart: true
         });
     }
-
     var picker = new Lightpick({
         field: document.getElementById('datepicker'),
         singleDate: false,
@@ -206,10 +188,9 @@
             var str = '';
             str += start ? start.format('[ Do MMMM YYYY') + ' ถึง ' : '';
             str += end ? end.format('Do MMMM YYYY ]') : '...';
-            document.getElementById('resultDate').innerHTML = str;
+            // document.getElementById('resultDate').innerHTML = str;
         }
     });
-
     //icon
     var LeafIcon = L.Icon.extend({
         options: {
@@ -217,11 +198,9 @@
             iconAnchor: [10, 10]
         }
     });
-
     var arrow = new LeafIcon({
         iconUrl: 'images/arrow.svg'
     });
-
     //polyline
     var latlng = [];
     var latlngStr = "";
@@ -229,7 +208,6 @@
     var countx = 0;
     var markers = {};
     <?php
-
     if (isset($resultPositionLine)) {
         while ($resultPolyline = $resultPositionLine->fetch_assoc()) {
             $attributes = json_decode($resultPolyline['attributes']);
@@ -243,62 +221,55 @@
             var speed = <?= $resultPolyline['speed'] ?>;
             latlngStr = [<?= $resultPolyline['latitude'] ?>, <?= $resultPolyline['longitude'] ?>];
             latlng.push(latlngStr);
-
             if (countx == '1') {
                 var markerStart = L.marker(latlngStr, {
                     icon: arrow,
                     rotationAngle: course,
                     rotationOrigin: 'center center'
                 }).addTo(map);
-
                 markerStart.bindTooltip("Start", {
                     direction: 'top',
                     permanent: true
                 }).openTooltip();
             }
-
             if (status == '6400' && speed != '0') {
-
                 markers[id] = L.marker(latlngStr, {
                     icon: arrow,
                     rotationAngle: course,
                     rotationOrigin: 'center center'
                 }).addTo(map);
             }
-
         <?php
         } //while($resultPolyline = $resultPositionLine->fetch_assoc()) {
-
         ?>
-
         if (countx > '1') {
             var markerEnd = L.marker(latlngStr, {
                 icon: arrow,
                 rotationAngle: course,
                 rotationOrigin: 'center center'
             }).addTo(map);
-
             markerEnd.bindTooltip("End", {
                 direction: 'top',
                 permanent: true
             }).openTooltip();
         }
-
         console.log(countx);
     <?php
     } //if($resultPositionLine){
     ?>
-
     var showLine = [latlng];
     var polyline = L.polyline(showLine, {
         color: 'red'
     }).addTo(map); //show polyline
-
     $(document).ready(function() {
         $('.select2').select2();
     });
 <<<<<<< HEAD
+<<<<<<< HEAD
 </script>
 =======
 </script>
+>>>>>>> develop1
+=======
+    </script>
 >>>>>>> develop1
