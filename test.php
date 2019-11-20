@@ -1,14 +1,57 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.1/Chart.min.js"></script>
-  <title>Document</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Reverse Geocoding</title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #floating-panel {
+            position: absolute;
+            top: 10px;
+            left: 25%;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+            text-align: center;
+            font-family: 'Roboto', 'sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+        #floating-panel {
+            position: absolute;
+            top: 5px;
+            left: 50%;
+            margin-left: -180px;
+            width: 350px;
+            z-index: 5;
+            background-color: #fff;
+            padding: 5px;
+            border: 1px solid #999;
+        }
+
+        #latlng {
+            width: 225px;
+        }
+    </style>
 </head>
 <style>
 body{
@@ -24,60 +67,85 @@ body{
 
 </style>
 <body>
-
-<div class="container">
-  <br />
-  <div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-10">
-
-      <canvas id="barChart"></canvas>
+    <div id="floating-panel">
+        <input id="latlng" type="text" value="18.5769503,99.0084035">
+        <input id="submit" type="button" value="Reverse Geocode">
     </div>
-    <div class="col-md-1"></div>
-  </div>
-</div>
+    <div id="map"></div>
+    <script>
+        //   function initMap() {
+        //     var map = new google.maps.Map(document.getElementById('map'), {
+        //       zoom: 8,
+        //       center: {lat: 40.731, lng: -73.997}
+        //     });
+
+        //     var infowindow = new google.maps.InfoWindow;
+
+        //     document.getElementById('submit').addEventListener('click', function() {
+        //       geocodeLatLng(geocoder, map, infowindow);
+        //     });
+        //   }
+
+        document.getElementById('submit').addEventListener('click', function() {
+            geocodeLatLng();
+        });
+        // var latlngData = '18.5769503,99.0084035';
+        function geocodeLatLng() {
+            var geocoder = new google.maps.Geocoder;
+            var service = new google.maps.places.PlacesService(latlng);
+            var input = document.getElementById('latlng').value;
+            var latlngStr = input.split(',', 2);
+            var latlng = {
+                lat: parseFloat(latlngStr[0]),
+                lng: parseFloat(latlngStr[1])
+            };
+
+
+            geocoder.geocode({
+                'location': latlng
+            }, function(resultsaddr, statusaddr) {
+                if (statusaddr === 'OK') {
+                    if (resultsaddr[0]) {
+                        //   map.setZoom(11);
+                        console.log(resultsaddr);
+
+
+                        geocoder.geocode({
+                            'placeId': resultsaddr[0].place_id
+                        }, function(resultsplace, statusplace) {
+                            if (statusplace === 'OK') {
+                                console.log(resultsplace);
+                            }
+                        });
+
+                        // // place Detail
+                        // service.getDetails(request, function(place, status) {
+                        //     if (status === google.maps.places.PlacesServiceStatus.OK) {
+                        //         var marker = new google.maps.Marker({
+                        //             map: map,
+                        //             position: place.geometry.location
+                        //         });
+                        //         google.maps.event.addListener(marker, 'click', function() {
+                        //             infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                        //                 'Place ID: ' + place.place_id + '<br>' +
+                        //                 place.formatted_address + '</div>');
+                        //             infowindow.open(map, this);
+                        //         });
+                        //     }
+                        // });
+
+
+                    } else {
+                        window.alert('No results found');
+                    }
+                } else {
+                    window.alert('Geocoder failed due to: ' + status);
+                }
+            });
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmgbn-fP3rkmLlbpv8wmMimvsmXqexD_o&libraries=places">
+    </script>
 </body>
+
 </html>
-
-<script>
-var canvas = document.getElementById("barChart");
-var ctx = canvas.getContext('2d');
-
-// Global Options:
-Chart.defaults.global.defaultFontColor = 'black';
-Chart.defaults.global.defaultFontSize = 16;
-
-var data = {
-  labels: ["00:00:26", "00:01:26", "00:02:27", "00:03:28", "00:04:28", "00:05:29", "00:06:29", "00:07:30", "00:08:30", "00:09:31", "00:10:31", "00:11:32", "00:12:32", "00:13:33", "00:14:33", "00:15:34", " 00:16:34",  "00:17:35", "00:18:35", "00:19:36", "00:15:35", " 00:16:36",  "00:17:37", "00:18:38", "00:19:39"],
-  datasets: [{
-   
-      data: [55, 59, 80, 81, 56, 55, 40,55 ,60,55,30,78],
-
-    }
-
-  ]
-};
-
-// Notice the scaleLabel at the same level as Ticks
-var options = {
-  scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                },
-                scaleLabel: {
-                     display: true,
-                     labelString: 'Moola',
-                     fontSize: 20 
-                  }
-            }]            
-        }  
-};
-
-// Chart declaration:
-var myBarChart = new Chart(ctx, {
-  type: 'line',
-  data: data,
-  options: options
-});
-</script>

@@ -83,18 +83,22 @@
         // $dateStart = date("Y-d-m", $dateStart);
         // // echo "--";
         // $dateEnd = date("Y-d-m", $dateEnd);
-        echo $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
+
+
+        $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
+
         //Query For List Position
         $resultPosition = $conn->query($sqlPosition);
+        $numrow = $resultPosition->num_rows;
         // Query For Marker
         $resultPositionLine = $conn->query($sqlPosition);
-        $resultNums = $resultPosition->num_rows;
-        echo $resultNums;
+
     }
     ?>
     <div class="form-row">
         <div id="hisMenu" class="form-group col-3 mb-0 pb-0">
             <form action="" method="post">
+            <?php echo "--".$numrow ?>
                 <div class="form-row pt-2 pr-3 pl-3">
                     <div class="form-group col-md-3 col-lg-4 text-right align-self-center">
                         เลือกอุปกรณ์
@@ -168,7 +172,6 @@
         </div>
     </div>
 </body>
-
 </html>
 <script src="app/map.js"></script>
 <!-- scrip map -->
@@ -215,9 +218,8 @@
             ?>
             countx = countx + 1;
             var id = <?= $resultPolyline['id'] ?>;
-            // console.log(id);
             var course = <?= $resultPolyline['course'] ?>;
-            var status = <?= $statusStr ?>;
+            var status = '<?= $statusStr ?>';
             var speed = <?= $resultPolyline['speed'] ?>;
             latlngStr = [<?= $resultPolyline['latitude'] ?>, <?= $resultPolyline['longitude'] ?>];
             latlng.push(latlngStr);
@@ -266,6 +268,7 @@
     });
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 </script>
 =======
 </script>
@@ -273,3 +276,6 @@
 =======
     </script>
 >>>>>>> develop1
+=======
+</script>
+>>>>>>> develop2

@@ -28,43 +28,43 @@
           </button>
           <div class="navbar-collapse collapse" id="navbarCollapse" style="">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item shadow p-2 mb-0">
+              <li class="nav-item shadow  mb-0">
                 <a class="nav-link " href="?p=page_position">
                   <i class="fas fa-map-marker-alt"></i>
                    ตำแหน่งปัจจุบัน
                  </a>
               </li>
-              <li class="nav-item  shadow p-2 mb-0">
+              <li class="nav-item  shadow  mb-0">
                 <a class="nav-link" href="?p=page_history">
                   <i class="fas fa-route"></i>
                   เส้นทางย้อนหลัง
                 </a>
               </li>
 
-              <li class="nav-item shadow p-2 mb-0 ">
+              <li class="nav-item shadow  mb-0 ">
                 <a class="nav-link " href="?p=page_notifications">
                   <i class="fas fa-exclamation-circle"></i>
                   การแจ้งเตือน</a>
               </li>
 
-              <li class="nav-item shadow p-2 mb-0" >
+              <li class="nav-item shadow  mb-0" >
                 <a class="nav-link" href="?p=page_report">
                   <i class="fas fa-file-alt"></i>
                   รายงาน</a>
               </li>
 
-              <li class="nav-item shadow p-2 mb-0 ">
+              <li class="nav-item shadow  mb-0 ">
                 <a class="nav-link " href="?p=page_zone">
                   <i class="fas fa-draw-polygon"></i>
                    เขตพื้นที่
                 </a>
               </li>
-              <li class="nav-item shadow p-2 mb-0 d-md-none">
+              <li class="nav-item shadow  mb-0 d-md-none">
                 <div class="form-inline row">
                   <div class="col data-toggle="tooltip" data-placement="top" title="ข้อมูลส่วนตัว"">
                     <a class="nav-link" alt="ข้อมูลส่วนตัว" href="#"> <i class="fas fa-address-card"></i> ข้อมูลส่วนตัว </a>
                   </div>
-                  <div class="col">
+                  <div class="col ">
                     <a class="nav-link" href="#"> <i class="fas fa-sign-out-alt"></i> ออกจากระบบ </a>
                   </div>
                 </div>
