@@ -55,7 +55,7 @@
         // // echo "--";
         // $dateEnd = date("Y-d-m", $dateEnd);
 
-        $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
+        echo $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
 
         //Query For List Position
         $resultPosition = $conn->query($sqlPosition);

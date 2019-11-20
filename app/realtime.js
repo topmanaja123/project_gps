@@ -28,12 +28,14 @@ function getDataFromDb() {
 					// console.log(devi_name);
 					var att = jQuery.parseJSON(val['attributes']);
 					
+					
+
 					var tr = "<tr style='background-color : " + get_time_diff(val['devicetime']) + "'>";
 					tr = tr + "<td id='" + val[''] + "' onclick='myPanto(" + val['devi_id'] + ',' + val['lat'] +
 						',' + val['lng'] + ")' style=cursor:pointer; >" + val['name'] + keyCheck(att['status'],val['protocol'],att['ignition']) + '</td>';
 					tr = tr + '<td align="center">' + dateTime(val['devicetime']) + '</td>';
 					tr = tr + '<td align="center">' + toFixed(val['speed'], 2) + '</td>';
-					tr = tr + '<td align="center">' + fuel(att['adc1']) + '</td>';
+					tr = tr + '<td align="center">' + fuel(att['adc1'],val['protocol']) + '</td>';
 					tr = tr + '</tr>';
 					$('#myTable > tbody:last').append(tr);
 
@@ -61,7 +63,7 @@ function getDataFromDb() {
 						// 'state': val["state"],
 						photo: val['photo']
 					};
-					console.log(val['protocol']);
+					// console.log(val['protocol']);
 					dataRealtime(data2);
 					
 				});
@@ -209,8 +211,8 @@ function get_time_diff(datetime) {
 	// console.log(M);
 }
 
-function fuel(fuelid) {
-
+function fuel(fuelid,proto) {
+	
 	var fuelMax = 100; //น้ำมันเต็ม
 
 	var fuelV = 215; //ค่าโวลต์ ต่ำสุด ที่น้ำมัน 0%
@@ -218,15 +220,24 @@ function fuel(fuelid) {
 	var fuelUse = fuelid / fuelV * fuelMax; //คำนวณค่าน้ำมันที่ใช้ไป
 	var fueltotal = 100 - fuelUse; //ผลลัพ ค่าน้ำมันเป็น เปอร์เซน
 
+if(proto == 'meiligao'){
+	
 	if (isNaN(fuelid)) {
+		
 		return '';
 	} else if (fuelid == '0') {
+		console.log(fuelid);
 		return ' ';
 	} else if (fuelid == '0000') {
 		return fueltotal.toFixed(2) + ' %';
 	} else {
 		return fueltotal.toFixed(2) + ' %';
 	}
+} else {
+	return ''
+}
+
+
 }
 
 
@@ -361,6 +372,7 @@ if (namePoto == 'meiligao'){
 	
 }
 
+
 // filter table
 function search() {
     var input, filter, table, tr, td, i, txtValue;
@@ -386,5 +398,5 @@ function toFixed(num, pre) {
     num =
         (Math.round(num, pre) + (num - Math.round(num, pre) >= 0.5 ? 1 : 0)) /
         Math.pow(10, pre);
-    return num.toFixed(pre);
+	return num.toFixed(pre);
 }

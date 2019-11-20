@@ -17,6 +17,14 @@ $username = "root";
 $password = "Ple01010!@#";
 $db = "traccar_1";
 
+// //โฮส traccar
+// $host = "27.254.81.27";
+// //Username phpmyadmin
+// $username = "root";
+// //Password phpMyadmin
+// $password = "Ple01010!@#";
+// $db = "traccar_5";
+
 //คำสั่ง Connect ฐานข้อมูล
 $conn = new mysqli($host, $username, $password, $db);
 mysqli_query($conn, "SET NAMES UTF8");

@@ -61,6 +61,83 @@
         // echo $sqlPosition;
       }
     ?>
+
+    <?php
+require_once '../vendor/PHPspreadsheet/vendor/autoload.php';
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
+date_default_timezone_set("Asia/Bangkok");
+$spreadsheet = new Spreadsheet();
+
+$headStyle = [
+    'font' => [
+        'bold' => true,
+    ],
+    'alignment' => [
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+    ],
+    // 'borders' => [
+    //     'top' => [
+    //         'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+    //     ],
+    // ],
+];
+
+$headMenu = [
+    'font' => [
+        'bold' => true,
+    ],
+    'alignment' => [
+        'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+        'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+    ],
+];
+
+$borderAll = [
+    'borders' => [
+        'allBorders' => [
+            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+            'color' => ['argb' => '#000000'],
+        ],
+    ],
+];
+
+//Set ฟอร์น
+$spreadsheet->getDefaultStyle()->getFont()->setName('TH SarabunPSK');
+$spreadsheet->getDefaultStyle()->getFont()->setSize(16);
+
+//Set Column Width
+$spreadsheet->getActiveSheet()->getColumnDimension('A')->setWidth(10);
+$spreadsheet->getActiveSheet()->getColumnDimension('B')->setWidth(16);
+$spreadsheet->getActiveSheet()->getColumnDimension('C')->setWidth(15);
+$spreadsheet->getActiveSheet()->getColumnDimension('D')->setWidth(15);
+$spreadsheet->getActiveSheet()->getColumnDimension('E')->setWidth(29);
+
+$sheet = $spreadsheet->getActiveSheet();
+
+//ส่วนหัว
+$sheet->setCellValue('A1', 'รายงานการเดินทางประจำวัน '.$monthStr.' '.$yearStr)->mergeCells('A1:E1')->getStyle('A1:E1')->applyFromArray($headStyle);
+$sheet->setCellValue('A2', 'บริษัท มิรดา คอร์ปอเรชั่น จำกัด')->mergeCells('A2:E2')->getStyle('A2:E2')->applyFromArray($headStyle);
+
+//ส่วนเมนู
+$sheet->setCellValue('A4', 'เวลาเริ่มต้น')->mergeCells('A4:A5')->getStyle('A4')->applyFromArray($headMenu);
+$sheet->setCellValue('B4', 'เวลาสิ้นสุด')->mergeCells('B4:B5')->getStyle('B4')->applyFromArray($headMenu);
+$sheet->setCellValue('C4', "ความเร็วสูงสุด\n(กม./ชม.)")->mergeCells('C4:C5')->getStyle('C4')->applyFromArray($headMenu);
+$sheet->getStyle('C4')->getAlignment()->setWrapText(true);
+$sheet->setCellValue('D4', "ความเร็วเฉลี่ย\n(กม./ชม.)")->mergeCells('D4:D5')->getStyle('D4')->applyFromArray($headMenu);
+$sheet->getStyle('D4')->getAlignment()->setWrapText(true);
+$sheet->setCellValue('E4', 'ระยะเวลา')->mergeCells('E4:E5')->getStyle('E4')->applyFromArray($headMenu);
+$sheet->getStyle('A4:E5')->applyFromArray($borderAll);
+
+$writer = new Xlsx($spreadsheet);
+$filename = 'รายงานการเดินทางประจำวัน';
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment;filename="' . $filename . '.xlsx"');
+header('Cache-Control: max-age=0');
+$writer->save('php://output');
+
+?>
     <p></p>
     <form action="" method="post">
         <div class="card card-wrap" style="width: 99%">

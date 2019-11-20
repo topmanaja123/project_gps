@@ -3,22 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title></title>
-    <style media="screen">
-      #sidebar{
-        /* background-color: #88C542; */
-      }
-      .list-group-item {
-        background-color: #28a745 ;
-      }
-      .link-shadow {
-        color: white;
-        text-shadow: 2px 2px 5px black;
-      }
-      .link-shadow:hover{
-        color: white;
-        text-shadow: 2px 2px 5px #fff08a;
-      }
-    </style>
+
   </head>
   <body>
     <p></p>
@@ -28,9 +13,9 @@
                     <i class="fa fa-dashboard"></i>
                     <span class="hidden-sm-down">รายงานการเดินทาง</span>
                 </a>
-                <a href="#menu3" class="list-group-item link-shadow">
-                    <i class="fa fa-list"></i>
-                    <span class="hidden-sm-down">รายงานเข้าออกพื้นที่</span>
+                <a href="?p=page_report&r=report_feul" class="list-group-item link-shadow">
+                    <i class="far fa-shipping-fast"></i>
+                    <span class="hidden-sm-down">รายงานความเร็วเกิน</span>
                 </a>
                 <a href="#menu4" class="list-group-item link-shadow">
                     <i class="fa fa-list-alt"></i>
