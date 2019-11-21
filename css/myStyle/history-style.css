@@ -1,0 +1,12 @@
+.marginMap {
+    margin: 0;
+    padding: 0;
+    height: calc(100vh - 64px - 3vh);
+    width: calc(100vw - 33.33vw);
+}
+
+.table-fixed tbody {
+    height: calc(100vh - 3vh - 119px - 64px - 30px);
+    overflow-y: auto;
+    width: 100%;
+}

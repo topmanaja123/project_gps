@@ -11,7 +11,9 @@ body {
 }
 
 #mapBox {
+    margin: 0;
     padding: 0;
+    height: calc(100vh - 64px);
 }
 
 .tooltip-realtime {

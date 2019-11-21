@@ -21,7 +21,7 @@
 
 <body Onload="onLoad();">
     <div class="form-row m-0">
-        <div class="col-sm-6 col-md-5 col-lg-4 col-xl-3 marginMap">
+        <div class="col-4 marginMap">
             <form class="m-0">
                 <div class="form-row margin-form mb-1 mt-1" style="height:10vh">
                     <div class="form-group mb-0 align-self-center">
@@ -59,7 +59,7 @@
 
         </div>
 
-        <div class="col-sm-6 col-md-7 col-lg-8 col-xl-9 lockH marginMap">
+        <div class="col-6 lockH marginMap">
             <div id="map" class="marginMap"></div>
         </div>
 

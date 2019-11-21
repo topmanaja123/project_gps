@@ -9,9 +9,12 @@
     <!-- map -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin="" />
     <link rel="stylesheet" href="vendor/Lightpick/css/lightpick.css">
-    <link rel="stylesheet" href="css/mystyle.css">
+    <link rel="stylesheet" href="css/myStyle/table-fixed.css">
+    <link rel="stylesheet" href="css/myStyle/history-style.css">
+    
 
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script>
+
+    <!-- <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script> -->
     <script rel="stylesheet" src="js/leaflet.rotatedMarker.js"></script>
     <script rel="stylesheet" src="js/polyline/leaflet.polylineDecorator.js"></script>
     <script src="js/moment.js"></script>
@@ -19,6 +22,12 @@
     <script src="app/history.js"></script>
 
     <style media="screen">
+        body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
         .bg-green {
             background-color: #e2e2e2;
         }
@@ -92,14 +101,14 @@
         $numrow = $resultPosition->num_rows;
         // Query For Marker
         $resultPositionLine = $conn->query($sqlPosition);
-
     }
     ?>
+    <form class="p-0 m-0" action="" method="post">
     <div class="form-row">
-        <div id="hisMenu" class="form-group col-3 mb-0 pb-0">
-            <form action="" method="post">
-            <?php echo "--".$numrow ?>
-                <div class="form-row pt-2 pr-3 pl-3">
+        <div id="hisMenu" class="form-group col-4 mb-0 pb-0">
+            
+                <div class="form-row pt-2 pr-3 pl-3 mb-0 pb-0">
+                    
                     <div class="form-group col-md-3 col-lg-4 text-right align-self-center">
                         เลือกอุปกรณ์
                     </div>
@@ -115,27 +124,27 @@
                         เลือกวันที่
                     </div>
                     <div class="form-group col-sm-12 col-md-9 col-lg-8 mb-0 pb-0">
-                        <input class="form-control form-control-sm" type="text" name="dateRange" id="datepicker" readonly>
+                        <input class="form-control form-control-sm" type="text" name="dateRange" id="datepicker"  required>
                     </div>
 
                     <div class="form-group col-md-12 col-lg-12 text-center mt-0 mb-0 pb-0">
-                        <p id="resultDate"></p>
+                        <!-- <p id="resultDate"></p> -->
                     </div>
                     <div class="form-group col-md-12 col-lg-12 text-center  mt-0 mb-0 pb-0">
                         <button type="submit" name="serach">ค้นหา</button>
                     </div>
                 </div>
-            </form>
-            <div class="table-wrapper-scroll-y my-custom-scrollbar p-0" id="style-3">
+            
+            <div class="form-row m-0">
                 <!-- table show data -->
-                <table class="table table-bordered" BORDER="1" id="tblNeedsScrolling">
+                <table class="table table-striped table-fixed table-sm table-hover" id="myTable">
                     <thead>
-                        <tr id="history_head ">
-                            <td class="text-center"><i class="fas fa-check-circle"></i> </td>
-                            <td class="text-center"><i class="fas fa-history"></i> </td>
-                            <td class="text-center"><i class="fas fa-location-arrow"></i> </td>
-                            <td class="text-center"><i class="far fa-shipping-fast"></i> </td>
-                            <td class="text-center"><i class="far fa-map-marked-alt"></i> </td>
+                        <tr>
+                            <th class="text-center col-1"><i class="fas fa-check-circle"></i> </th>
+                            <th class="text-center col-4"><i class="fas fa-history"></i> </th>
+                            <th class="text-center col-1"><i class="fas fa-location-arrow"></i> </th>
+                            <th class="text-center col-2"><i class="far fa-shipping-fast"></i> </th>
+                            <th class="text-center col-4"><i class="far fa-map-marked-alt"></i> </th>
 
                         </tr>
                     </thead>
@@ -148,16 +157,16 @@
                                 $lngStr = number_format($rs1['longitude'], 4, '.', '');
                                 ?>
                                 <tr>
-                                    <td class="text-center" width="5%"><input type="checkbox" name="checkboxList"></td>
-                                    <td class="text-center" width="30%"><?= $rs1['devicetime']; ?></td>
-                                    <td class="text-center" width="10%"><?= $rs1['course']; ?></td>
-                                    <td class="text-center" width="10%"><?= $rs1['speed']; ?></td>
+                                    <td class="text-center col-1" ><input type="checkbox" name="checkboxList"></td>
+                                    <td class="text-center col-4" ><?= $rs1['devicetime']; ?></td>
+                                    <td class="text-center col-2" ><?= $rs1['course']; ?></td>
+                                    <td class="text-center col-1" ><?= $rs1['speed']; ?></td>
 
-                                    <td class="text-center" width="auto" style="cursor:pointer" <?= "onclick='pantoLatLng(" . $rs1['latitude'] . "," . $rs1['longitude'] . ")'" ?>>
+                                    <td class="text-center col-4" width="auto" style="cursor:pointer" <?= "onclick='pantoLatLng(" . $rs1['latitude'] . "," . $rs1['longitude'] . ")'" ?>>
                                         <?= $latStr; ?> , <?= $lngStr; ?></td>
 
                                 </tr>
-                            <?php
+                        <?php
                             } //while($rs1=$result1->fetch_assoc())
                             // echo "Completed in ", microtime(true) - $time_start, " Seconds\n";
                             $resultPosition->close();
@@ -167,11 +176,13 @@
                 </table>
             </div>
         </div>
-        <div id="mapBox" class="form-group col-9 mb-0 pb-0">
-            <div class="card-header full-background" id="map" style="height:90vh"></div>
+        <div class="col-6 lockH marginMap">
+            <div id="map" class="marginMap"></div>
         </div>
     </div>
+    </form>
 </body>
+
 </html>
 <script src="app/map.js"></script>
 <!-- scrip map -->
@@ -242,8 +253,10 @@
                 }).addTo(map);
             }
         <?php
-        } //while($resultPolyline = $resultPositionLine->fetch_assoc()) {
-        ?>
+            } //while($resultPolyline = $resultPositionLine->fetch_assoc()) {
+
+            ?>
+
         if (countx > '1') {
             var markerEnd = L.marker(latlngStr, {
                 icon: arrow,
@@ -266,16 +279,4 @@
     $(document).ready(function() {
         $('.select2').select2();
     });
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 </script>
-=======
-</script>
->>>>>>> develop1
-=======
-    </script>
->>>>>>> develop1
-=======
-</script>
->>>>>>> develop2

@@ -6,27 +6,29 @@
   width: 0px;
   height: 0px;
 }
+
+/* แถบสกอร์บาร์ */
 ::-webkit-scrollbar-thumb {
-  background: #ff8000;
-  border: 0px none #ff0080;
-  border-radius: 100px;
+  background: #ffcb00;
+  /* border: 1px solid #ff0080; */
+  border-radius: 120px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #ffc184;
+  background: #DCBA35;
 }
 ::-webkit-scrollbar-thumb:active {
-  background: #000000;
+  background: #958F79;
 }
 ::-webkit-scrollbar-track {
-  background: #666666;
+  background: #273E2C;
   border: 0px none #0000ff;
   border-radius: 0px;
 }
 ::-webkit-scrollbar-track:hover {
-  background: #666666;
+  background: #273E2C;
 }
 ::-webkit-scrollbar-track:active {
-  background: #333333;
+  background: #273E2C;
 }
 ::-webkit-scrollbar-corner {
   background: transparent;
