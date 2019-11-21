@@ -14,6 +14,18 @@
 .span-col-4{grid-column: span 4 / auto;}
 
 .span-col-3{grid-column: span 3 / auto;}
+
+.footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   max-height: 30px;
+   height : 3vh;
+   background-color: #28A745;
+   color: white;
+   text-align: center;
+}
 </style>
 <body>
     <?php 
@@ -36,6 +48,9 @@
             break;
           }
           ?>
+          <div class="footer">
+  <p>Footer</p>
+</div>
 </body>
 
 </html>
