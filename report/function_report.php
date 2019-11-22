@@ -14,7 +14,7 @@ function keyCheck($statusKey,$namePoto) {
         }elseif ($statusKey == '2000') {
             return '0';
         } else if ($statusKey == '2400') {
-            return '0';
+            return '1';
         } else if ($statusKey == '6400') {
             return '1';
         } else {

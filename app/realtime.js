@@ -53,7 +53,7 @@ function getDataFromDb() {
                     tr = tr + '<td class="col-sm-4" id=' + val[''] + 'style=cursor:pointer; >' + val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
                     tr = tr + '<td class="col-sm-4" align="center">' + dateTime(val['devicetime']) + '</td>';
                     tr = tr + '<td class="col-sm-2" align="center">' + toFixed(val['speed'], 2) + '</td>';
-                    tr = tr + '<td class="col-sm-2" align="center">' + fuel(att['adc1']) + '</td>';
+                    tr = tr + '<td class="col-sm-2" align="center">' + fuel(att['adc1'],val['protocal']) + '</td>';
                     tr = tr + '</tr>';
                     $('#myTable > tbody:last').append(tr);
 
@@ -259,13 +259,13 @@ function get_time_diff(datetime) {
 }
 
 
-function fuel(fuelid) {
+function fuel(fuelid,proname) {
 
     var fuelMax = 100; //น้ำมันเต็ม
     var fuelV = 215; //ค่าโวลต์ ต่ำสุด ที่น้ำมัน 0%
     var fuelUse = fuelid / fuelV * fuelMax; //คำนวณค่าน้ำมันที่ใช้ไป
     var fueltotal = 100 - fuelUse; //ผลลัพ ค่าน้ำมันเป็น เปอร์เซน
-
+if (proname == 'meiligao') {
     if (isNaN(fuelid)) {
         return '';
     } else if (fuelid == '0') {
@@ -275,6 +275,9 @@ function fuel(fuelid) {
     } else {
         return fueltotal.toFixed(2) + ' %';
     }
+}else{
+    return '';
+}
 }
 
 function devLicense(licenseid) {
