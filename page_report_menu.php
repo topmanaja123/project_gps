@@ -13,7 +13,7 @@
                     <i class="fa fa-dashboard"></i>
                     <span class="hidden-sm-down">รายงานการเดินทาง</span>
                 </a>
-                <a href="?p=page_report&r=report_feul" class="list-group-item link-shadow">
+                <!-- <a href="?p=page_report&r=report_feul" class="list-group-item link-shadow">
                     <i class="far fa-shipping-fast"></i>
                     <span class="hidden-sm-down">รายงานความเร็วเกิน</span>
                 </a>
@@ -48,7 +48,7 @@
                 <a href="#menu4" class="list-group-item link-shadow">
                     <i class="fa fa-list-alt"></i>
                     <span class="hidden-sm-down">รายงานน้ำมัน</span>
-                </a>
+                </a> -->
             </div>
         </div>
   </body>

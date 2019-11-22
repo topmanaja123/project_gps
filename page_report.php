@@ -8,17 +8,18 @@
   }
   
 </style>
-<div class="form-row">
-  <div class="col-lg-3 col-md-12 full-block">
+<div class="row">
+  <div class="col-sm-5 col-md-4  col-lg-3 full-block">
     <?php
     include('page_report_menu.php')
      ?>
      <p></p>
   </div>
 
-  <div class="col-lg-9">
+  <div class="col-sm-7 col-md-8 col-lg-9 ">
     <?php
-    switch ($_GET['r']){
+    $page=isset($_GET['r']) ? $_GET['r'] : '' ;
+    switch ($page){
       case 'report_trip': include('report/report_trip_day.php') ; break;
       case 'report_feul': include('report/report_feul.php') ; break;
       default:

@@ -30,49 +30,50 @@
             <ul class="navbar-nav mr-auto">
               <li class="nav-item shadow  mb-0">
                 <a class="nav-link " href="?p=page_position">
-                  <i class="fas fa-map-marker-alt"></i>
+                  <i class="fal fa-map-marker-alt"></i>
                    ตำแหน่งปัจจุบัน
                  </a>
               </li>
               <li class="nav-item  shadow  mb-0">
                 <a class="nav-link" href="?p=page_history">
-                  <i class="fas fa-route"></i>
+                  <i class="fal fa-route"></i>
                   เส้นทางย้อนหลัง
                 </a>
               </li>
 
-              <li class="nav-item shadow  mb-0 ">
+              <!-- <li class="nav-item shadow  mb-0 ">
                 <a class="nav-link " href="?p=page_notifications">
-                  <i class="fas fa-exclamation-circle"></i>
+                  <i class="fal fa-exclamation-circle"></i>
                   การแจ้งเตือน</a>
-              </li>
+              </li> -->
 
               <li class="nav-item shadow  mb-0" >
                 <a class="nav-link" href="?p=page_report">
-                  <i class="fas fa-file-alt"></i>
+                  <i class="fal fa-file-alt"></i>
                   รายงาน</a>
               </li>
 
-              <li class="nav-item shadow  mb-0 ">
+              <!-- <li class="nav-item shadow  mb-0 ">
                 <a class="nav-link " href="?p=page_zone">
-                  <i class="fas fa-draw-polygon"></i>
+                  <i class="fal fa-draw-polygon"></i>
                    เขตพื้นที่
                 </a>
-              </li>
+              </li> -->
+
               <li class="nav-item shadow  mb-0 d-md-none">
                 <div class="form-inline row">
                   <div class="col data-toggle="tooltip" data-placement="top" title="ข้อมูลส่วนตัว"">
-                    <a class="nav-link" alt="ข้อมูลส่วนตัว" href="#"> <i class="fas fa-address-card"></i> ข้อมูลส่วนตัว </a>
+                    <a class="nav-link" alt="ข้อมูลส่วนตัว" href="#"> <i class="fal fa-address-card"></i> ข้อมูลส่วนตัว </a>
                   </div>
                   <div class="col ">
-                    <a class="nav-link" href="#"> <i class="fas fa-sign-out-alt"></i> ออกจากระบบ </a>
+                    <a class="nav-link" href="#"> <i class="fal fa-sign-out-alt"></i> ออกจากระบบ </a>
                   </div>
                 </div>
               </li>
             </ul>
             <div class="form-inline mt-2 mt-md-0 mr-4">
-                <a id="mNav" href="#" data-toggle="tooltip" title="ข้อมูลส่วนตัว"><i  class="nav-link fas fa-user d-none d-md-block fa-2x"></i></a>
-                <a id="mNav" href="#" data-toggle="tooltip" title="ออกจากระบบ"><i class="nav-link fas fa-sign-out-alt d-none d-md-block fa-2x"></i></a>
+                <a id="mNav" href="#" data-toggle="tooltip" title="ข้อมูลส่วนตัว"><i  class="nav-link fal fa-address-card d-none d-md-block fa-2x"></i></a>
+                <a id="mNav" href="#" data-toggle="tooltip" title="ออกจากระบบ"><i class="nav-link fal fa-sign-out-alt d-none d-md-block fa-2x"></i></a>
             </div>
           </div>
         </nav>

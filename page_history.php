@@ -14,11 +14,12 @@
     <link rel="stylesheet" href="css/myStyle/custom-scrollbars.css">
     
 
-
+    <script src="js/moment.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script> -->
     <!-- <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js" integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg==" crossorigin=""></script> -->
     <script rel="stylesheet" src="js/leaflet.rotatedMarker.js"></script>
     <script rel="stylesheet" src="js/polyline/leaflet.polylineDecorator.js"></script>
-    <script src="js/moment.js"></script>
+    
     <script src="vendor/Lightpick/lightpick.js"></script>
     <script src="app/history.js"></script>
 

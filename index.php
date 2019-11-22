@@ -50,7 +50,7 @@
           }
           ?>
           <div class="footer">
-  <p>Footer</p>
+  <p>Copyright © 2019 www.greenboxgps.com All rights reserved</p>
 </div>
 </body>
 
