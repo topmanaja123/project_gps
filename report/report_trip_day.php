@@ -78,7 +78,7 @@ function creatSheet(datasent) {
         $dateStart = Datestr($_POST['startDate']) . ' ' . $_POST['timeStart'];
         $dateEnd = Datestr($_POST['dateEnd']) . ' ' . $_POST['timeEnd'];
 
-        echo $sqlPosition = "SELECT  * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
+        $sqlPosition = "SELECT  * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
 
         // echo $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
         $resultPosition = $conn->query($sqlPosition);
