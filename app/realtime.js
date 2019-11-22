@@ -32,7 +32,7 @@ function getDataFromDb() {
 
     // console.log("Debug : " + sc);
     $.ajax({
-        url: './getPositionsT.php',
+        url: './getData/getPositions.php',
         type: 'POST',
         data: {
             data: sc,

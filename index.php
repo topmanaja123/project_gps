@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>INDEX</title>
+    <title>GreenboxGps</title>
 </head>
 <style>
 .grid {
@@ -45,7 +45,7 @@
             case 'page_notifications' : include('page_notifications.php') ;break;
             case 'page_zone' : include('page_zone.php') ;break;
             default:
-              include('page_realtime.php') ;
+              include('page_position.php') ;
             break;
           }
           ?>

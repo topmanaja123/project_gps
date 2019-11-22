@@ -6,6 +6,7 @@
     height: 100%;
     width: 100vw;
   }
+  
 </style>
 <div class="form-row">
   <div class="col-lg-3 col-md-12 full-block">
@@ -17,7 +18,7 @@
 
   <div class="col-lg-9">
     <?php
-    switch ($_GET[r]){
+    switch ($_GET['r']){
       case 'report_trip': include('report/report_trip_day.php') ; break;
       case 'report_feul': include('report/report_feul.php') ; break;
       default:

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="vendor/Lightpick/css/lightpick.css">
     <link rel="stylesheet" href="css/myStyle/table-fixed.css">
     <link rel="stylesheet" href="css/myStyle/history-style.css">
+    <link rel="stylesheet" href="css/myStyle/custom-scrollbars.css">
     
 
 

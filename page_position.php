@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/myStyle/table-fixed.css">
     <link rel="stylesheet" href="css/myStyle/realtime-style.css">
+    <link rel="stylesheet" href="css/myStyle/custom-scrollbars.css">
     <title>Document</title>
     <style>
     body {
