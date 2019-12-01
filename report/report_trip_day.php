@@ -41,6 +41,8 @@ require 'function_report.php';
     .gj-icon {
         line-height: 0.8;
     }
+
+  
     </style>
     <title>รายงานระยะทาง</title>
 </head>
@@ -160,7 +162,8 @@ function creatSheet(datasent) {
                 <?php
                 if (isset($resultPosition)) {
                     ?>
-                <div class="card card-wrap" style="width: 99%">
+                    <form action="" method="post" class="container-fluid">
+                <div class="card card-wrap">
                     <div class="card-header bg-success">
                         <div class="text-center ">
                             <span id="head-card"> <strong>ข้อมูลระยะทาง</strong> </span>
@@ -198,7 +201,9 @@ function creatSheet(datasent) {
                                                 $timeEnd = '';
                                                 $totalTime = '';
                                                 $totalSpeed = 0;
-
+                                                $poiStart = '';
+                                                $poiEnd = '';
+                                                
                                                 $dataSend = array();
                                                 while ($rsData = $resultPosition->fetch_assoc()) {
                                                     $att = json_decode($rsData['attributes'], true);
@@ -313,6 +318,7 @@ function creatSheet(datasent) {
                         </div>
                     </div>
                 </div>
+                    </form>
                 <?php
                 }
                 ?>

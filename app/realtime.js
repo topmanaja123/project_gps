@@ -48,11 +48,10 @@ function getDataFromDb() {
                     var att = jQuery.parseJSON(val['attributes']);
 
                     // Realtime table list 
-                    var tr = "<tr onclick='myPanto(" + val['lat'] +
-                        ',' + val['lng'] + ")' style='border-color : " + get_time_diff(val['devicetime']) + "'>";
-                    tr = tr + '<td class="col-sm-4" id=' + val[''] + 'style=cursor:pointer; >' + val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
+                    var tr = "<tr onclick='myPanto(" + val['lat'] + ',' + val['lng'] + ")'>";
+                    tr = tr + '<td class="col-sm-4" id=' + val[''] + 'style=cursor:pointer; >' + get_time_diff(val['devicetime']) +' '+ val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
                     tr = tr + '<td class="col-sm-4" align="center">' + dateTime(val['devicetime']) + '</td>';
-                    tr = tr + '<td class="col-sm-2" align="center">' + toFixed(val['speed'], 2) + '</td>';
+                    tr = tr + '<td class="col-sm-2" align="center">' + toFixed(val['speed'], 2) +" km/h"+ '</td>';
                     tr = tr + '<td class="col-sm-2" align="center">' + fuel(att['adc1'],val['protocal']) + '</td>';
                     tr = tr + '</tr>';
                     $('#myTable > tbody:last').append(tr);
@@ -222,7 +221,7 @@ function dateTime(dateT) {
         var Seconds = date.getSeconds();
         var strTime = Hours + ":" + Minutes + ":" + Seconds;
         var strDate = day + "/" + month + "/" + year;
-        return strDate + "&nbsp; &nbsp;" + strTime;
+        return strDate + "&nbsp;&nbsp;" + strTime;
     }
 }
 
@@ -238,7 +237,8 @@ function get_time_diff(datetime) {
 
     if (datetime == '0000-00-00 00:00:00') {
         // console.log("dd");
-        return '#FFB1B1';
+        //red
+        return '<i class="far fa-globe" style="color : 	#f12711 "></i>';
     }
 
     var milisec_diff = now - datetime;
@@ -246,13 +246,17 @@ function get_time_diff(datetime) {
     var M = milisec_diff / 1000;
     // var date_diff = new Date(milisec_diff);
     if (M < '0') {
-        return '#fdb14a';
+        //orange
+        return '<i class="far fa-globe" style="color : #FFA500 "></i>';
     } else if (M >= '0' && M < '300') {
-        return '#BDFF73';
+        //green
+        return '<i class="far fa-globe" style="color : #32CD32 "></i>';
     } else if (M > '300' && M <= '600') {
-        return '#FFFF8D';
+        //yellow
+        return '<i class="far fa-globe" style="color : #FFD700 "></i>';
     } else if (M > '600') {
-        return '#FFB1B1';
+        //red
+        return '<i class="far fa-globe" style="color : #f12711 "></i>';
     }
 
     // console.log(M);
