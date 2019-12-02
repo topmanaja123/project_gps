@@ -39,6 +39,7 @@ function getDataFromDb() {
         },
         success: function(result) {
             var data2 = '';
+            console.log(result);
             var obj = jQuery.parseJSON(result);
             if (obj != '') {
                 //$("#myTable tbody tr:not(:first-child)").remove();
@@ -49,10 +50,10 @@ function getDataFromDb() {
 
                     // Realtime table list 
                     var tr = "<tr onclick='myPanto(" + val['lat'] + ',' + val['lng'] + ")'>";
-                    tr = tr + '<td class="col-sm-4" id=' + val[''] + 'style=cursor:pointer; >' + get_time_diff(val['devicetime']) +' '+ val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
+                    tr = tr + '<td class="col-sm-4" id=' + val[''] + 'style=cursor:pointer; >' + get_time_diff(val['devicetime']) + ' ' + val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
                     tr = tr + '<td class="col-sm-4" align="center">' + dateTime(val['devicetime']) + '</td>';
-                    tr = tr + '<td class="col-sm-2" align="center">' + toFixed(val['speed'], 2) +" km/h"+ '</td>';
-                    tr = tr + '<td class="col-sm-2" align="center">' + fuel(att['adc1'],val['protocal']) + '</td>';
+                    tr = tr + '<td class="col-sm-2" align="center">' + toFixed(val['speed'], 2) + " km/h" + '</td>';
+                    tr = tr + '<td class="col-sm-2" align="center">' + fuel(att['adc1'], val['protocal']) + '</td>';
                     tr = tr + '</tr>';
                     $('#myTable > tbody:last').append(tr);
 
@@ -263,25 +264,25 @@ function get_time_diff(datetime) {
 }
 
 
-function fuel(fuelid,proname) {
+function fuel(fuelid, proname) {
 
     var fuelMax = 100; //น้ำมันเต็ม
     var fuelV = 215; //ค่าโวลต์ ต่ำสุด ที่น้ำมัน 0%
     var fuelUse = fuelid / fuelV * fuelMax; //คำนวณค่าน้ำมันที่ใช้ไป
     var fueltotal = 100 - fuelUse; //ผลลัพ ค่าน้ำมันเป็น เปอร์เซน
-if (proname == 'meiligao') {
-    if (isNaN(fuelid)) {
-        return '';
-    } else if (fuelid == '0') {
-        return ' ';
-    } else if (fuelid == '0000') {
-        return fueltotal.toFixed(2) + ' %';
+    if (proname == 'meiligao') {
+        if (isNaN(fuelid)) {
+            return '';
+        } else if (fuelid == '0') {
+            return ' ';
+        } else if (fuelid == '0000') {
+            return fueltotal.toFixed(2) + ' %';
+        } else {
+            return fueltotal.toFixed(2) + ' %';
+        }
     } else {
-        return fueltotal.toFixed(2) + ' %';
+        return '';
     }
-}else{
-    return '';
-}
 }
 
 function devLicense(licenseid) {
@@ -440,7 +441,7 @@ function toFixed(num, pre) {
     num =
         (Math.round(num, pre) + (num - Math.round(num, pre) >= 0.5 ? 1 : 0)) /
         Math.pow(10, pre);
-	return num.toFixed(pre);
+    return num.toFixed(pre);
 }
 
 function getaddress(data) {

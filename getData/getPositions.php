@@ -70,6 +70,8 @@
 ?>
 
 <?php
+ob_start();
+session_start();
 $sc = $_POST['data'];
 
 require '../config.php';
@@ -96,10 +98,13 @@ $strSQL = "SELECT
 `devices`.`driverLicense`,
 `devices`.`fuel`,
 `devices`.`connect_acc`,
-`devices`.`category`
+`devices`.`category`,
+`user_device`.`userid`
 FROM
 `devices`
-INNER JOIN `positions` ON `devices`.`positionid` = `positions`.`id` ";
+INNER JOIN `positions` ON `devices`.`positionid` = `positions`.`id`
+INNER JOIN `user_device` ON `user_device`.`deviceid` = `positions`.`deviceid`
+WHERE `user_device`.`userid` = $_SESSION[userid]";
 if ($sc) {
   $strSQL .= " WHERE name LIKE '%$sc%' ";
 }
