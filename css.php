@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="fontawesome/css/all.css">
+<!-- <link rel="stylesheet" href="fontawesome/css/all.css"> -->
 <!-- font google  -->
 <link href="https://fonts.googleapis.com/css?family=Prompt&display=swap" rel="stylesheet">
 

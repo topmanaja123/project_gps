@@ -39,7 +39,7 @@ function getDataFromDb() {
         },
         success: function(result) {
             var data2 = '';
-            console.log(result);
+            // console.log(result);
             var obj = jQuery.parseJSON(result);
             if (obj != '') {
                 //$("#myTable tbody tr:not(:first-child)").remove();
@@ -248,16 +248,16 @@ function get_time_diff(datetime) {
     // var date_diff = new Date(milisec_diff);
     if (M < '0') {
         //orange
-        return '<i class="far fa-globe" style="color : #FFA500 "></i>';
+        return '<i class="fad fa-circle fa-lg" style="color : #FFA500 "></i>';
     } else if (M >= '0' && M < '300') {
         //green
-        return '<i class="far fa-globe" style="color : #32CD32 "></i>';
+        return '<i class="fad fa-circle fa-lg" style="color : #0ca703 "></i>';
     } else if (M > '300' && M <= '600') {
         //yellow
-        return '<i class="far fa-globe" style="color : #FFD700 "></i>';
+        return '<i class="fad fa-circle fa-lg" style="color : #FFD700 "></i>';
     } else if (M > '600') {
         //red
-        return '<i class="far fa-globe" style="color : #f12711 "></i>';
+        return '<i class="fad fa-circle fa-lg" style="color : #f12711 "></i>';
     }
 
     // console.log(M);

@@ -64,10 +64,15 @@ function creatSheet(datasent) {
 </script>
 
 <body>
-
     <?php
     require './config.php';
-    $sql = 'SELECT `devices`.* FROM `devices`';
+    $sql = "SELECT
+    `user_device`.`userid`,
+    `devices`.*
+  FROM
+    `devices`
+    INNER JOIN `user_device` ON `devices`.`id` = `user_device`.`deviceid`
+    WHERE `user_device`.`userid` = $_SESSION[userid]";
     $result = $conn->query($sql);
 
     // $attPosition = "SELECT `positions`.* FROM `positions`";

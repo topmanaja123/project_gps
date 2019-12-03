@@ -76,7 +76,13 @@
 <body>
     <?php
     require "config.php";
-    $sql = "SELECT `devices`.* FROM `devices`";
+    $sql = "SELECT
+    `user_device`.`userid`,
+    `devices`.*
+  FROM
+    `devices`
+    INNER JOIN `user_device` ON `devices`.`id` = `user_device`.`deviceid`
+    WHERE `user_device`.`userid` = $_SESSION[userid]";
     $result = $conn->query($sql);
     ?>
 
@@ -95,12 +101,12 @@
         // // echo "--";
         // $dateEnd = date("Y-d-m", $dateEnd);
 
-
         $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
 
         //Query For List Position
         $resultPosition = $conn->query($sqlPosition);
         $numrow = $resultPosition->num_rows;
+        
         // Query For Marker
         $resultPositionLine = $conn->query($sqlPosition);
     }
@@ -270,7 +276,7 @@
                 permanent: true
             }).openTooltip();
         }
-        console.log(countx);
+        // console.log(countx);
     <?php
     } //if($resultPositionLine){
     ?>

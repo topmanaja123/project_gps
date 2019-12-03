@@ -106,7 +106,7 @@ INNER JOIN `positions` ON `devices`.`positionid` = `positions`.`id`
 INNER JOIN `user_device` ON `user_device`.`deviceid` = `positions`.`deviceid`
 WHERE `user_device`.`userid` = $_SESSION[userid]";
 if ($sc) {
-  $strSQL .= " WHERE name LIKE '%$sc%' ";
+  $strSQL .= " AND name LIKE '%$sc%' ";
 }
 $strSQL .= " LIMIT 300";
 $objQuery = $conn->query($strSQL) or die(mysql_error());

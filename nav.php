@@ -72,8 +72,10 @@
               </li>
             </ul>
             <div class="form-inline mt-2 mt-md-0 mr-4">
-                <a id="mNav" href="#" data-toggle="tooltip" title="ข้อมูลส่วนตัว"><i  class="nav-link fal fa-address-card d-none d-md-block fa-2x"></i></a>
-                <a id="mNav" href="auth/logout.php" data-toggle="tooltip" title="ออกจากระบบ"><i class="nav-link fal fa-sign-out-alt d-none d-md-block fa-2x"></i></a>
+                <a id="mNav" href="#" data-toggle="tooltip" title="ข้อมูลส่วนตัว"><i  class="fad fa-address-card d-none d-md-block fa-2x"></i></a>
+            </div>
+            <div class="form-inline mt-2 mt-md-0 mr-4">
+                <a id="mNav" href="auth/logout.php" data-toggle="tooltip" title="ออกจากระบบ"><i class="fad fa-sign-out-alt d-none d-md-block fa-2x"></i></a>
             </div>
           </div>
         </nav>
