@@ -1,5 +1,5 @@
 <?php
-require './js.php';
+require 'js.php';
 require 'function_report.php';
 // require 'all_functions.php';
 ?>
@@ -8,12 +8,11 @@ require 'function_report.php';
 
 <head>
     <meta charset="utf-8">
-
-
     <link rel="stylesheet" type="text/css" href="./css/time/jquery.timepicker.css" />
     <script type="text/javascript" src="./js/time/jquery.timepicker.js"></script>
     <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-
+    <link rel="stylesheet" href="report\css\table-custom.css">
+    <link rel="stylesheet" href="report\css\custom-scrollbars.css">
 
     <style media="screen">
     #head-card {
@@ -41,11 +40,10 @@ require 'function_report.php';
     .gj-icon {
         line-height: 0.8;
     }
-
-  
     </style>
     <title>รายงานระยะทาง</title>
 </head>
+
 <script>
 function creatSheet(datasent) {
     $.ajax({
@@ -74,26 +72,22 @@ function creatSheet(datasent) {
     INNER JOIN `user_device` ON `devices`.`id` = `user_device`.`deviceid`
     WHERE `user_device`.`userid` = $_SESSION[userid]";
     $result = $conn->query($sql);
-
     // $attPosition = "SELECT `positions`.* FROM `positions`";
     // $rePosition = $conn->query($attPosition);
-
     ?>
-
     <?php
     if (isset($_POST['serach'])) {
         $dateStart = Datestr($_POST['startDate']) . ' ' . $_POST['timeStart'];
         $dateEnd = Datestr($_POST['dateEnd']) . ' ' . $_POST['timeEnd'];
 
         $sqlPosition = "SELECT  * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
-
         // echo $sqlPosition = "SELECT * FROM positions WHERE deviceid = $_POST[deviceid] AND fixtime BETWEEN '$dateStart' AND '$dateEnd'";
         $resultPosition = $conn->query($sqlPosition);
-    }
+     }
     ?>
     <p>
         <p>
-            <form action="" method="post" class="container-fluid">
+            <form id="search" action="" method="post" style="width: 99%" onsubmit="return checkInterval()">
                 <div class="card card-wrap">
                     <div class="card-header bg-success">
                         <div class="text-center">
@@ -157,7 +151,8 @@ function creatSheet(datasent) {
                         </div>
                         <div class="form-row">
                             <div class="col-md-4 offset-md-4 text-center">
-                                <button class="btn btn-info btn-block" type="submit" name="serach">ค้นหา</button>
+                                <button class="btn btn-info btn-block" onclick="clear()" type="submit"
+                                    name="serach">ค้นหา</button>
                             </div>
                         </div>
                     </div>
@@ -167,10 +162,9 @@ function creatSheet(datasent) {
                 <?php
                 if (isset($resultPosition)) {
                     ?>
-                    <form action="" method="post" class="container-fluid">
-                <div class="card card-wrap">
+                <div class="card card-res card-wrap">
                     <div class="card-header bg-success">
-                        <div class="text-center ">
+                        <div class="text-center">
                             <span id="head-card"> <strong>ข้อมูลระยะทาง</strong> </span>
                         </div>
                     </div>
@@ -178,18 +172,17 @@ function creatSheet(datasent) {
                     <div class="card-body">
                         <div class="form-group">
                             <div class="table-responsive">
-                                <table class="table table-bordered wrap-table100 table-sm">
+                                <table class="table table-fixed table-sm table-hover">
                                     <thead>
                                         <tr>
-                                            <td style="text-align:center;">เวลาเริ่มต้น</td>
-                                            <td style="text-align:center;">เวลาสิ้นสุด</td>
-                                            <td style="text-align:center;">ความเร็วสูงสุด <br>(กม./ชม.)</td>
-                                            <td style="text-align:center;">ระยะทางรวม</td>
-                                            <td style="text-align:center;">ความเร็วเฉลี่ย <br>(กม./ชม.)</td>
-                                            <td style="text-align:center;">ระยะเวลา</td>
-                                            <td style="text-align:center;">สถานที่(เริ่ม)</td>
-                                            <td style="text-align:center;">สถานที่(สิ้นสุด)</td>
-
+                                            <th style="text-align:center; width:11%">เวลาเริ่มต้น</th>
+                                            <th style="text-align:center; width:11%">เวลาสิ้นสุด</th>
+                                            <th style="text-align:center; width:10%">ความเร็วสูงสุด</th>
+                                            <th style="text-align:center; width:10%">ระยะทางรวม</th>
+                                            <th style="text-align:center; width:10%">ความเร็วเฉลี่ย</th>
+                                            <th style="text-align:center; width:10%">ระยะเวลา</th>
+                                            <th style="text-align:center; width:19%">สถานที่(เริ่ม)</th>
+                                            <th style="text-align:center; width:19%">สถานที่(สิ้นสุด)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -266,17 +259,17 @@ function creatSheet(datasent) {
                                                         $FavgSpeed =  number_format($avgSpeed,2);
 
                                                         echo '<tr>';
-                                                            echo '<th style="text-align:center;">'. $timeStart .'</th>';
-                                                            echo '<th style="text-align:center;">'. $timeEnd .'</th>';
-                                                            echo '<th style="text-align:right;">'. $Fmaxspees.'</th>';
-                                                            echo '<th style="text-align:right;" >'. $FtotalDis .'กม.'. '</th>';
-                                                            echo '<th style="text-align:right;">'.$FavgSpeed .'</th>';
-                                                            echo '<th style="text-align:right;">'. $totalTime .'</th>';
-                                                            echo '<th style="text-align:right;">'. $poiStart.'</th>';
-                                                            echo '<th style="text-align:right;">'. $poiEnd .'</th>';
+                                                            echo '<td style="text-align:center; width:11%">'. $timeStart .'</td>';
+                                                            echo '<td style="text-align:center; width:11%">'. $timeEnd .'</td>';
+                                                            echo '<td style="text-align:right; width:10%">'. $Fmaxspees.' กม./ชม.'.'</td>';
+                                                            echo '<td style="text-align:right; width:10%">'. $FtotalDis .' กม.'.'</td>';
+                                                            echo '<td style="text-align:right; width:10%">'.$FavgSpeed .' กม./ชม.'.'</td>';
+                                                            echo '<td style="text-align:right; width:10%">'. $totalTime .'</td>';
+                                                            echo '<td style="text-align:right; width:19%">'. $poiStart.'</td>';
+                                                            echo '<td style="text-align:right; width:19%">'. $poiEnd .'</td>';
                                                         echo '</tr>';
 
-                                                        $send = array(
+                                                       $send = array(
                                                             "timeStart" => $timeStart,
                                                             "timeEnd" => $timeEnd,
                                                             "Fmaxspees" =>$Fmaxspees,
@@ -304,43 +297,35 @@ function creatSheet(datasent) {
                                                         // $avgSpeed = $totalSpeed / $count;
                                                     } 
                                                     ?>
-                                       
-                                            <?php
+
+                                        <?php
                                                     } //while($rsData = $resultPosition->fetch_assoc())
-                                                    $jsonData = json_encode($dataSend);
-                                                    $postdata = "<script>creatSheet(".$jsonData.")</script>";
-                 
-                                            ?>
+                                                  $jsonData = json_encode($dataSend);
+                                                  echo $postdata = "<script>creatSheet(".$jsonData.")</script>";
+                                             ?>
                                     </tbody>
                                 </table>
                                 <div class="col text-center">
-                                    <a href="report/excel/report.xlsx" title=""> <button type="submit"
-                                            class="btn btn-info" name=""><span class="fas fa-file-export"></span>
-                                            ออกรายงาน
-                                        </button>
+                                    <button onclick="report()" type="button" class="btn btn-info" name=""><span
+                                            class="fas fa-file-export"></span>
+                                        ออกรายงาน
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                    </form>
+
                 <?php
                 }
                 ?>
 </body>
 
 </html>
+<script src="report\js\function_report.js"></script>
 <script>
-function geocodeLatLng(datalatlng, fnaddr) {
-
-    $.getJSON('https://maps.googleapis.com/maps/api/geocode/json?latlng=' + datalatlng + '&key=' + key, function(
-        dataAddr) {
-        return fnaddr(dataAddr.results[0].formatted_address)
-    });
-    // $.getJSON('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=' + datalatlng + '&radius=500&key=' + key, function(dataPlace) {
-    //     console.log(dataPlace);
-    //     // return fnplace(dataPlace.results[0].formatted_address)
-    // });
+function report() {
+    location.replace('report/excel/report.xlsx');
 }
 </script>
 

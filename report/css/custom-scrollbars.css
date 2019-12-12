@@ -1,0 +1,35 @@
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+/* แถบสกอร์บาร์ */
+::-webkit-scrollbar-thumb {
+  background: #ffcb00;
+  /* border: 1px solid #ff0080; */
+  border-radius: 120px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #DCBA35;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #958F79;
+}
+::-webkit-scrollbar-track {
+  background: #273E2C;
+  border: 0px none #0000ff;
+  border-radius: 0px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #273E2C;
+}
+::-webkit-scrollbar-track:active {
+  background: #273E2C;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}

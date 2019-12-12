@@ -60,6 +60,7 @@ if (!isset($_SESSION['userid'])) {
           <div class="footer">
   <p>Copyright © 2019 www.greenboxgps.com All rights reserved</p>
 </div>
+
 </body>
 
 </html>

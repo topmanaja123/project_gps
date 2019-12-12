@@ -14,7 +14,7 @@
 .table-fixed tr,
 .table-fixed td,
 .table-fixed th {
-    display: block;
+    display: block
 }
 
 .table-fixed tr:after {
