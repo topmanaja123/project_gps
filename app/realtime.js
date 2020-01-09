@@ -49,7 +49,7 @@ function getDataFromDb() {
                     var att = jQuery.parseJSON(val['attributes']);
 
                     // Realtime table list 
-                    var tr = "<tr onclick='myPanto(" + val['lat'] + ',' + val['lng'] + ")'>";
+                    var tr = "<tr onclick='myPanto2(" + val['lat'] + ',' + val['lng'] + ")'>";
                     tr = tr + '<td class="col-sm-4" id=' + val[''] + 'style=cursor:pointer; >' + get_time_diff(val['devicetime']) + ' ' + val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
                     tr = tr + '<td class="col-sm-4" align="center">' + dateTime(val['devicetime']) + '</td>';
                     tr = tr + '<td class="col-sm-2" align="center">' + toFixed(val['speed'], 2) + " km/h" + '</td>';
@@ -84,6 +84,7 @@ function getDataFromDb() {
                     };
                     // console.log(val['protocol']);
                     dataRealtime(data2);
+                    
 
                 });
 
@@ -117,7 +118,7 @@ function isNotMarker(data) {
         iconUrl: 'images/show/bus.png',
         iconSize: [22, 45],
         iconAnchor: [11, 22],
-        popupAnchor: [0, -7],
+        popupAnchor: [0, -7]
     });
 
     markers[dataArr['id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
@@ -359,7 +360,10 @@ function myPanto2(lat, lng) {
         animate: true,
         noMoveStart: true
     });
+    map.closePopup();
 }
+
+
 
 function keyCheck(statusKey, namePoto, proGt06) {
 

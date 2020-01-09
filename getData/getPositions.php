@@ -108,7 +108,7 @@ WHERE `user_device`.`userid` = $_SESSION[userid]";
 if ($sc) {
   $strSQL .= " AND name LIKE '%$sc%' ";
 }
-$strSQL .= " LIMIT 300";
+$strSQL .= " LIMIT 100";
 $objQuery = $conn->query($strSQL) or die(mysql_error());
 $intNumField = mysqli_num_fields($objQuery);
 $resultArray = array();
