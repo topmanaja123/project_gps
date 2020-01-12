@@ -177,7 +177,7 @@
                                 <td class="text-center col-1"><?= $rs1['speed']; ?></td>
 
                                 <td class="text-center col-4" width="auto" style="cursor:pointer"
-                                    <?= "onclick='pantoLatLng(" . $rs1['latitude'] . "," . $rs1['longitude'] . ",". $rs1['course'].")'" ?>>
+                                    <?= "onclick='pantoLatLng(" . $rs1['latitude'] . "," . $rs1['longitude'] . ",". $rs1['speed']. ",". $rs1['deviceid'].")'" ?>>
                                     <?= $latStr; ?> , <?= $lngStr; ?></td>
 
                             </tr>
@@ -233,6 +233,7 @@ var latlngStr = "";
 // var show = [ ];
 var countx = 0;
 var markers = {}; 
+var marker = '';
 <?php
 if (isset($resultPositionLine)) {
     while ($resultPolyline = $resultPositionLine->fetch_assoc()) {
@@ -246,7 +247,7 @@ if (isset($resultPositionLine)) {
         latlngStr = [ <?= $resultPolyline['latitude'] ?> , <?= $resultPolyline['longitude'] ?> ];
         latlng.push(latlngStr);
         if (countx == '1') {
-            L.marker(latlngStr, {
+            markers[id] = L.marker(latlngStr, {
                 icon: arrow,
                 rotationAngle: course,
                 rotationOrigin: 'center center'
@@ -255,16 +256,16 @@ if (isset($resultPositionLine)) {
                 direction: 'top',
                 permanent: true
             }).openTooltip();
-        }
 
+        }
         if (countx != '1') {
-            L.marker(latlngStr, {
+            markers[id] = L.marker(latlngStr, {
                 icon: arrow,
                 rotationAngle: course,
-                rotationOrigin: 'center center'
+                rotationOrigin: 'center center',
             }).addTo(map);
         }
-
+        
         if (status == '6400' && speed != '0') {
             markers[id] = L.marker(latlngStr, {
                 icon: arrow,
@@ -277,7 +278,7 @@ if (isset($resultPositionLine)) {
     ?>
 
     if (countx > '1') {
-        L.marker(latlngStr, {
+        markers[id] = L.marker(latlngStr, {
             icon: arrow,
             rotationAngle: course,
             rotationOrigin: 'center center'
@@ -297,7 +298,7 @@ var polyline = L.polyline(showLine, {
 }).addTo(map); //show polyline
 
 
-function pantoLatLng(lat, lng,course) {
+function pantoLatLng(lat, lng, speed,id) {
     let zoom = 22;
     if (map.getZoom() > 15) {
         zoom = map.getZoom();
@@ -305,15 +306,17 @@ function pantoLatLng(lat, lng,course) {
     L.popup()
         .setLatLng([lat, lng])
         .setContent('รายละเอียด'+
-        '<br>องศา : '+ course +
+        '<br>ความเร็ว : '+ speed +
         '<br>ตำแหน่ง : ' +[toFixed(lat,5), toFixed(lng,5)])
         .openOn(map);
 
-    map.setView([lat, lng], zoom, {
+        map.setView([lat, lng], zoom, {
         animate: true,
         noMoveStart: true
     });
+   
 }
+
 
 $(document).ready(function() {
     $('.select2').select2();

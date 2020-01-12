@@ -108,7 +108,7 @@ WHERE `user_device`.`userid` = $_SESSION[userid]";
 if ($sc) {
   $strSQL .= " AND name LIKE '%$sc%' ";
 }
-$strSQL .= " LIMIT 100";
+$strSQL .= " limit 100 ";
 $objQuery = $conn->query($strSQL) or die(mysql_error());
 $intNumField = mysqli_num_fields($objQuery);
 $resultArray = array();
@@ -137,7 +137,8 @@ while ($obResult = $objQuery->fetch_assoc()) {
     'connect_post' => $obResult['connect_post'],
     'connect_acc' => $obResult['connect_acc'],
     // 'state' => $obResult['state'],
-    'category' => $obResult['category']
+    'category' => $obResult['category'],
+    'sql' => $strSQL
   ); 
   array_push($resultArray, $arrCol);
 }
