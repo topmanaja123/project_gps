@@ -12,7 +12,7 @@ var popupOption = {
 // Realtime 10 Seconds
 function onLoad() {
     getDataFromDb();  //first get data and search data
-    setTimeout("goLoop();", 10000);
+    setTimeout("goLoop();", 5000);
 }
 
 function goLoop() {
@@ -50,6 +50,32 @@ function getDataFromDb() {
                 $.each(obj, function(key, val) {
                     var att = jQuery.parseJSON(val['attributes']);
 
+
+                    // console.log(val['positionid'])
+                    // var id' => $obResult['id'],
+                    // 'name' => $obResult['name'],
+                    // 'uniqueid' => $obResult['uniqueid'],
+                    // // 'fuel' => $obResult['devi_fuel'],
+                    // 'positionid' => $obResult['positionid'],
+                    // 'protocol' => $obResult['protocol'],
+                    // 'driverLicense' => $obResult['driverLicense'],
+                    // // 'rfid_number' => $obResult['rfid_number'],
+                    // 'devicetime' => $obResult['devicetime'],
+                    // 'servertime' => $obResult['servertime'],
+                    // 'fixtime' => $obResult['fixtime'],
+                    // 'attributes' => $obResult['attributes'],
+                    // 'lat' => $obResult['latitude'],
+                    // 'lng' => $obResult['longitude'],
+                    // 'speed' => ($obResult['speed']*1.852),
+                    // 'course' => $obResult['course'],
+                    // 'attributes' =>	$obResult['attributes'],
+                    // 'valid' => $obResult['valid'],
+                    // 'connect' => $obResult['connect'],
+                    // 'connect_post' => $obResult['connect_post'],
+                    // 'connect_acc' => $obResult['connect_acc'],
+                    // // 'state' => $obResult['state'],
+                    // 'category' => $obResult['category'],
+
                     // Realtime table list 
                     // var tr = '<tr id="tr'+val['id']+'" onclick="myPanto2(' + val['lat'] + ',' + val['lng'] + ')">';
                     // tr = tr + '<td class="col-sm-4" style="cursor:pointer;" id="t_name'+val['id']+'" >' + get_time_diff(val['devicetime']) + ' ' + val['name'] + keyCheck(att['status'], val['protocol'], att['ignition']) + '</td>';
@@ -59,7 +85,7 @@ function getDataFromDb() {
                     // tr = tr + '</tr>';
                     // $('#myTable > tbody:last').append(tr);
 
-                    var tr = '<tr id="tr'+val['id']+'" onclick="myPanto2(' + val['lat'] + ',' + val['lng'] + ',' +val['id']+')">';
+                    var tr = '<tr id="tr'+val['id']+'" onclick="myPanto2(' + val['lat'] + ',' + val['lng'] + ',' +val['id']+ ')">';
                     tr = tr + '<td class="col-sm-4" style="cursor:pointer;" id="t_name'+val['id']+'" >' + val['name'] +  '</td>';
                     tr = tr + '<td class="col-sm-4" align="center" id="t_time'+val['id']+'">' + dateTime(val['devicetime']) + '</td>';
                     tr = tr + '<td class="col-sm-2" align="center" id="t_speed'+val['id']+'">' +  " km/h" + '</td>';
@@ -78,27 +104,30 @@ function getDataFromDb() {
                         protocol: val['protocol'],
                         servertime: val['servertime'],
                         fixtime: val['fixtime'],
-                        attributes: att['attributes'],
+                        // attributes: att['attributes'],
                         lat: val['lat'],
                         lng: val['lng'],
                         speed: val['speed'],
                         course: val['course'],
-                        // attributes: val['attributes'],
+                        attributes: val['attributes'],
                         connect: val['connect'],
                         connect_post: val['connect_post'],
                         connect_acc: val['connect_acc'],
                         valid: val['valid'],
                         // 'state': val["state"],
                         photo: val['photo']
+                        // category: val['category']
+                        
                     };
                     // console.log(val['protocol']);
-                    dataRealtime(data2);
-                    
 
+                    if (val['positionid']) {
+                        dataRealtime(data2);
+                    }
+                   
                 });
-
-                search();
                 markerGroup.addTo(map);
+                search();
             }
         },
     });
@@ -122,8 +151,8 @@ function getDataUpdate() {
 
                 // markerGroup.hide();
                 $.each(obj, function(key, val) {
-                    var att = jQuery.parseJSON(val['attributes']);
-
+                    var att = decode_Json(val['attributes']);
+                    // console.log(val['positionid']);
                     // viable element id 
                     let ele_trID = "tr"+val['id'];
                     let ele_nameID = "t_name"+val['id'];
@@ -139,9 +168,20 @@ function getDataUpdate() {
                     let ele_fuel = document.getElementById(ele_fuelID);
                     let ele_tr = document.getElementById(ele_trID);
 
-                    let onlineCheckValue = get_time_diff(val['devicetime'])
-                    let nameValue = val['name']
-                    let keyCheckValue = keyCheck(att['status'], val['protocol'], att['ignition'])
+                    let devicetime = emptyValueCheck(val['devicetime']);
+                    let name = emptyValueCheck(val['name']);
+                    let status = emptyValueCheck(att.status, 'obj');
+                    let protocol = emptyValueCheck(val['protocol']);
+                    let ignition = emptyValueCheck(val['ignition']);
+                    // let position = emptyValueCheck(val['positionid']);
+ 
+                    // let Position = notLatlng(val['positionid'],val['lat'],val['lng'])
+                    
+
+                    // console.log(position)
+                    let onlineCheckValue = get_time_diff(devicetime)
+                    let nameValue = name
+                    let keyCheckValue = keyCheck(status, protocol, ignition)
                     ele_name.innerHTML = onlineCheckValue+nameValue+keyCheckValue;
 
                     let datetimeValue = dateTime(val['devicetime'])
@@ -185,15 +225,21 @@ function getDataUpdate() {
                         valid: val['valid'],
                         // 'state': val["state"],
                         photo: val['photo']
+                        // category: val['category']
                     };
                     // console.log(val['protocol']);
-                    dataRealtime(data2);
+                    if (val['positionid'] != null) {
+                        // console.log(data2);
+                        dataRealtime(data2);
+                     }
+                
+
+                   
+
                     
-
                 });
-
-                search();
                 markerGroup.addTo(map);
+                search();
             }
         },
     });
@@ -203,15 +249,17 @@ function getDataUpdate() {
 
 //realtime marker
 function dataRealtime(dataArr) {
-    if (!markers.hasOwnProperty(dataArr['id'])) {
-        isNotMarker(dataArr);
-        
-    } else {
-        if (markers[dataArr['id']]._popup.isOpen() == true) {
-            isMarkerPoi(dataArr);
-            myPanto2(dataArr['lat'], dataArr['lng']);
+    if (dataArr['positionid'] != null) {
+        // console.log(dataArr['positionid']);
+        if (!markers.hasOwnProperty(dataArr['id'])) {
+            isNotMarker(dataArr);
         } else {
-            isMarker(dataArr);
+            if (markers[dataArr['id']]._popup.isOpen() == true) {
+                isMarkerPoi(dataArr);
+                myPanto2(dataArr['lat'], dataArr['lng']);
+            } else {
+                isMarker(dataArr);
+            }
         }
     }
     
@@ -228,10 +276,11 @@ function isNotMarker(data) {
     });
 
     markers[dataArr['id']] = new L.Marker([dataArr['lat'], dataArr['lng']], {
+            title: dataArr["id"],
             icon: myIcon,
             rotationAngle: dataArr['course'],
             rotationOrigin: 'center center',
-            title: dataArr['id']
+            
         }).bindPopup(
             'รายละเอียด' +
             '<br>ทะเบียน : ' +
@@ -320,8 +369,8 @@ function onClick(e) {
 
 // format date time
 function dateTime(dateT) {
-    if (dateT == "0000-00-00 00:00:00") {
-        return "NOT TIME";
+    if (dateT == "0000-00-00 00:00:00" || dateT == null ) {
+        return " ";
     } else {
         var date = new Date(dateT);
         var day = date.getDate();
@@ -338,33 +387,39 @@ function dateTime(dateT) {
 
 //เปลี่ยนสี สถานะรถ offline & online
 function get_time_diff(datetime) {
+    
     var datetime = new Date(datetime).getTime();
     var now = new Date().getTime();
-    //55555
+    // console.log(datetime);
     if (isNaN(datetime)) {
         // console.log("N");
         return '';
     }
-    if (datetime == '0000-00-00 00:00:00') {
+    if (datetime == '0000-00-00 00:00:00' || isNaN(datetime)) {
         // console.log("dd");
         //red
         return '<i class="far fa-globe" style="color : 	#f12711 "></i>';
     }
     var milisec_diff = now - datetime;
-
+    
     var M = milisec_diff / 1000;
+    // console.log(M);
     // var date_diff = new Date(milisec_diff);
     if (M < '0') {
         //orange
+        // console.log("a");
         return '<i class="fad fa-circle fa-lg" style="color : #FFA500 "></i>';
     } else if (M >= '0' && M < '300') {
         //green
+        // console.log("b");
         return '<i class="fad fa-circle fa-lg" style="color : #0ca703 "></i>';
     } else if (M > '300' && M <= '600') {
         //yellow
+        // console.log("v");
         return '<i class="fad fa-circle fa-lg" style="color : #FFD700 "></i>';
     } else if (M > '600') {
         //red
+        // console.log("d");
         return '<i class="fad fa-circle fa-lg" style="color : #f12711 "></i>';
     }
     // console.log(M);
@@ -449,6 +504,8 @@ function connectPost(conPost) {
 //click panto to marker
 function myPanto(lat, lng) {
     let zoom = 13;
+
+    
     map.setView([lat, lng], zoom, {
         animate: true,
         noMoveStart: true
@@ -456,26 +513,44 @@ function myPanto(lat, lng) {
     map.closePopup();
 }
 
-function myPanto2(lat, lng, id) {
+function myPanto2(lat, lng, id ) {
     let zoom = 13;
     if (map.getZoom() > 13) {
         zoom = map.getZoom();
     }
-    for (var i in markers) {
-    var markerID = markers[i].options.title;
-    // console.log(position)
-        if (markerID == id) {
-            map.setView([lat, lng], zoom);
-            markers[i].setZIndexOffset(1000);
-            // console.log('1');  
-            // console.log( markers[i]);  
-        }else{
-            map.setView([lat, lng], zoom);
-            markers[i].setZIndexOffset(0);
-            // console.log('2');  
-            // console.log( markers[i]);    
-        }
-}
+
+    if (lat != null || lng != null ){
+        for (var i in markers) {
+            var markerID = markers[i].options.title;
+                if (markerID == id) {
+                    map.setView([lat, lng], zoom);
+                    markers[i].setZIndexOffset(1000);
+                    // markers[i];
+                    // console.log('1');  
+                    // console.log( markers[i]);  
+                }else{
+                    map.setView([lat, lng], zoom);
+                    markers[i].setZIndexOffset(0);
+                    // console.log('2');  
+                    // console.log( markers[i]);    
+                }
+            } 
+    }
+//     var markerID = markers[id].options.title;
+//     //  console.log(markerID);
+
+
+// if (markerID) {
+//     map.setView([lat, lng], zoom);
+//     markerID.setZIndexOffset(1000);
+//     console.log( markers[id])
+// }
+// else{
+//     map.setView([lat, lng], zoom);
+//     markers[id].setZIndexOffset(0);
+//     console.log('2')
+// }
+
   
 }
 
@@ -572,3 +647,30 @@ function geocodeLatLng(datalatlng, fnaddr, fnplace) {
     //     // return fnplace(dataPlace.results[0].formatted_address)
     // });
 }
+
+function emptyValueCheck(value){
+    // console.log(value);
+    if (value !== null) {
+        return value
+    }else{
+        return '';
+    }
+  
+}
+
+function decode_Json(jsonValues) {
+    if (jsonValues !== null) {
+        let result = jQuery.parseJSON(jsonValues);
+        return result;
+    }
+    return {};
+}
+
+// function notLatlng(){
+//  if (position !== null  ){
+//     return position;
+//  }else{
+//     return ' ';
+//  }
+// }
+

@@ -31,13 +31,13 @@ map.addLayer(osmLayer);
 //this section sets the behavior of the markers themselves
 var marker1 = L.marker([51.49, 0.0911], {
   title: "marker_1"
-}).addTo(map).bindPopup("Marker 1").on('click', clickZoom);
+}).addTo(map).bindPopup("Marker 1").on('click', clickZoom).bindTooltip('555').openTooltip();
 var marker2 = L.marker([51.49, 0.0914], {
   title: "marker_2"
-}).addTo(map).bindPopup("Marker 2").on('click', clickZoom);
+}).addTo(map).bindPopup("Marker 2").on('click', clickZoom).bindTooltip('555').openTooltip();
 var marker3 = L.marker([51.49, 0.0917], {
   title: "marker_3"
-}).addTo(map).bindPopup("Marker 3").on('click', clickZoom);
+}).addTo(map).bindPopup("Marker 3").on('click', clickZoom).bindTooltip('555').openTooltip();
 
 function clickZoom(e) {
 	map.setView(e.target.getLatLng(),15);

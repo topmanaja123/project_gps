@@ -92,24 +92,23 @@ $strSQL = "SELECT
 `positions`.`speed`,
 `positions`.`course`,
 `positions`.`attributes`,
-`devices`.`connect`,
+`devices`.`contact`,
 `devices`.`connect_post`,
 `devices`.`type`,
 `devices`.`driverLicense`,
 `devices`.`fuel`,
 `devices`.`connect_acc`,
 `devices`.`category`,
-`user_device`.`userid`,
-`positions`.`altitude`
+`user_device`.`userid`
 FROM
 `devices`
 LEFT JOIN `positions` ON `devices`.`positionid` = `positions`.`id`
 INNER JOIN `user_device` ON `user_device`.`deviceid` = `devices`.`id`
-WHERE `user_device`.`userid` = $_SESSION[userid]";
+WHERE `user_device`.`userid`  = $_SESSION[userid]";
 if ($sc) {
   $strSQL .= " AND name LIKE '%$sc%' ";
 }
-$strSQL .= " ORDER by `devices`.`id` asc ; ";
+$strSQL .= "  ";
 $objQuery = $conn->query($strSQL) or die(mysql_error());
 $intNumField = mysqli_num_fields($objQuery);
 $resultArray = array();
@@ -127,6 +126,7 @@ while ($obResult = $objQuery->fetch_assoc()) {
     'devicetime' => $obResult['devicetime'],
     'servertime' => $obResult['servertime'],
     'fixtime' => $obResult['fixtime'],
+    // 'attributes' => $obResult['attributes'],
     'lat' => $obResult['latitude'],
     'lng' => $obResult['longitude'],
     'speed' => ($obResult['speed']*1.852),

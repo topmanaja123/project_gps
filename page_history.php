@@ -258,13 +258,13 @@ if (isset($resultPositionLine)) {
             }).openTooltip();
 
         }
-        if (countx != '1') {
-            markers[id] = L.marker(latlngStr, {
-                icon: arrow,
-                rotationAngle: course,
-                rotationOrigin: 'center center',
-            }).addTo(map);
-        }
+        // if (countx != '1') {
+        //     markers[id] = L.marker(latlngStr, {
+        //         icon: arrow,
+        //         rotationAngle: course,
+        //         rotationOrigin: 'center center',
+        //     }).addTo(map);
+        // }
         
         if (status == '6400' && speed != '0') {
             markers[id] = L.marker(latlngStr, {
@@ -306,6 +306,7 @@ function pantoLatLng(lat, lng, speed,id) {
     L.popup()
         .setLatLng([lat, lng])
         .setContent('รายละเอียด'+
+        '<br>วันที่ : '+ speed +
         '<br>ความเร็ว : '+ speed +
         '<br>ตำแหน่ง : ' +[toFixed(lat,5), toFixed(lng,5)])
         .openOn(map);
@@ -314,6 +315,8 @@ function pantoLatLng(lat, lng, speed,id) {
         animate: true,
         noMoveStart: true
     });
+
+    
    
 }
 
